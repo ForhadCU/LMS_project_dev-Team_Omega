@@ -16,9 +16,10 @@ export type TUserTokenData = {
   role: string;
 };
 
-const USER_ROLE = {
+export const USER_ROLE = {
   admin: "admin",
   user: "user",
+  super_admin: "super admin",
 } as const;
-
-export type TUserRole = keyof typeof USER_ROLE;
+type keys = keyof typeof USER_ROLE;
+export type TUserRole = (typeof USER_ROLE)[keys];

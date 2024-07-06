@@ -1,0 +1,536 @@
+{
+	"info": {
+		"_postman_id": "c9690e7b-62f2-41c2-b175-4dc9f64d5a5b",
+		"name": "BJET-LMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30756775"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create New User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NDVkNWQyMzU4OGNmNzA0MDlkZDgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjAyNzk0NzAsImV4cCI6MTcyMTE0MzQ3MH0.uKoH-lxxfmdhBg4eM-bFHjIn3QeBUZHDh9GO8AVshmc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"LMS dummy student2\",\r\n    \"email\":\"abcd2@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"student\",\r\n    \"isActive\":true\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/v1/user/create-user"
+					},
+					"response": [
+						{
+							"name": "Create Super Admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"LMS Admin2\",\r\n    \"email\":\"bjetomega@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"admin\",\r\n    \"isActive\":true\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/user/create-user"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "348"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15c-e1+ur1sieraxhQGOtEWI2gQqj00\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Jul 2024 17:05:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Faculty is created succesfully\",\n    \"data\": {\n        \"name\": \"LMS Admin1\",\n        \"email\": \"bjetomega@gmail.com\",\n        \"password\": \"$2b$12$5uSDglsASP0lwlDFci8/U.QYmvAnAa19qulu.cl9fFI2NH13MsKSW\",\n        \"role\": \"super admin\",\n        \"isActive\": true,\n        \"_id\": \"668584e5db2e17ad7a5c7c32\",\n        \"createdAt\": \"2024-07-03T17:05:41.784Z\",\n        \"updatedAt\": \"2024-07-03T17:05:41.784Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"abcde@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/v1/user/login-user"
+					},
+					"response": [
+						{
+							"name": "Super Admin Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"bjetomega@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/user/login-user"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "508"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1fc-d7ZtAHPrG/NJiJ0dC/oUKJFP9Vk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Jul 2024 19:36:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User is created succesfully\",\n    \"data\": {\n        \"_id\": \"668584e5db2e17ad7a5c7c32\",\n        \"name\": \"LMS Admin1\",\n        \"email\": \"bjetomega@gmail.com\",\n        \"role\": \"super admin\",\n        \"isActive\": true,\n        \"createdAt\": \"2024-07-03T17:05:41.784Z\",\n        \"updatedAt\": \"2024-07-03T17:05:41.784Z\",\n        \"__v\": 0\n    },\n    \"accesToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg1ODRlNWRiMmUxN2FkN2E1YzdjMzIiLCJyb2xlIjoic3VwZXIgYWRtaW4iLCJpYXQiOjE3MjAwMzUzNjYsImV4cCI6MTcyMDg5OTM2Nn0.g7duSaqSoOVNM75MzF-23sSdc5ku2dmZsn8mpo-Ucs4\"\n}"
+						},
+						{
+							"name": "Login as Student",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"abcd@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/user/login-user"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NjI0MDg3MmMxNDUzZjFhODAwZGMiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMDI3OTg4MywiZXhwIjoxNzIxMTQzODgzfQ.xJ54QXKAK8QsU5yZ11c-099pDmOpIBcCR9190PFOiFE; Max-Age=31536000; Path=/; Expires=Sun, 06 Jul 2025 15:31:23 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "503"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f7-T+H7GS0/FyvD7Vv5ANvmPhcuNF0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 06 Jul 2024 15:31:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User is logged in succesfully\",\n    \"data\": {\n        \"_id\": \"66896240872c1453f1a800dc\",\n        \"name\": \"LMS dummy student\",\n        \"email\": \"abcd@gmail.com\",\n        \"role\": \"student\",\n        \"isActive\": true,\n        \"createdAt\": \"2024-07-06T15:26:56.651Z\",\n        \"updatedAt\": \"2024-07-06T15:26:56.651Z\",\n        \"__v\": 0\n    },\n    \"accesToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NjI0MDg3MmMxNDUzZjFhODAwZGMiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMDI3OTg4MywiZXhwIjoxNzIxMTQzODgzfQ.xJ54QXKAK8QsU5yZ11c-099pDmOpIBcCR9190PFOiFE\"\n}"
+						},
+						{
+							"name": "Login as Student after pass change",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"abcd@gmail.com\",\r\n    \"password\":\"1234567\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/user/login-user"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NjI0MDg3MmMxNDUzZjFhODAwZGMiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMDI4MDU0NywiZXhwIjoxNzIxMTQ0NTQ3fQ.fovvMeOMQ0yMz7SySgwZp5qBGh21qw6sYMeRWdaX5bo; Max-Age=31536000; Path=/; Expires=Sun, 06 Jul 2025 15:42:27 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "503"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f7-3E74JE2ZquPbBLeKfUpr8SqF9pQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 06 Jul 2024 15:42:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User is logged in succesfully\",\n    \"data\": {\n        \"_id\": \"66896240872c1453f1a800dc\",\n        \"name\": \"LMS dummy student\",\n        \"email\": \"abcd@gmail.com\",\n        \"role\": \"student\",\n        \"isActive\": true,\n        \"createdAt\": \"2024-07-06T15:26:56.651Z\",\n        \"updatedAt\": \"2024-07-06T15:39:43.902Z\",\n        \"__v\": 0\n    },\n    \"accesToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NjI0MDg3MmMxNDUzZjFhODAwZGMiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMDI4MDU0NywiZXhwIjoxNzIxMTQ0NTQ3fQ.fovvMeOMQ0yMz7SySgwZp5qBGh21qw6sYMeRWdaX5bo\"\n}"
+						},
+						{
+							"name": "Login as Deleted User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"abcde@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/user/login-user"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-gs+tvjhWAVi43biq0B0Q0uyivgI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 06 Jul 2024 15:54:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"User is no longer active.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NDVkNWQyMzU4OGNmNzA0MDlkZDgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjAyNzk0NzAsImV4cCI6MTcyMTE0MzQ3MH0.uKoH-lxxfmdhBg4eM-bFHjIn3QeBUZHDh9GO8AVshmc",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:5000/api/v1/user/get-all-users"
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NjI0MDg3MmMxNDUzZjFhODAwZGMiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMDI3OTg4MywiZXhwIjoxNzIxMTQzODgzfQ.xJ54QXKAK8QsU5yZ11c-099pDmOpIBcCR9190PFOiFE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\":\"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/v1/user/change-password"
+					},
+					"response": [
+						{
+							"name": "Change Student Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NjI0MDg3MmMxNDUzZjFhODAwZGMiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMDI3OTg4MywiZXhwIjoxNzIxMTQzODgzfQ.xJ54QXKAK8QsU5yZ11c-099pDmOpIBcCR9190PFOiFE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newPassword\":\"1234567\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/user/change-password"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-XbqoySArqKZJUv5P/GbkQToV9HE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 06 Jul 2024 15:39:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User Password updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg1ODRlNWRiMmUxN2FkN2E1YzdjMzIiLCJyb2xlIjoic3VwZXIgYWRtaW4iLCJpYXQiOjE3MjAyODA4NzQsImV4cCI6MTcyMTE0NDg3NH0.mx2qsxWmr3sclD9UyXgzINLgVISfrl9kbl-TapfkV8g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"delemail\":\"abcde@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/v1/user/delete-user"
+					},
+					"response": [
+						{
+							"name": "Delete User as Student",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NjI0MDg3MmMxNDUzZjFhODAwZGMiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMDI4MDU0NywiZXhwIjoxNzIxMTQ0NTQ3fQ.fovvMeOMQ0yMz7SySgwZp5qBGh21qw6sYMeRWdaX5bo",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"abcd2@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/user/delete-user"
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1341"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53d-KYXhMxJZ2bW9FS05K15TtvLpyvM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 06 Jul 2024 15:46:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Unauthorized access denied\",\n    \"errorSources\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Unauthorized access denied\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 401\n    },\n    \"stack\": \"Error: Unauthorized access denied\\n    at E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\src\\\\app\\\\middlewares\\\\auth.ts:21:13\\n    at Generator.next (<anonymous>)\\n    at E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\src\\\\app\\\\middlewares\\\\auth.ts:8:71\\n    at new Promise (<anonymous>)\\n    at __awaiter (E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\src\\\\app\\\\middlewares\\\\auth.ts:4:12)\\n    at E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\src\\\\app\\\\middlewares\\\\auth.ts:9:79\\n    at E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\src\\\\app\\\\utils\\\\globalTryCatchFunc.ts:5:21\\n    at Layer.handle [as handle_request] (E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\node_modules\\\\express\\\\lib\\\\router\\\\layer.js:95:5)\\n    at next (E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\node_modules\\\\express\\\\lib\\\\router\\\\route.js:149:13)\\n    at Route.dispatch (E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\node_modules\\\\express\\\\lib\\\\router\\\\route.js:119:3)\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -17,7 +17,21 @@ const loginValidationSchema = z.object({
   }),
 });
 
+const softDeleteValidationSchema = z.object({
+  body: z.object({
+    delemail: z.string().email({ message: "wrong email format" }),
+  }),
+});
+
+const changePasswordValidationSchema = z.object({
+  body: z.object({
+    newPassword: z.string(),
+  }),
+});
+
 export const UserValidation = {
   userValidationSchema,
   loginValidationSchema,
+  softDeleteValidationSchema,
+  changePasswordValidationSchema,
 };
