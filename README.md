@@ -1,1 +1,1 @@
-Now, we are finalyzing Software Requirements Specification Documents (SRS).
+We are in our development phase.
