@@ -80,10 +80,16 @@ const deleteUser = async (email: string) => {
   return data;
 };
 
+const createUsers = async (users: TUser[]): Promise<TUser[]> => {
+  const createdUsers = await User.insertMany(users);
+  return createdUsers;
+};
+
 export const UserServices = {
   createNewUser,
   getAllUsers,
   loginUser,
   deleteUser,
   userChangePassword,
+  createUsers,
 };

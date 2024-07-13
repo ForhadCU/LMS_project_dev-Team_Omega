@@ -12,14 +12,14 @@ const userValidationSchema = z.object({
 
 const loginValidationSchema = z.object({
   body: z.object({
-    email: z.string().email({ message: "Wrong email format" }),
+    email: z.string().email({ message: "Incorrect email format" }),
     password: z.string().max(20),
   }),
 });
 
 const softDeleteValidationSchema = z.object({
   body: z.object({
-    delemail: z.string().email({ message: "wrong email format" }),
+    delemail: z.string().email({ message: "Incorrect email format" }),
   }),
 });
 
@@ -29,9 +29,26 @@ const changePasswordValidationSchema = z.object({
   }),
 });
 
+// const bulkUserValidationSchema = z.object({
+//   users: z.array(
+//     z.object({
+//       name: z.string(),
+//       email: z.string().email({ message: "Incorrect email format" }),
+//       password: z.string().max(20),
+//       role: z.string(),
+//       isActive: z.boolean(),
+//     })
+//   ),
+// });
+
+// const bulkUserValidationSchema = z.object({
+//   users: z.array(userValidationSchema).nonempty("At least one user is required")
+// });
+
 export const UserValidation = {
   userValidationSchema,
   loginValidationSchema,
   softDeleteValidationSchema,
   changePasswordValidationSchema,
+  // bulkUserValidationSchema,
 };

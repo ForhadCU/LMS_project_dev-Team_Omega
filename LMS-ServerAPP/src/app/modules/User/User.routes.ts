@@ -38,4 +38,10 @@ router.delete(
   validationMiddleware(UserValidation.softDeleteValidationSchema),
   UserControllers.userSoftDelete
 );
+
+router.post(
+  "/create-users",
+  // validationMiddleware(UserValidation.bulkUserValidationSchema),
+  UserControllers.createUsers
+);
 export const UserRoutes = router;
