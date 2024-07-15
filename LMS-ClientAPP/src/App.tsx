@@ -1,12 +1,7 @@
-import "./App.css";
-import SignIn from "./pages/Sign In/Signin";
+import { MainLayout } from "./layouts/MainLayout";
 
 function App() {
-  return (
-    <div className="App">
-      <SignIn />
-    </div>
-  );
+  return <MainLayout />;
 }
 
 export default App;
