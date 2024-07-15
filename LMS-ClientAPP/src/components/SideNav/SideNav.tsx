@@ -16,9 +16,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { Logout } from "@mui/icons-material";
+import { adminRoutes } from "../../routes/admin.routes";
+import { studentRoutes } from "../../routes/student.routes";
+import { teacherRoutes } from "../../routes/teacherRoutes";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { logOut, selectCurrentUser } from "../../redux/feature/auth/authSlice";
+import { TUser } from "../../Types/user.type";
 
 const drawerWidth = 240;
 
@@ -91,9 +96,45 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
+/**
+ * Please Code from here
+ * @returns Rendering Entire UI
+ */
+
 export const SideNav = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const user = useAppSelector(selectCurrentUser) as TUser;
+  const dispatch = useAppDispatch();
+
+  let sideBarItems;
+
+  let userRole = user.role;
+  switch (userRole) {
+    case "super admin":
+      sideBarItems = adminRoutes;
+      break;
+    case "admin":
+      sideBarItems = adminRoutes;
+      break;
+    case "student":
+      sideBarItems = studentRoutes;
+      break;
+    case "instructor":
+      sideBarItems = teacherRoutes;
+      break;
+    default:
+      break;
+  }
+
+  const onPageChange = (route: string) => {
+    navigate(route);
+  };
+
+  const handleLogOut = () => {
+    dispatch(logOut());
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -121,7 +162,7 @@ export const SideNav = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            B-JET Learning Management System
           </Typography>
         </Toolbar>
       </AppBar>
@@ -137,14 +178,15 @@ export const SideNav = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+          {sideBarItems?.map((item, index) => (
+            <ListItem key={index} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
+                onClick={() => onPageChange(item.path)}
               >
                 <ListItemIcon
                   sx={{
@@ -153,37 +195,42 @@ export const SideNav = () => {
                     justifyContent: "center",
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  primary={item.name}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
+          <ListItem disablePadding sx={{ display: "block" }}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+              onClick={handleLogOut}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+                <Logout />
+              </ListItemIcon>
+              <ListItemText
+                primary={"Log Out"}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>

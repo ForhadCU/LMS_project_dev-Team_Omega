@@ -12,17 +12,48 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import toast from "react-hot-toast";
+import { useLoginMutation } from "../../redux/feature/auth/authAPI";
+import { jwtDecode } from "jwt-decode";
+import { TUser } from "../../Types/user.type";
+import { useAppDispatch } from "../../redux/hook";
+import { setUser } from "../../redux/feature/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
 export const Login = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [login, { error }] = useLoginMutation();
+  const dispatcher = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
+    if (data.get("email") === "" || data.get("password") === "") {
+      toast.error("Email or Password field empty");
+    } else {
+      toast.loading("Logging in.....");
+      try {
+        const userInfo = {
+          email: data.get("email"),
+          password: data.get("password"),
+        };
+        const res = await login(userInfo).unwrap();
+
+        const user = jwtDecode(res.accesToken) as TUser;
+
+        dispatcher(setUser({ user: user, token: res.accesToken }));
+        toast.success("Logged in seccessfully");
+        navigate("/");
+      } catch (erro) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -41,7 +72,7 @@ export const Login = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log In
           </Typography>
           <Box
             component="form"

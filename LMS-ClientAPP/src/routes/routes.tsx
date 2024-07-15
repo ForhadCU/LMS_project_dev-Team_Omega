@@ -1,13 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Login } from "../pages/Login/Login";
-import { MainLayout } from "../layouts/MainLayout";
 import { About } from "../pages/About/About";
 import { Home } from "../pages/Home/Home";
+import { CreateUser } from "../pages/AdminPages/CreateUser";
+import { StudentCourses } from "../pages/StudentPages/StudentCourses";
+import { CreateCourse } from "../pages/TeacherPages/CreateCourse";
+import App from "../App";
 
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <App />,
     children: [
       {
         path: "/",
@@ -16,6 +19,18 @@ const routes = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/create-user",
+        element: <CreateUser />,
+      },
+      {
+        path: "/courses",
+        element: <StudentCourses />,
+      },
+      {
+        path: "/create-course",
+        element: <CreateCourse />,
       },
     ],
   },
