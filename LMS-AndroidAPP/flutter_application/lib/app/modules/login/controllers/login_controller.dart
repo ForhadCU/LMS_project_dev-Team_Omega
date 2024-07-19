@@ -1,9 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  //TODO: Implement HomeController
 
   final count = 0.obs;
+  TextEditingController emailCtrl = TextEditingController();
+  TextEditingController passCtrl = TextEditingController();
+  RxBool isSessionChecked = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +25,15 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  mUpdateSessionChecked(bool v) {
+    isSessionChecked.value = v;
+  }
+
+  void mTapLoginBtn() {
+    // Get.offNamed(Routes.CREATE_COURSES);
+  }
+
+  void mTapRegisterText() {
+    // Get.offNamed(Routes.REGISTER);
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application/app/core/styles/txt_style.dart';
+import 'package:flutter_application/app/core/values/colors.dart';
 
 class BaseWidget extends StatelessWidget {
   final String title;
@@ -13,10 +15,16 @@ class BaseWidget extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          elevation: 0,
+          title: Text(title.toUpperCase()),
+          titleTextStyle: AppTextStyle.primary.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+          backgroundColor: AppColor.defaultBg,
         ),
-        body: Padding(
+        body: Container(
           padding: const EdgeInsets.all(8),
+          color: AppColor.defaultBg,
           child: child,
         ),
       ),

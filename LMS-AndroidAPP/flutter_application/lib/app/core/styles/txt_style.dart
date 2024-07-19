@@ -13,4 +13,5 @@ class AppTextStyle {
 
   static TextStyle clickable = TextStyle(color: AppColor.clickableText);
   static TextStyle normal = TextStyle(color: AppColor.normalText);
+  static TextStyle primary = TextStyle(color: AppColor.primary);
 }

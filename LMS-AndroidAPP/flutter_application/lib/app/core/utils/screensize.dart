@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_application/app/core/utils/helpers.dart';
 import 'package:flutter_application/app/core/values/enums.dart';
 
-class DeviceScreenHeight {
+abstract class DeviceScreenHeight {
+  DeviceScreenHeight._();
   static double tenPercent = mCalculate(AppEnum.Height, 10);
   static double twentyPercent = mCalculate(AppEnum.Height, 20);
   static double thirtyPercent = mCalculate(AppEnum.Height, 30);
@@ -15,7 +16,8 @@ class DeviceScreenHeight {
   static double hundaredPercent = mCalculate(AppEnum.Height, 100);
 }
 
-class DeviceScreenWidth {
+abstract class DeviceScreenWidth {
+  DeviceScreenWidth._();
   static double tenPercent = mCalculate(AppEnum.Width, 10);
   static double twentyPercent = mCalculate(AppEnum.Width, 20);
   static double thirtyPercent = mCalculate(AppEnum.Width, 30);
