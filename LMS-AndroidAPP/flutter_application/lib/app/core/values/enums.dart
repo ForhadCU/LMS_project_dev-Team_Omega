@@ -1,0 +1,4 @@
+enum AppEnum {
+  Height,
+  Width,
+}
