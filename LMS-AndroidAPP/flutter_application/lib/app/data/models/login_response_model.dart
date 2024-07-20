@@ -25,10 +25,8 @@ class LoginResponse {
     res['statusCode'] = statusCode;
     res['success'] = success;
     res['message'] = message;
-    if (res != null) {
-      res['data'] = data?.toJson();
-    }
-    res['accesToken'] = accesToken;
+    res['data'] = data?.toJson();
+      res['accesToken'] = accesToken;
     return res;
   }
 }
