@@ -1,10 +1,11 @@
 class AppSpacing {
   // make this class singleton
-  AppSpacing._internal();
+  /*  AppSpacing._internal();
   static final AppSpacing _singleton = AppSpacing._internal();
   factory AppSpacing() {
     return _singleton;
-  }
+  } */
+  AppSpacing._();
   // codes start from here
   // All methods should be static to maintain singleton instances
 
