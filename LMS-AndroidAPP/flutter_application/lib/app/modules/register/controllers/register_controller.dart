@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/data/models/batch_response_model.dart';
-import 'package:flutter_application/app/data/models/user_role_response_model.dart';
+import 'package:flutter_application/app/data/models/batches_response_model.dart';
+import 'package:flutter_application/app/data/models/user_roles_response_model.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
@@ -14,6 +14,7 @@ class RegisterController extends GetxController {
   Rx<Batch> selectedBatch = Batch().obs;
   RxList<Batch> batchList = <Batch>[].obs;
   RxBool isLoading = true.obs;
+  RxBool isPassObscure = true.obs;
 
   @override
   void onInit() {

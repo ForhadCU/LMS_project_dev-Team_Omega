@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
-
 class LoginController extends GetxController {
   //TODO: Implement HomeController
 
@@ -10,6 +8,7 @@ class LoginController extends GetxController {
   TextEditingController emailCtrl = TextEditingController();
   TextEditingController passCtrl = TextEditingController();
   RxBool isSessionChecked = false.obs;
+  RxBool isPassObscure = true.obs;
   @override
   void onInit() {
     super.onInit();

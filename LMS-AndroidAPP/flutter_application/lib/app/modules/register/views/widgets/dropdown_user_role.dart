@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/app/core/styles/txt_style.dart';
-import 'package:flutter_application/app/data/models/user_role_response_model.dart';
+import 'package:flutter_application/app/data/models/user_roles_response_model.dart';
 import 'package:flutter_application/app/modules/register/controllers/register_controller.dart';
 import 'package:get/get.dart';
 

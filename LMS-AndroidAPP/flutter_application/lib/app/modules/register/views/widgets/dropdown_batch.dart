@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../../core/styles/spacing_style.dart';
 import '../../../../core/values/colors.dart';
-import '../../../../data/models/batch_response_model.dart';
+import '../../../../data/models/batches_response_model.dart';
 
 class BatchDropdown extends StatelessWidget {
   final RegisterController controller;
