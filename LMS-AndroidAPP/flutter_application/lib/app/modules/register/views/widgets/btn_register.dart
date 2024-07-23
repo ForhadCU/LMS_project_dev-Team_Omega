@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/modules/register/controllers/register_controller.dart';
 
 import '../../../../core/styles/btn_style.dart';
 import '../../../../core/utils/screensize.dart';
+import '../../controllers/register_controller.dart';
 
 class RegisterButton extends StatelessWidget {
   final RegisterController controller;

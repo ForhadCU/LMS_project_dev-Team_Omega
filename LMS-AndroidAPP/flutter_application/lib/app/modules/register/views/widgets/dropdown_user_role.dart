@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/core/styles/txt_style.dart';
-import 'package:flutter_application/app/data/models/user_roles_response_model.dart';
-import 'package:flutter_application/app/modules/register/controllers/register_controller.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/core_lib.dart';
 import '../../../../core/styles/spacing_style.dart';
 import '../../../../core/values/colors.dart';
+import '../../../../data/data_lib.dart';
+import '../../controllers/register_controller.dart';
 
 class UserRoleDropdown extends StatelessWidget {
   final RegisterController controller;

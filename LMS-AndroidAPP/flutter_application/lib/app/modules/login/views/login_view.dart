@@ -1,10 +1,9 @@
-import 'package:flutter_application/app/core/styles/spacing_style.dart';
-import 'package:flutter_application/app/core/utils/int_extensions.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../../common_widgets/widgets_lib.dart';
+import '../../../core/core_lib.dart';
+import '../../../widgets/widgets_lib.dart';
 import '../controllers/login_controller.dart';
 import 'widgets/btn_login.dart';
 import 'widgets/checkbx_session.dart';

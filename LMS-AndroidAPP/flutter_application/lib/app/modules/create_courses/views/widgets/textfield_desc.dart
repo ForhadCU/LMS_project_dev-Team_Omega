@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/modules/create_courses/controllers/create_courses_controller.dart';
-import 'package:flutter_application/app/common_widgets/widgets_lib.dart';
+
+import '../../../../widgets/widgets_lib.dart';
+import '../../controllers/create_courses_controller.dart';
+
 
 class DescTextFiled extends StatelessWidget {
   final CreateCoursesController controller;

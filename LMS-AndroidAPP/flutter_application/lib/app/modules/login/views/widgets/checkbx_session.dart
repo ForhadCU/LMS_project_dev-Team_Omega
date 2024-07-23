@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/modules/login/controllers/login_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/values/colors.dart';
+import '../../controllers/login_controller.dart';
 
 class SessionCheckbox extends StatelessWidget {
   final LoginController controller;
@@ -18,7 +18,6 @@ class SessionCheckbox extends StatelessWidget {
       children: [
         const Text("Remember me"),
         Obx(() => Checkbox(
-              checkColor: AppColor.defaultBg,
               value: controller.isSessionChecked.value,
               onChanged: (bool? value) {
                 controller.isSessionChecked.value = value ?? false;

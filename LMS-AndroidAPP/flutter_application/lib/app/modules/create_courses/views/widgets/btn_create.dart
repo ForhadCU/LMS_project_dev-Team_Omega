@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/modules/create_courses/controllers/create_courses_controller.dart';
 
 import '../../../../core/styles/btn_style.dart';
 import '../../../../core/utils/screensize.dart';
+import '../../controllers/create_courses_controller.dart';
 
 class CreateButton extends StatelessWidget {
   final CreateCoursesController controller;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/data/models/batches_response_model.dart';
-import 'package:flutter_application/app/data/models/user_roles_response_model.dart';
 import 'package:get/get.dart';
+
+import '../../../data/data_lib.dart';
 
 class RegisterController extends GetxController {
   final count = 0.obs;

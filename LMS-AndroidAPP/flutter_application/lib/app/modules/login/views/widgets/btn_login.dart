@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/modules/login/controllers/login_controller.dart';
 
 import '../../../../core/styles/btn_style.dart';
 import '../../../../core/utils/screensize.dart';
+import '../../controllers/login_controller.dart';
 
 class LoginBtn extends StatelessWidget {
   final LoginController controller;

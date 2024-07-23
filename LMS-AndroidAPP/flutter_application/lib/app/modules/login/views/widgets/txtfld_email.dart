@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/modules/login/controllers/login_controller.dart';
-import 'package:flutter_application/app/common_widgets/widgets_lib.dart';
+
+import '../../../../widgets/widgets_lib.dart';
+import '../../controllers/login_controller.dart';
 
 class EmailTextField extends StatelessWidget {
   final LoginController controller;

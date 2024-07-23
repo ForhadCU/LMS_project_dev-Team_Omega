@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/data/data_lib.dart';
+import '../../../routes/app_pages.dart';
+import '../../../data/data_lib.dart';
+
 import 'package:get/get.dart';
 
 class CreateCoursesController extends GetxController {
@@ -30,7 +32,9 @@ class CreateCoursesController extends GetxController {
     super.onClose();
   }
 
-  void mTapCreateBtn() {}
+  void mTapCreateBtn() {
+    Get.offNamed(Routes.HOME);
+  }
 
   void mChangeStudentDropdownValue(Student student) {}
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/modules/register/controllers/register_controller.dart';
-import 'package:flutter_application/app/common_widgets/widgets_lib.dart';
+
+import '../../../../widgets/widgets_lib.dart';
+import '../../controllers/register_controller.dart';
 
 class UsernameTextFiled extends StatelessWidget {
   final RegisterController controller;
