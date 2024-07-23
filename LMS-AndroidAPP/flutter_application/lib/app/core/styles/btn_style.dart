@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/app/core/styles/spacing_style.dart';
-import 'package:flutter_application/app/core/values/colors.dart';
+
+import '../core_lib.dart';
 
 class AppSubmitBtnStyle {
   // make this class singleton
@@ -12,6 +12,6 @@ class AppSubmitBtnStyle {
   // codes start from here
   // All methods should be static to maintain singleton instances
   static ButtonStyle submit = ElevatedButton.styleFrom(
-      backgroundColor: AppColor.primary,
+      // backgroundColor: AppColor.primary,
       padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxl));
 }

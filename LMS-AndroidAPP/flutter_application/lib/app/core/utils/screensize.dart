@@ -1,8 +1,30 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_application/app/core/utils/helpers.dart';
-import 'package:flutter_application/app/core/values/enums.dart';
+import '../core_lib.dart';
 
-abstract class DeviceScreenHeight {
+class DeviceScreenLongestSide {
+  DeviceScreenLongestSide._();
+  static double onePercent = mCalculate(AppEnum.LONGESTSIDE, 1);
+  static double twoPercent = mCalculate(AppEnum.LONGESTSIDE, 2);
+  static double threePercent = mCalculate(AppEnum.LONGESTSIDE, 3);
+  static double fourPercent = mCalculate(AppEnum.LONGESTSIDE, 4);
+  static double fivePercent = mCalculate(AppEnum.LONGESTSIDE, 5);
+  static double sixPercent = mCalculate(AppEnum.LONGESTSIDE, 6);
+  static double sevenPercent = mCalculate(AppEnum.LONGESTSIDE, 7);
+  static double eightPercent = mCalculate(AppEnum.LONGESTSIDE, 8);
+  static double ninePercent = mCalculate(AppEnum.LONGESTSIDE, 9);
+  static double tenPercent = mCalculate(AppEnum.LONGESTSIDE, 10);
+  static double twentyPercent = mCalculate(AppEnum.LONGESTSIDE, 20);
+  static double thirtyPercent = mCalculate(AppEnum.LONGESTSIDE, 30);
+  static double fortyPercent = mCalculate(AppEnum.LONGESTSIDE, 40);
+  static double fiftyPercent = mCalculate(AppEnum.LONGESTSIDE, 50);
+  static double sixtyPercent = mCalculate(AppEnum.LONGESTSIDE, 60);
+  static double seventyPercent = mCalculate(AppEnum.LONGESTSIDE, 70);
+  static double eightyPercent = mCalculate(AppEnum.LONGESTSIDE, 80);
+  static double ninetyPercent = mCalculate(AppEnum.LONGESTSIDE, 90);
+  static double hundaredPercent = mCalculate(AppEnum.LONGESTSIDE, 100);
+}
+
+class DeviceScreenHeight {
   DeviceScreenHeight._();
   static double tenPercent = mCalculate(AppEnum.Height, 10);
   static double twentyPercent = mCalculate(AppEnum.Height, 20);
@@ -16,7 +38,7 @@ abstract class DeviceScreenHeight {
   static double hundaredPercent = mCalculate(AppEnum.Height, 100);
 }
 
-abstract class DeviceScreenWidth {
+class DeviceScreenWidth {
   DeviceScreenWidth._();
   static double tenPercent = mCalculate(AppEnum.Width, 10);
   static double twentyPercent = mCalculate(AppEnum.Width, 20);
@@ -35,6 +57,8 @@ mCalculate(AppEnum tag, double percentage) {
     return (MediaQuery.of(kGlobContext).size.height * percentage) / 100;
   } else if (tag == AppEnum.Width) {
     return (MediaQuery.of(kGlobContext).size.width * percentage) / 100;
+  } else if (tag == AppEnum.LONGESTSIDE) {
+    return (MediaQuery.of(kGlobContext).size.longestSide * percentage) / 100;
   }
 }
 
