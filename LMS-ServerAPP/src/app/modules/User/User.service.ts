@@ -5,9 +5,12 @@ import { User } from "./User.model";
 import { createAccessToken, verifyPassword } from "./User.utils";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { sendEmail } from "../../utils/sendEmail";
 
 const createNewUser = async (user: TUser) => {
   const result = await User.create(user);
+  const mailBody = `<p> ${user.name} your account has been created. Login with this password ${user.password} </p>`;
+  sendEmail(user.email, mailBody);
   return result;
 };
 
