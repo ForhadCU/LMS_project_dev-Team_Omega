@@ -19,4 +19,19 @@ router.get(
   CourseControllers.getAllCourses
 );
 
+router.put(
+  "/update-course",
+  auth("admin", "super admin"),
+  CourseControllers.updateCourse
+);
+
+router.delete(
+  "/delete-course",
+  auth("admin", "super admin"),
+  validationMiddleware(
+    courseValidationSchemas.courseDeactivateValidationSchema
+  ),
+  CourseControllers.deactivateCourse
+);
+
 export const CourseRouters = router;
