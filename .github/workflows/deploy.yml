@@ -3,7 +3,7 @@ name: Deploy to Vercel
 on:
   push:
     branches:
-      - main  # Change this to the branch you want to trigger deployment on
+      - main # Change this to the branch you want to trigger deployment on
 
 jobs:
   deploy:
@@ -16,13 +16,13 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Specify your Node.js version
+          node-version: "16" # Specify your Node.js version
 
       - name: Install dependencies
         run: npm install
 
       - name: Build project
-        run: npm run build  # Adjust this if your build command is different
+        run: npm run build # Adjust this if your build command is different
 
       - name: Deploy to Vercel
         env:
@@ -30,4 +30,3 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: npx vercel --prod --token $VERCEL_TOKEN
-
