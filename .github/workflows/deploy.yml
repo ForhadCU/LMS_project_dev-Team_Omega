@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: "21.2.0" # Specify your Node.js version
 
+      - name: Change Directory to server folder
+        run: cd LMS-ServerAPP
+
       - name: Install dependencies
         run: npm install
 
