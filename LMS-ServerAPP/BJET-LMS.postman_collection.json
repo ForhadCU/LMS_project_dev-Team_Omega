@@ -16,13 +16,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg5NDVkNWQyMzU4OGNmNzA0MDlkZDgiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjAyNzk0NzAsImV4cCI6MTcyMTE0MzQ3MH0.uKoH-lxxfmdhBg4eM-bFHjIn3QeBUZHDh9GO8AVshmc",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg1ODRlNWRiMmUxN2FkN2E1YzdjMzIiLCJyb2xlIjoic3VwZXIgYWRtaW4iLCJpYXQiOjE3MjIyNzA3MjksImV4cCI6MTcyMzEzNDcyOX0.NfRCx_8xrk8_imXNrZBMFrB_wKmAL1Talgk7Mbh7HPk",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"LMS dummy student2\",\r\n    \"email\":\"abcd2@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"student\",\r\n    \"isActive\":true\r\n\r\n}",
+							"raw": "{\r\n    \"name\": \"LMS dummy instructor 1\",\r\n    \"email\": \"kashem.tipo1@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"instructor\",\r\n    \"isActive\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -97,7 +97,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"abcde@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"raw": "{\r\n    \"email\":\"abdullahnoman.5945@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -170,7 +170,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"abcd@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"raw": "{\r\n    \"email\":\"abdullahnoman.5945@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -531,6 +531,356 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "Create New Course",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg1ODRlNWRiMmUxN2FkN2E1YzdjMzIiLCJyb2xlIjoic3VwZXIgYWRtaW4iLCJpYXQiOjE3MjIzNjQ2OTUsImV4cCI6MTcyMzIyODY5NX0.DZbWEYM_QC-ntKSK39pZaQEepQAzSojaSDM5tfrj7E4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Elementary Nihongo A1\",\r\n    \"code\": \"001\",\r\n    \"description\": \"N5 Level Japanese language course\",\r\n    \"duration\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/v1/courses/create-course"
+					},
+					"response": [
+						{
+							"name": "Create New Course By Admin/Super Admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg1ODRlNWRiMmUxN2FkN2E1YzdjMzIiLCJyb2xlIjoic3VwZXIgYWRtaW4iLCJpYXQiOjE3MjIzNjQ2OTUsImV4cCI6MTcyMzIyODY5NX0.DZbWEYM_QC-ntKSK39pZaQEepQAzSojaSDM5tfrj7E4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Elementary Nihongo A1\",\r\n    \"code\": \"001\",\r\n    \"description\": \"N5 Level Japanese language course\",\r\n    \"duration\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/courses/create-course"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "455"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c7-ntoVCHoHBXH8MYQDPlW1dPLb6jk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jul 2024 18:43:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Course created successfully\",\n    \"data\": {\n        \"title\": \"Elementary Nihongo A1\",\n        \"code\": \"001\",\n        \"description\": \"N5 Level Japanese language course\",\n        \"duration\": 3,\n        \"img\": \"https://e7.pngegg.com/pngimages/329/915/png-clipart-computer-icons-educational-technology-learning-training-course-training-blue-angle.png\",\n        \"isActive\": true,\n        \"_id\": \"66a93459d5833a918381a436\",\n        \"createdAt\": \"2024-07-30T18:43:37.362Z\",\n        \"updatedAt\": \"2024-07-30T18:43:37.362Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "Create Exisiting Course",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg1ODRlNWRiMmUxN2FkN2E1YzdjMzIiLCJyb2xlIjoic3VwZXIgYWRtaW4iLCJpYXQiOjE3MjIzNjQ2OTUsImV4cCI6MTcyMzIyODY5NX0.DZbWEYM_QC-ntKSK39pZaQEepQAzSojaSDM5tfrj7E4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Elementary Nihongo A1\",\r\n    \"code\": \"001\",\r\n    \"description\": \"N5 Level Japanese language course\",\r\n    \"duration\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/courses/create-course"
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "574"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23e-SSn8AcTfMRMxKEAaejfTFsOyN9Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jul 2024 18:45:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Course already exists\",\n    \"errorSources\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Course already exists\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 409\n    },\n    \"stack\": \"Error: Course already exists\\n    at E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\src\\\\app\\\\modules\\\\Courses\\\\Courses.services.ts:8:11\\n    at Generator.next (<anonymous>)\\n    at fulfilled (E:\\\\BJET\\\\Project\\\\LMS-Project\\\\LMS_project_dev-Team_Omega\\\\LMS-ServerAPP\\\\src\\\\app\\\\modules\\\\Courses\\\\Courses.services.ts:5:58)\\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\"\n}"
+						},
+						{
+							"name": "Create New Course",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE3ZDg1NDI5NGIzYTRkMjcxOTBhYTAiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMjM2NTkzNiwiZXhwIjoxNzIzMjI5OTM2fQ.vPUe40sgoKL3xFKiiBh22M6mn-FJ0mAelONI5eoCyCY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Elementary Nihongo A1\",\r\n    \"code\": \"001\",\r\n    \"description\": \"N5 Level Japanese language course\",\r\n    \"duration\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/courses/create-course"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get All Courses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE3ZDg1NDI5NGIzYTRkMjcxOTBhYTAiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMjM2NzQ5MSwiZXhwIjoxNzIzMjMxNDkxfQ.A2XJqwlQFeqiuTo7NYcI0SBsc_1Rg5UggxoHbq9Nv-A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/v1/courses/get-all-courses"
+					},
+					"response": [
+						{
+							"name": "Get All Courses",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njg1ODRlNWRiMmUxN2FkN2E1YzdjMzIiLCJyb2xlIjoic3VwZXIgYWRtaW4iLCJpYXQiOjE3MjIzNjQ2OTUsImV4cCI6MTcyMzIyODY5NX0.DZbWEYM_QC-ntKSK39pZaQEepQAzSojaSDM5tfrj7E4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/courses/get-all-courses"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "471"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d7-vrT8mq1zG0hQgjcOx9/WhqbHfio\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jul 2024 19:19:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Courses(Active only) fetched successfully\",\n    \"data\": [\n        {\n            \"_id\": \"66a93459d5833a918381a436\",\n            \"title\": \"Elementary Nihongo A1\",\n            \"code\": \"001\",\n            \"description\": \"N5 Level Japanese language course\",\n            \"duration\": 3,\n            \"img\": \"https://e7.pngegg.com/pngimages/329/915/png-clipart-computer-icons-educational-technology-learning-training-course-training-blue-angle.png\",\n            \"isActive\": true,\n            \"createdAt\": \"2024-07-30T18:43:37.362Z\",\n            \"updatedAt\": \"2024-07-30T18:43:37.362Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get All Courses As Student",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE3ZDg1NDI5NGIzYTRkMjcxOTBhYTAiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMjM2NzQ5MSwiZXhwIjoxNzIzMjMxNDkxfQ.A2XJqwlQFeqiuTo7NYcI0SBsc_1Rg5UggxoHbq9Nv-A",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/api/v1/courses/get-all-courses"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "471"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d7-vrT8mq1zG0hQgjcOx9/WhqbHfio\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jul 2024 19:27:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Courses(Active only) fetched successfully\",\n    \"data\": [\n        {\n            \"_id\": \"66a93459d5833a918381a436\",\n            \"title\": \"Elementary Nihongo A1\",\n            \"code\": \"001\",\n            \"description\": \"N5 Level Japanese language course\",\n            \"duration\": 3,\n            \"img\": \"https://e7.pngegg.com/pngimages/329/915/png-clipart-computer-icons-educational-technology-learning-training-course-training-blue-angle.png\",\n            \"isActive\": true,\n            \"createdAt\": \"2024-07-30T18:43:37.362Z\",\n            \"updatedAt\": \"2024-07-30T18:43:37.362Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"description": "Basic CRUD operation of Courses.\n\n1. Only **\"Admin/Super Admin\"** can add new courses.\n    \n2. 2.Each course must have a **\"course code\"** and other informations."
 		}
 	]
 }
