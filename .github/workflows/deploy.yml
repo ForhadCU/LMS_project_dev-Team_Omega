@@ -23,9 +23,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: LMS-ServerAPP
 
       - name: Build project
         run: npm run build # Adjust this if your build command is different
+        working-directory: LMS-ServerAPP
 
       - name: Deploy to Vercel
         env:
