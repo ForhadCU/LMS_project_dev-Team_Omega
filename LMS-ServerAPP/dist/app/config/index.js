@@ -10,4 +10,5 @@ exports.default = {
     mongo_db_uri: process.env.MONGODB_CONNECT,
     port: process.env.PORT,
     jwt_secret: process.env.JWT_SECRET,
+    node_env: process.env.NODE_ENV,
 };

@@ -17,12 +17,17 @@ const config_1 = __importDefault(require("../../config"));
 const AppError_1 = __importDefault(require("../../errors/AppError"));
 const User_model_1 = require("./User.model");
 const User_utils_1 = require("./User.utils");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const sendEmail_1 = require("../../utils/sendEmail");
 const createNewUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield User_model_1.User.create(user);
+    const mailBody = `<p> ${user.name} your account has been created. Login with this password ${user.password} </p>`;
+    (0, sendEmail_1.sendEmail)(user.email, mailBody);
     return result;
 });
 const getAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield User_model_1.User.find({});
+    const result = yield User_model_1.User.find({}).select("-password -__v");
     return result;
 });
 const loginUser = (loginCred) => __awaiter(void 0, void 0, void 0, function* () {
@@ -32,6 +37,9 @@ const loginUser = (loginCred) => __awaiter(void 0, void 0, void 0, function* () 
     }
     if (!(yield (0, User_utils_1.verifyPassword)(loginCred.password, getUser.password))) {
         throw new AppError_1.default(404, "Password mismatch");
+    }
+    if (!getUser.isActive) {
+        throw new AppError_1.default(404, "User is no longer active.");
     }
     const jwtpayload = {
         userId: getUser._id.toString(),
@@ -45,9 +53,36 @@ const loginUser = (loginCred) => __awaiter(void 0, void 0, void 0, function* () 
         safeUser,
     };
 });
-const deleteUser = () => __awaiter(void 0, void 0, void 0, function* () { });
+const userChangePassword = (newPass, token) => __awaiter(void 0, void 0, void 0, function* () {
+    const decode = jsonwebtoken_1.default.verify(token, config_1.default.jwt_secret);
+    console.log(newPass);
+    const getUser = yield User_model_1.User.findOne({ _id: decode.userId });
+    if (!getUser) {
+        throw new Error("User does not exist");
+    }
+    if (!getUser.isActive) {
+        throw new Error("User No longer Active.");
+    }
+    const encryptedPass = yield bcrypt_1.default.hash(newPass, 12);
+    yield User_model_1.User.findByIdAndUpdate({ _id: decode.userId }, { password: encryptedPass }, { new: true });
+});
+const deleteUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
+    const getUser = yield User_model_1.User.findOne({ email: email });
+    if (!getUser) {
+        throw new Error("User with that email does not exist.");
+    }
+    const data = yield User_model_1.User.findOneAndUpdate({ email: email }, { isActive: false }, { new: true });
+    return data;
+});
+const createUsers = (users) => __awaiter(void 0, void 0, void 0, function* () {
+    const createdUsers = yield User_model_1.User.insertMany(users);
+    return createdUsers;
+});
 exports.UserServices = {
     createNewUser,
     getAllUsers,
     loginUser,
+    deleteUser,
+    userChangePassword,
+    createUsers,
 };
