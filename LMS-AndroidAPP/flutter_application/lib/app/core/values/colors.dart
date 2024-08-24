@@ -11,14 +11,18 @@ class AppColor {
 
   static const Color primary = Colors.green;
   static const Color textFieldBorder = Colors.black54;
+  static const Color divier = Colors.black12;
   static const Color secondaryIcon = Colors.black54;
   static const Color error = Colors.red;
   static const Color warning = Colors.orange;
-  static const Color defaultBg = Color.fromARGB(255, 247, 247, 247);
+  static const Color defaultBg = Color.fromARGB(255, 245, 245, 245);
   static const Color secondaryBg = Colors.white;
   static const Color clickableText = Colors.blue;
   static const Color normalText = Colors.black;
-  static const Color subtitle = Color.fromARGB(200, 0, 0, 0);
+  static const Color secondaryText = Color.fromARGB(200, 0, 0, 0);
+  static const Color onGoing = primary;
+  static const Color ended = Colors.grey;
+  static const Color secondaryButton = Colors.greenAccent;
 
   // tests
   static const Color testHeadLine = Colors.purple;

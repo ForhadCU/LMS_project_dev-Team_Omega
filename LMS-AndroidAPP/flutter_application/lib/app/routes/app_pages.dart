@@ -1,5 +1,6 @@
+import 'package:flutter_application/app/modules/all_courses/bindings/all_courses_binding.dart';
+import 'package:flutter_application/app/modules/all_courses/views/all_courses_view.dart';
 import 'package:get/get.dart';
-
 
 import '../modules/create_courses/bindings/create_courses_binding.dart';
 import '../modules/create_courses/views/create_courses_view.dart';
@@ -19,7 +20,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.ALLCOURSES;
 
   static final routes = [
     GetPage(
@@ -51,6 +52,11 @@ class AppPages {
       name: _Paths.REGISTER,
       page: () => const RegisterView(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALLCOURSES,
+      page: () => const AllCoursesView(),
+      binding: AllCoursesBinding(),
     ),
   ];
 }

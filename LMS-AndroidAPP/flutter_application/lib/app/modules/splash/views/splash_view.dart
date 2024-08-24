@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../widgets/widgets_lib.dart';
+import '../../../widgets/baseWidget.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
@@ -16,14 +16,8 @@ class SplashView extends GetView<SplashController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Card(
-                child: Column(
-                  children: [
-                    Text(
-                      "Please wait...",
-                    ),
-                  ],
-                ),
+              Text(
+                "Please wait...",
               ),
             ],
           ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../widgets/widgets_lib.dart';
+
+import '../../../../widgets/textfield.dart';
 import '../../controllers/register_controller.dart';
 
 class PassTextField extends StatelessWidget {

@@ -26,11 +26,11 @@ class AppTextStyle {
   static TextStyle titleLarge = TextStyle(
       color: AppColor.normalText,
       fontSize: 16,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       overflow: TextOverflow.ellipsis);
   // subtitle
-  static TextStyle titleMedium = TextStyle(
-      color: AppColor.subtitle,
+  static TextStyle titleMedium = const TextStyle(
+      color: AppColor.secondaryText,
       fontSize: 14,
       fontWeight: FontWeight.w500,
       overflow: TextOverflow.ellipsis);
@@ -49,12 +49,19 @@ class AppTextStyle {
       TextStyle(color: AppColor.testBody, fontSize: 12);
 
   // button
-  static TextStyle labelLarge =
-      TextStyle(color: AppColor.testLabel, fontSize: 24);
+  static TextStyle labelLarge = TextStyle(
+      color: AppColor.testLabel, fontSize: 16, fontWeight: FontWeight.w500);
   // textfield label and hints
   static TextStyle labelMedium =
       TextStyle(color: AppColor.testLabel, fontSize: 24);
   // warning
   static TextStyle labelSmall =
       TextStyle(color: AppColor.testLabel, fontSize: 24);
+
+  // secondary button
+  static TextStyle secodaryBtn = TextStyle(
+      color: AppColor.secondaryBg, fontSize: 14, fontWeight: FontWeight.w500);
+  // secondary text
+  static TextStyle secodaryText = TextStyle(
+      color: AppColor.secondaryText, fontSize: 14, fontWeight: FontWeight.w400);
 }

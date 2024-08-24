@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/core_lib.dart';
-import '../../../widgets/widgets_lib.dart';
+import '../../../widgets/baseWidget.dart';
 import '../controllers/login_controller.dart';
 import 'widgets/btn_login.dart';
 import 'widgets/checkbx_session.dart';

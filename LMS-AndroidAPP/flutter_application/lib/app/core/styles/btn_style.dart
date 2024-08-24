@@ -9,9 +9,15 @@ class AppSubmitBtnStyle {
   factory AppSubmitBtnStyle() {
     return _singleton;
   }
-  // codes start from here
-  // All methods should be static to maintain singleton instances
+
   static ButtonStyle submit = ElevatedButton.styleFrom(
-      // backgroundColor: AppColor.primary,
-      padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxl));
+      padding:
+          const EdgeInsets.symmetric(horizontal: AppSpacing.xxl, vertical: 0));
+
+  static ButtonStyle secondary = ElevatedButton.styleFrom(
+      backgroundColor: AppColor.secondaryButton,
+      foregroundColor: AppColor.secondaryBg,
+      textStyle: AppTextStyle.secodaryBtn,
+      padding:
+          const EdgeInsets.symmetric(horizontal: AppSpacing.xxl, vertical: 0));
 }

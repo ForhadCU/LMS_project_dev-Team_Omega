@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/core_lib.dart';
-import '../../../widgets/widgets_lib.dart';
+import '../../../widgets/baseWidget.dart';
 import '../controllers/create_courses_controller.dart';
 import 'widgets/btn_create.dart';
 import 'widgets/drpdown_students.dart';

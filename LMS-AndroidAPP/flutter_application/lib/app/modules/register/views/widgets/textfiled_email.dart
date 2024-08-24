@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/app/modules/register/controllers/register_controller.dart';
-import 'package:flutter_application/app/widgets/widgets_lib.dart';
+
+import '../../../../widgets/textfield.dart';
 
 class EmailTextField extends StatelessWidget {
   final RegisterController controller;

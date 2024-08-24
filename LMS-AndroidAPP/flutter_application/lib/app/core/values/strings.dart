@@ -1,1 +1,0 @@
-double appFontsize = 0;
