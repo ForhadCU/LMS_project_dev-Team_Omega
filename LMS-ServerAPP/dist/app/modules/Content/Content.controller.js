@@ -14,7 +14,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContentControllers = void 0;
 const globalTryCatchFunc_1 = __importDefault(require("../../utils/globalTryCatchFunc"));
-const addNewContent = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () { }));
+const Content_service_1 = require("./Content.service");
+const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
+const addNewContent = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const contentData = req.body;
+    const result = yield Content_service_1.ContentServices.addNewContent(contentData);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: 200,
+        message: "Content uploaded successfully",
+        data: result,
+    });
+}));
 exports.ContentControllers = {
     addNewContent,
 };

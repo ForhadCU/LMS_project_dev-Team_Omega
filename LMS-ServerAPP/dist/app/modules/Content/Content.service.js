@@ -8,9 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContentServices = void 0;
-const addNewContent = (contentData) => __awaiter(void 0, void 0, void 0, function* () { });
+const AppError_1 = __importDefault(require("../../errors/AppError"));
+const Courses_model_1 = require("../Courses/Courses.model");
+const Content_model_1 = require("./Content.model");
+const addNewContent = (contentData) => __awaiter(void 0, void 0, void 0, function* () {
+    const getCourse = yield Courses_model_1.Course.findOne({ code: contentData.courseCode });
+    if (!getCourse) {
+        throw new AppError_1.default(404, "Course not found.");
+    }
+    const result = yield Content_model_1.Content.create(contentData);
+    return result;
+});
 exports.ContentServices = {
     addNewContent,
 };
