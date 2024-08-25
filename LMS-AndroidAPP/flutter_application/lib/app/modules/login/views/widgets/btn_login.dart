@@ -17,7 +17,7 @@ class LoginBtn extends StatelessWidget {
         onPressed: () {
           controller.mTapLoginBtn();
         },
-        style: AppSubmitBtnStyle.submit.copyWith(
+        style: AppSubmitBtnStyle().submit.copyWith(
             fixedSize: MaterialStatePropertyAll(
                 Size(DeviceScreenWidth.eightyPercent, 0))),
         child: const Text("Login"));

@@ -35,7 +35,7 @@ class CourseCard extends StatelessWidget {
     return Card(
       child: Container(
         width: DeviceScreenWidth.hundaredPercent,
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding:  EdgeInsets.all(AppSpacing().md),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,23 +56,23 @@ class CourseCard extends StatelessWidget {
                           color: Colors.greenAccent,
                         ),
                       ),
-                AppSpacing.xxl.height,
+                AppSpacing().xxl.height,
                 // course active Status
                 Center(
                   child: Column(
                     children: [
                       ActiveStatusDotView(color: AppColor().warning),
-                      AppSpacing.md.height,
+                      AppSpacing().md.height,
                       Text(
-                        sUpComing,
-                        style: AppTextStyle.secodaryText,
+                       AppConstants(). sUpComing,
+                        style: AppTextStyle().secodaryText,
                       )
                     ],
                   ),
                 )
               ],
             ),
-            AppSpacing.xl.width,
+            AppSpacing().xl.width,
             Expanded(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,9 +83,9 @@ class CourseCard extends StatelessWidget {
                         children: [
                           Text(
                             title ?? "Course Title",
-                            style: AppTextStyle.titleLarge,
+                            style: AppTextStyle().titleLarge,
                           ),
-                          AppSpacing.sm.width,
+                          AppSpacing().sm.width,
                           PopupMenuButton(
                               // onSelected: (value) => onSelectedmenuItem!(value),
                               itemBuilder: (
@@ -101,21 +101,21 @@ class CourseCard extends StatelessWidget {
                       )
                     : Text(
                         title ?? "Course Title",
-                        style: AppTextStyle.titleLarge,
+                        style: AppTextStyle().titleLarge,
                       ),
-                AppSpacing.md.height,
+                AppSpacing().md.height,
                 Text(
                   desc ?? "This will be the course description",
-                  style: AppTextStyle.titleMedium,
+                  style: AppTextStyle().titleMedium,
                 ),
                 const AppDivider(),
-                AppSpacing.sm.height,
+                AppSpacing().sm.height,
 
                 TimeScheduleView(
                   startTime: startTime ?? "9:30 AM",
                   endTime: endTime ?? "12:45 PM",
                 ),
-                AppSpacing.md.height,
+                AppSpacing().md.height,
                 // teachers
                 Row(
                   children: [
@@ -124,14 +124,14 @@ class CourseCard extends StatelessWidget {
                       color: AppColor().textFieldBorder,
                       size: 14,
                     ),
-                    AppSpacing.md.width,
+                    AppSpacing().md.width,
                     Text(
                       instructoName ?? "Instructor Name",
-                      style: AppTextStyle.secodaryText,
+                      style: AppTextStyle().secodaryText,
                     )
                   ],
                 ),
-                AppSpacing.md.height,
+                AppSpacing().md.height,
                 // Enrol Button
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -140,7 +140,7 @@ class CourseCard extends StatelessWidget {
                         onPressed: () {
                           onTapEnrol != null ? onTapEnrol!() : null;
                         },
-                        style: AppSubmitBtnStyle.secondary,
+                        style: AppSubmitBtnStyle().secondary,
                         child: const Text(
                           "Enrol Now",
                         )),

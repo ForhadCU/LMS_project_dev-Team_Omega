@@ -10,14 +10,14 @@ class AppSubmitBtnStyle {
     return _singleton;
   }
 
-  static ButtonStyle submit = ElevatedButton.styleFrom(
+  final ButtonStyle submit = ElevatedButton.styleFrom(
       padding:
-          const EdgeInsets.symmetric(horizontal: AppSpacing.xxl, vertical: 0));
+           EdgeInsets.symmetric(horizontal: AppSpacing().xxl, vertical: 0));
 
-  static ButtonStyle secondary = ElevatedButton.styleFrom(
+  final ButtonStyle secondary = ElevatedButton.styleFrom(
       backgroundColor: AppColor().secondaryButton,
       foregroundColor: AppColor().secondaryBg,
-      textStyle: AppTextStyle.secodaryBtn,
+      textStyle: AppTextStyle().secodaryBtn,
       padding:
-          const EdgeInsets.symmetric(horizontal: AppSpacing.xxl, vertical: 0));
+           EdgeInsets.symmetric(horizontal: AppSpacing().xxl, vertical: 0));
 }

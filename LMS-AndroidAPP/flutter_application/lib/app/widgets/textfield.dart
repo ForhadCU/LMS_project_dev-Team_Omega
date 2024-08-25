@@ -64,7 +64,7 @@ class AppTextFiled extends StatelessWidget {
               )
             : null,
         isDense: true,
-        contentPadding:  const EdgeInsets.all(AppSpacing.md),
+        contentPadding:   EdgeInsets.all(AppSpacing().md),
         border:  OutlineInputBorder(
             borderSide: BorderSide(color: AppColor().textFieldBorder)),
       ),

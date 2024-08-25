@@ -14,8 +14,8 @@ class UserRoleDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.md, vertical: AppSpacing.md + AppSpacing.smh),
+      padding:  EdgeInsets.symmetric(
+          horizontal: AppSpacing().md, vertical: AppSpacing().md + AppSpacing().smh),
       decoration: BoxDecoration(
           color: AppColor().defaultBg,
           borderRadius: BorderRadius.circular(4),
@@ -27,7 +27,7 @@ class UserRoleDropdown extends StatelessWidget {
             value: controller.selectedUserRole.value,
             hint: Text(
               "Select User Role",
-              style: AppTextStyle.normal.copyWith(
+              style: AppTextStyle().normal.copyWith(
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -46,7 +46,7 @@ class UserRoleDropdown extends StatelessWidget {
                 child: Text(
                   value.roleName!,
                   style:
-                      AppTextStyle.normal.copyWith(fontWeight: FontWeight.w500),
+                      AppTextStyle().normal.copyWith(fontWeight: FontWeight.w500),
                 ),
               );
             }).toList(),

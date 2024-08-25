@@ -17,20 +17,20 @@ class TimeScheduleView extends StatelessWidget {
           color: AppColor().textFieldBorder,
           size: 14,
         ),
-        AppSpacing.md.width,
+        AppSpacing().md.width,
         Text(
           startTime,
-          style: AppTextStyle.secodaryText,
+          style: AppTextStyle().secodaryText,
         ),
-        AppSpacing.sm.width,
+        AppSpacing().sm.width,
         Text(
           "-",
-          style: AppTextStyle.secodaryText,
+          style: AppTextStyle().secodaryText,
         ),
-        AppSpacing.sm.width,
+        AppSpacing().sm.width,
         Text(
           endTime,
-          style: AppTextStyle.secodaryText,
+          style: AppTextStyle().secodaryText,
         ),
       ],
     );

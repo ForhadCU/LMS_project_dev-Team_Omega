@@ -16,7 +16,7 @@ class AllCoursesView extends GetView<AllCoursesController> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CourseCard(
-              menuItems: sCourseCardMenuItems,
+              menuItems: AppConstants().sCourseCardMenuItems,
               onSelectedmenuItem: (String selectedMenuItem) {
                 print(selectedMenuItem);
               },

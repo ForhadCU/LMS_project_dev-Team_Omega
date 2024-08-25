@@ -21,11 +21,11 @@ class LoginView extends GetView<LoginController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             EmailTextField(controller: controller),
-            AppSpacing.md.height,
+            AppSpacing().md.height,
             PassTextField(controller: controller),
-            AppSpacing.md.height,
+            AppSpacing().md.height,
             SessionCheckbox(controller: controller),
-            AppSpacing.xl.height,
+            AppSpacing().xl.height,
             LoginBtn(controller: controller),
            
           ],

@@ -14,8 +14,8 @@ class BatchDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.md, vertical: AppSpacing.md + AppSpacing.smh),
+      padding:  EdgeInsets.symmetric(
+          horizontal: AppSpacing().md, vertical: AppSpacing().md + AppSpacing().smh),
       decoration: BoxDecoration(
           color: AppColor().defaultBg,
           borderRadius: BorderRadius.circular(4),
@@ -27,7 +27,7 @@ class BatchDropdown extends StatelessWidget {
             value: controller.selectedBatch.value,
             hint: Text(
               "Select Batch",
-              style: AppTextStyle.normal.copyWith(
+              style: AppTextStyle().normal.copyWith(
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -47,7 +47,7 @@ class BatchDropdown extends StatelessWidget {
                 child: Text(
                   value.batchName!,
                   style:
-                      AppTextStyle.normal.copyWith(fontWeight: FontWeight.w500),
+                      AppTextStyle().normal.copyWith(fontWeight: FontWeight.w500),
                 ),
               );
             }).toList(),

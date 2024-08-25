@@ -14,7 +14,7 @@ class RegisterButton extends StatelessWidget {
         onPressed: () {
           controller.mTapRegisterBtn();
         },
-        style: AppSubmitBtnStyle.submit.copyWith(
+        style: AppSubmitBtnStyle().submit.copyWith(
             fixedSize: MaterialStatePropertyAll(
                 Size(DeviceScreenWidth.eightyPercent, 0))),
         child: const Text("Register"));
