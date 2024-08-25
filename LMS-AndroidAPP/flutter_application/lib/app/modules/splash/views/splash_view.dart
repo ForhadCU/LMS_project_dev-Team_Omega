@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/app/core/core_lib.dart';
 
 import 'package:get/get.dart';
 
@@ -11,14 +12,15 @@ class SplashView extends GetView<SplashController> {
   Widget build(BuildContext context) {
     controller.onInit();
     return BaseWidget(
-        title: "Splash",
+        // title: "Splash",
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              Image(image: AssetImage(AppAssetLocations().ic_bjet)),
+             /*  Text(
                 "Please wait...",
-              ),
+              ), */
             ],
           ),
         ));

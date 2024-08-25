@@ -12,8 +12,8 @@ class SplashController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    print("Called Splash Controller");
-     mSaveAppData();
+    // print("Called Splash Controller");
+    mSaveAppData();
   }
 
   @override
@@ -29,10 +29,10 @@ class SplashController extends GetxController {
   void increment() => count.value++;
 
   mSaveAppData() async {
-       // appFontsize = DeviceScreenLongestSide.tenPercent;
-    print("before");
+    // appFontsize = DeviceScreenLongestSide.tenPercent;
+    // print("before");
     await Future.delayed(Duration(seconds: 2));
-    Get.offNamed(Routes.HOME);
-    print("after");
+    Get.offNamed(Routes.LOGIN);
+    // print("after");
   }
 }
