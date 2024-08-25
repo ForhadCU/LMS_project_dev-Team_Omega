@@ -61,7 +61,7 @@ class CourseCard extends StatelessWidget {
                 Center(
                   child: Column(
                     children: [
-                      const ActiveStatusDotView(color: AppColor.warning),
+                      ActiveStatusDotView(color: AppColor().warning),
                       AppSpacing.md.height,
                       Text(
                         sUpComing,
@@ -88,13 +88,15 @@ class CourseCard extends StatelessWidget {
                           AppSpacing.sm.width,
                           PopupMenuButton(
                               // onSelected: (value) => onSelectedmenuItem!(value),
-                              itemBuilder: (context, ) {
-                                return List.generate(
-                                    menuItems!.length,
-                                    (index) => PopupMenuItem<String>(
-                                        child: Text(
-                                            menuItems![index].toUpperCase())));
-                              })
+                              itemBuilder: (
+                            context,
+                          ) {
+                            return List.generate(
+                                menuItems!.length,
+                                (index) => PopupMenuItem<String>(
+                                    child:
+                                        Text(menuItems![index].toUpperCase())));
+                          })
                         ],
                       )
                     : Text(
@@ -117,9 +119,9 @@ class CourseCard extends StatelessWidget {
                 // teachers
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.person,
-                      color: AppColor.textFieldBorder,
+                      color: AppColor().textFieldBorder,
                       size: 14,
                     ),
                     AppSpacing.md.width,

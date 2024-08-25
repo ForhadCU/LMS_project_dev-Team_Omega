@@ -18,7 +18,8 @@ class BaseWidget extends StatelessWidget {
           title: Text(title.toUpperCase()),
         ),
         body: Container(
-        /*   padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
+          /*  
           color: AppColor.secondaryBg, */
           child: child,
         ),

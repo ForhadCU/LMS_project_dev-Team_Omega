@@ -36,18 +36,18 @@ class AppTextFiled extends StatelessWidget {
       textAlignVertical: TextAlignVertical.center,
       textAlign: TextAlign.left,
       decoration: InputDecoration(
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder:  OutlineInputBorder(
             borderSide: BorderSide(
-          color: AppColor.primary,
+          color: AppColor().primary,
         )),
-        floatingLabelStyle: const TextStyle(color: AppColor.primary),
+        floatingLabelStyle:  TextStyle(color: AppColor().primary),
         label: Text(
           title,
         ),
         prefixIcon: prefixIconData != null
             ? Icon(
                 prefixIconData,
-                color: AppColor.secondaryIcon,
+                color: AppColor().secondaryIcon,
               )
             : null,
         suffixIcon: suffixIconData != null
@@ -59,14 +59,14 @@ class AppTextFiled extends StatelessWidget {
                     : null,
                 child: Icon(
                   suffixIconData,
-                  color: AppColor.secondaryIcon,
+                  color: AppColor().secondaryIcon,
                 ),
               )
             : null,
         isDense: true,
-        contentPadding: const EdgeInsets.all(AppSpacing.md),
-        border: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.textFieldBorder)),
+        contentPadding:  const EdgeInsets.all(AppSpacing.md),
+        border:  OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor().textFieldBorder)),
       ),
     );
   }

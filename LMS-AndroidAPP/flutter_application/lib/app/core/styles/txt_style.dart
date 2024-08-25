@@ -9,59 +9,59 @@ class AppTextStyle {
   // All methods should be static to maintain singleton instances
 
   static TextStyle clickable =
-      TextStyle(color: AppColor.clickableText, fontSize: 24);
-  static TextStyle normal = TextStyle(color: AppColor.normalText);
+      TextStyle(color: AppColor().clickableText, fontSize: 24);
+  static TextStyle normal = TextStyle(color: AppColor().normalText);
   static TextStyle clickableText =
-      TextStyle(color: AppColor.clickableText, fontSize: 24);
+      TextStyle(color: AppColor().clickableText, fontSize: 24);
 
   // Headlines
   static TextStyle headLineLarge =
-      TextStyle(color: AppColor.testHeadLine, fontSize: 24);
+      TextStyle(color: AppColor().testHeadLine, fontSize: 24);
   static TextStyle headLineMedium =
-      TextStyle(color: AppColor.testHeadLine, fontSize: 24);
+      TextStyle(color: AppColor().testHeadLine, fontSize: 24);
   static TextStyle headLineSmall =
-      TextStyle(color: AppColor.testHeadLine, fontSize: 10);
+      TextStyle(color: AppColor().testHeadLine, fontSize: 10);
 
   // title
   static TextStyle titleLarge = TextStyle(
-      color: AppColor.normalText,
+      color: AppColor().normalText,
       fontSize: 16,
       fontWeight: FontWeight.w600,
       overflow: TextOverflow.ellipsis);
   // subtitle
-  static TextStyle titleMedium = const TextStyle(
-      color: AppColor.secondaryText,
+  static TextStyle titleMedium =  TextStyle(
+      color: AppColor().secondaryText,
       fontSize: 14,
       fontWeight: FontWeight.w500,
       overflow: TextOverflow.ellipsis);
 
   static TextStyle titleSmall =
-      TextStyle(color: AppColor.testTitle, fontSize: 24);
+      TextStyle(color: AppColor().testTitle, fontSize: 24);
 
   // body
   static TextStyle bodyLarge =
-      TextStyle(color: AppColor.testBody, fontSize: 16);
+      TextStyle(color: AppColor().testBody, fontSize: 16);
   // body main
   static TextStyle bodyMedium =
-      TextStyle(color: AppColor.normalText, fontSize: 14);
+      TextStyle(color: AppColor().normalText, fontSize: 14);
   // caption
   static TextStyle bodySmall =
-      TextStyle(color: AppColor.testBody, fontSize: 12);
+      TextStyle(color: AppColor().testBody, fontSize: 12);
 
   // button
   static TextStyle labelLarge = TextStyle(
-      color: AppColor.testLabel, fontSize: 16, fontWeight: FontWeight.w500);
+      color: AppColor().testLabel, fontSize: 16, fontWeight: FontWeight.w500);
   // textfield label and hints
   static TextStyle labelMedium =
-      TextStyle(color: AppColor.testLabel, fontSize: 24);
+      TextStyle(color: AppColor().testLabel, fontSize: 24);
   // warning
   static TextStyle labelSmall =
-      TextStyle(color: AppColor.testLabel, fontSize: 24);
+      TextStyle(color: AppColor().testLabel, fontSize: 24);
 
   // secondary button
   static TextStyle secodaryBtn = TextStyle(
-      color: AppColor.secondaryBg, fontSize: 14, fontWeight: FontWeight.w500);
+      color: AppColor().secondaryBg, fontSize: 14, fontWeight: FontWeight.w500);
   // secondary text
   static TextStyle secodaryText = TextStyle(
-      color: AppColor.secondaryText, fontSize: 14, fontWeight: FontWeight.w400);
+      color: AppColor().secondaryText, fontSize: 14, fontWeight: FontWeight.w400);
 }

@@ -6,7 +6,7 @@ ThemeData appTheme = ThemeData(
   textTheme: appTextTheme,
   fontFamily: Fonts.inter,
   primarySwatch: Colors.green,
-  scaffoldBackgroundColor: AppColor.defaultBg,
+  scaffoldBackgroundColor: AppColor().defaultBg,
   checkboxTheme: appCheckboxTheme,
   cardTheme: appCardTheme,
   useMaterial3: false,

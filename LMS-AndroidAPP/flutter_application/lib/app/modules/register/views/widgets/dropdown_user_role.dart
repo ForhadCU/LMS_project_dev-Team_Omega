@@ -17,10 +17,10 @@ class UserRoleDropdown extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.md, vertical: AppSpacing.md + AppSpacing.smh),
       decoration: BoxDecoration(
-          color: AppColor.defaultBg,
+          color: AppColor().defaultBg,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(
-            color: AppColor.textFieldBorder,
+            color: AppColor().textFieldBorder,
             width: .5,
           )),
       child: Obx(() => DropdownButton<UserRole>(
@@ -32,8 +32,8 @@ class UserRoleDropdown extends StatelessWidget {
               ),
             ),
             icon: const Icon(Icons.keyboard_arrow_down, ),
-            focusColor: AppColor.defaultBg,
-            dropdownColor: AppColor.defaultBg,
+            focusColor: AppColor().defaultBg,
+            dropdownColor: AppColor().defaultBg,
             isDense: true,
             isExpanded: true,
             underline: Container(),
