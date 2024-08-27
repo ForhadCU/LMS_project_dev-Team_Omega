@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_application/app/core/values/gloabal_values.dart';
 import '../core_lib.dart';
 
 class DeviceScreenLongestSide {
@@ -54,11 +55,11 @@ class DeviceScreenWidth {
 
 mCalculate(AppEnum tag, double percentage) {
   if (tag == AppEnum.Height) {
-    return (MediaQuery.of(kGlobContext).size.height * percentage) / 100;
+    return (MediaQuery.of(gGlobalContext).size.height * percentage) / 100;
   } else if (tag == AppEnum.Width) {
-    return (MediaQuery.of(kGlobContext).size.width * percentage) / 100;
+    return (MediaQuery.of(gGlobalContext).size.width * percentage) / 100;
   } else if (tag == AppEnum.LONGESTSIDE) {
-    return (MediaQuery.of(kGlobContext).size.longestSide * percentage) / 100;
+    return (MediaQuery.of(gGlobalContext).size.longestSide * percentage) / 100;
   }
 }
 

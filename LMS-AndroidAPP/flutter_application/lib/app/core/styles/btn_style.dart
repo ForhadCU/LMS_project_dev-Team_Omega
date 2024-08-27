@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 
 import '../core_lib.dart';
 
-class AppSubmitBtnStyle {
+class AppButtonStyle {
   // make this class singleton
-  AppSubmitBtnStyle._internal();
-  static final AppSubmitBtnStyle _singleton = AppSubmitBtnStyle._internal();
-  factory AppSubmitBtnStyle() {
+  AppButtonStyle._internal();
+  static final AppButtonStyle _singleton = AppButtonStyle._internal();
+  factory AppButtonStyle() {
     return _singleton;
   }
 
-  final ButtonStyle submit = ElevatedButton.styleFrom(
-      padding:
-           EdgeInsets.symmetric(horizontal: AppSpacing().xxl, vertical: 0));
+  final NeumorphicStyle submit = NeumorphicStyle(
+    depth: 10,
+    intensity: 0.7,
+    shape: NeumorphicShape.convex,
+    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+    lightSource: LightSource.topLeft,
+    color: AppColor().primary,
+  );
 
-  final ButtonStyle secondary = ElevatedButton.styleFrom(
-      backgroundColor: AppColor().secondaryButton,
-      foregroundColor: AppColor().secondaryBg,
-      textStyle: AppTextStyle().secodaryBtn,
-      padding:
-           EdgeInsets.symmetric(horizontal: AppSpacing().xxl, vertical: 0));
+  final NeumorphicStyle secondary = NeumorphicStyle(
+    depth: 10,
+    intensity: 0.7,
+    shape: NeumorphicShape.concave,
+    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+    lightSource: LightSource.topLeft,
+    
+    color: AppColor().secondary,
+  );
 }

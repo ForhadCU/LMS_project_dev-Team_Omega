@@ -3,7 +3,7 @@ import 'package:flutter_application/app/core/core_lib.dart';
 
 import 'package:get/get.dart';
 
-import '../../../widgets/baseWidget.dart';
+import '../../../core/widgets/baseWidget.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {

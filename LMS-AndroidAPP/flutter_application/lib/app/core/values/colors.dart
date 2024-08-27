@@ -12,7 +12,7 @@ class AppColor {
   final Color primary = Color(0xff136537);
   final Color secondary = Color(0xff4ABDAC);
   final Color appRed = Color(0xffD72E35);
-  final Color hitnsAndBorder = Color(0xff333333);
+  final Color hitnsAndBorder = Color.fromARGB(255, 136, 136, 136);
   final Color accent = Color(0xffFF6F61);
   final Color textFieldBorder = Color(0xff333333);
   final Color divier = Color(0xff333333);

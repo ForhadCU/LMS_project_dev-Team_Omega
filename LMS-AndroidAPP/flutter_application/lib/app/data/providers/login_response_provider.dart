@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../models/login_response_model.dart';
+import '../models/login/responses/login_response_model.dart';
 
 class LoginResponseProvider extends GetConnect {
   @override

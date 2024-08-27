@@ -11,7 +11,7 @@ class AppStatusBar {
     return _singleton;
   }
   // codes start from here
-  // All methods should be static to maintain singleton instances
+  // Methods or variables shouldn't be static
 
   /// Change statusbar color
   mLight() {

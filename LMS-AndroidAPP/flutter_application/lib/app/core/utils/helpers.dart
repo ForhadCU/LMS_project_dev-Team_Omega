@@ -1,10 +1,12 @@
-// Logger kLogger = Logger();
-// Globel context
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'dart:convert';
 
-import '../core_lib.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application/app/core/core_lib.dart';
+import 'package:flutter_application/app/core/values/gloabal_values.dart';
+import 'package:flutter_application/app/data/models/login/responses/error_response_model.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class AppHelpers {
   // make this class singleton
@@ -14,9 +16,7 @@ class AppHelpers {
     return _singleton;
   }
   // codes start from here
-  // All methods should be static to maintain singleton instances
-
-
+  // Methods or variables shouldn't be static
 
   /// Create a MaterialColor from a Color
   MaterialColor mCreateMaterialColor(Color color) {
@@ -38,6 +38,72 @@ class AppHelpers {
     }
     return MaterialColor(color.value, swatch);
   }
-}
 
-BuildContext kGlobContext = Get.context!;
+  Map<String, dynamic> mHandleResponse(http.Response response) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      return jsonDecode(response.body);
+    } else {
+      var errorResponseModel =
+          ErrorResponseModel.fromMap(jsonDecode(response.body));
+      gLogger.w(errorResponseModel.message, error: "Response message");
+      AppHelpers().showSnackBarFailed(message: errorResponseModel.message);
+      throw Exception('Failed with status code: ${response.statusCode}');
+    }
+  }
+
+  Map<String, String> mHeadersGenerator({required String token}) {
+    return {
+      "Authorization": "Bearer $token",
+    };
+  }
+
+  // Check if a string is a valid email
+  bool isValidEmail(String email) {
+    final RegExp emailRegex = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
+    return emailRegex.hasMatch(email);
+  }
+
+  String formatDate(DateTime date) {
+    return DateFormat('yyyy-MM-dd').format(date);
+  }
+
+  String formatTime(DateTime time) {
+    return DateFormat('HH:mm').format(time);
+  }
+
+// Check if a string is empty
+  bool isEmpty(String? text) {
+    return text == null || text.trim().isEmpty;
+  }
+
+// Show a snackbar failed message
+  void showSnackBarFailed({String? title, String? message}) {
+    Get.snackbar(
+      title ?? 'Failed',
+      message ?? "",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: AppColor().appRed,
+      colorText: Colors.white,
+    );
+  } // Show a snackbar failed message
+
+  void showSnackBarSuccess({String? title, String? message}) {
+    Get.snackbar(
+      title ?? 'Success',
+      message ?? "",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: AppColor().primary,
+      colorText: Colors.white,
+    );
+  }
+
+  void showSnackBarWarning({String? title, String? message}) {
+    Get.snackbar(
+      title ?? 'Warning',
+      message ?? "",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: AppColor().accent,
+      colorText: Colors.white,
+    );
+  }
+}

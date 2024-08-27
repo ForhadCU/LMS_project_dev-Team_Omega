@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 enum AppEnum {
   Height,
   Width,
@@ -5,4 +7,8 @@ enum AppEnum {
   EDIT,
   DELETE,
   LEAVE,
+  GET,
+  POST,
+  PUT,
+  PATCH,
 }
