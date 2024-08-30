@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter_application/app/core/core_lib.dart';
+import 'package:flutter_application/app/core/values/gloabal_values.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiProvider {
   // make this class singleton
@@ -77,5 +79,48 @@ class ApiProvider {
       {Map<String, String>? headers}) {
     return _request(
         endpoint: endpoint, method: AppEnum.DELETE, headers: headers);
+  }
+
+  // public methods for each local action
+  Future<bool?> setBool({required String key, required bool value}) {
+   return _requestToLocal(AppEnum.BOOL, key, value);
+  }
+
+  Future<bool?> setString({required String key, required String value}) {
+    return _requestToLocal(AppEnum.STRING, key, value);
+  }
+
+  Future<bool?> setInt({required String key, required int value}) {
+  return  _requestToLocal(AppEnum.INT, key, value);
+  }
+
+ Future<bool?>  setDouble({required String key, required double value}) {
+   return _requestToLocal(AppEnum.DOUBLE, key, value);
+  }
+
+ Future<bool?>  setStringList({required String key, required List<String> value}) {
+   return _requestToLocal(AppEnum.BOOL, key, value);
+  }
+
+  // private method to handle local requests
+  Future<bool?> _requestToLocal(
+      AppEnum method, String key, dynamic value) async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    switch (method) {
+      case AppEnum.BOOL:
+        return await sharedPreferences.setBool(key, value);
+      case AppEnum.STRING:
+        return await sharedPreferences.setString(key, value.toString());
+      case AppEnum.INT:
+        return await sharedPreferences.setInt(key, value);
+      case AppEnum.DOUBLE:
+        return await sharedPreferences.setDouble(key, value);
+      case AppEnum.STRINGLIST:
+        return await sharedPreferences.setStringList(key, value);
+
+      default:
+        throw Exception("Invalid Local Storage method");
+    }
   }
 }

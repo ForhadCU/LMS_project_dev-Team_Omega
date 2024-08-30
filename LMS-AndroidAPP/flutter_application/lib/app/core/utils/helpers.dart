@@ -39,7 +39,7 @@ class AppHelpers {
     return MaterialColor(color.value, swatch);
   }
 
-  Map<String, dynamic> mHandleResponse(http.Response response) {
+  Map<String, dynamic> mHandleRemoteResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return jsonDecode(response.body);
     } else {
@@ -105,5 +105,18 @@ class AppHelpers {
       backgroundColor: AppColor().accent,
       colorText: Colors.white,
     );
+  }
+
+  bool mHandleLocalResponse(bool? res) {
+    if (res != null && res) {
+      gLoggerNoStack.i("Successfully save access_token");
+      return true;
+    } else {
+      gLogger.w("Failed to save", error: "Local Response");
+      AppHelpers().showSnackBarFailed(
+        message: "Failed to login",
+      );
+    }
+    return false;
   }
 }

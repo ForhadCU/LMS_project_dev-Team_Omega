@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/app/core/core_lib.dart';
 import 'package:flutter_application/app/core/values/gloabal_values.dart';
+import 'package:flutter_application/app/data/models/login/responses/login_response_model.dart';
 import 'package:flutter_application/app/data/repositories/login_repo.dart';
+import 'package:flutter_application/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_application/app/data/models/login/payloads/login_payload.dart';
@@ -16,7 +18,6 @@ class LoginController extends GetxController {
   var passCtrl = TextEditingController();
   var isSessionChecked = false.obs;
   var isPassObscure = true.obs;
-  final _isLoading = false.obs;
 
   @override
   void onInit() {
@@ -34,32 +35,21 @@ class LoginController extends GetxController {
   }
 
   // login user
-  Future<void> mLoginUser(LoginPayload loginPayload) async {
+  Future<LoginResponse?> mLoginUser(LoginPayload loginPayload) async {
     if (AppHelpers().isEmpty(loginPayload.email) &&
         AppHelpers().isEmpty(loginPayload.password)) {
       AppHelpers()
           .showSnackBarWarning(message: "Email and Password cannot be empty");
-      return;
+      return null;
     }
 
-    _isLoading.value = true;
-    gLoggerNoStack.i("Loging start...");
     try {
-      final response =
-          await loginRepository.mLoginUser(loginPayload: loginPayload);
-
-      if (response != null) {
-        gLogger.t(response.toJson());
-      } else {
-        gLogger.i("response: null");
-      }
+      // send login request
+      return await loginRepository.mLoginUser(loginPayload: loginPayload);
     } catch (e) {
       gLogger.e(e, error: 'Api error');
       // AppHelpers().showSnackBarFailed(message: e.toString());
-    } finally {
-      _isLoading.value = false;
-      gLoggerNoStack.i("Loging end...");
-    }
+    } finally {}
   }
 
   mUpdateSessionChecked(bool v) {
@@ -72,5 +62,44 @@ class LoginController extends GetxController {
 
   void mTapRegisterText() {
     // Get.offNamed(Routes.REGISTER);
+  }
+
+  ////////// Animated button ///////////////
+  var isLoading = false.obs;
+  var isSuccess = false.obs;
+  var isFailed = false.obs;
+
+  handleButtonClick(LoginPayload loginPayload) async {
+    isLoading.value = true;
+    isSuccess.value = false;
+    isFailed.value = false;
+    gLoggerNoStack.t("Logging start...");
+
+    // send login request
+    LoginResponse? response = await mLoginUser(loginPayload);
+
+    bool? isAccessTokenSave = false;
+
+    if (response != null) {
+      gLoggerNoStack.i(response.message);
+      // save token to local
+      isAccessTokenSave = await _mSaveSessionToLocal(response.accesToken ?? "");
+    } else {
+      gLogger.i("response: null");
+    }
+    // control login button
+    isLoading.value = false;
+    isSuccess.value = response != null && isAccessTokenSave;
+    isFailed.value = !isSuccess.value;
+    gLoggerNoStack.t("Logging end...");
+
+    // Navigate to Home
+    if (response != null && isAccessTokenSave) {
+      Get.offAllNamed(Routes.HOME);
+    }
+  }
+
+  Future<bool> _mSaveSessionToLocal(String accessToken) async {
+    return await loginRepository.mSaveSessionToLocal(value: accessToken);
   }
 }

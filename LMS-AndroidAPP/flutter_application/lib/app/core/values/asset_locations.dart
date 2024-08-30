@@ -15,5 +15,8 @@ class AppAssetLocations {
   final String ic_course = "assets/icons/course.png";
   final String ic_course2 = "assets/icons/course2.png";
 
-  // images
+  // animations
+    final String anim_success = "assets/animations/success.gif";
+    final String anim_error = "assets/animations/error.gif";
+
 }

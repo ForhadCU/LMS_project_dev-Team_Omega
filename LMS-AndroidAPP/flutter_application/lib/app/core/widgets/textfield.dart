@@ -11,12 +11,14 @@ class AppTextFiled extends StatelessWidget {
   final IconData? prefixIconData;
   final IconData? suffixIconData;
   final bool? isObscureText;
+  final TextInputAction? textInputAction;
 
   const AppTextFiled(
       {super.key,
       required this.title,
       required this.textEditingController,
       this.onChanged,
+      this.textInputAction,
       this.prefixIconData,
       this.suffixIconData,
       this.isObscureText,
@@ -32,15 +34,15 @@ class AppTextFiled extends StatelessWidget {
             }
           : null,
       obscureText: isObscureText ?? false,
-      textInputAction: TextInputAction.next,
+      textInputAction: textInputAction ?? TextInputAction.next,
       textAlignVertical: TextAlignVertical.center,
       textAlign: TextAlign.left,
       decoration: InputDecoration(
-        focusedBorder:  OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
           color: AppColor().primary,
         )),
-        floatingLabelStyle:  TextStyle(color: AppColor().primary),
+        floatingLabelStyle: TextStyle(color: AppColor().primary),
         label: Text(
           title,
         ),
@@ -64,8 +66,8 @@ class AppTextFiled extends StatelessWidget {
               )
             : null,
         isDense: true,
-        contentPadding:   EdgeInsets.all(AppSpacing().md),
-        border:  OutlineInputBorder(
+        contentPadding: EdgeInsets.all(AppSpacing().md),
+        border: OutlineInputBorder(
             borderSide: BorderSide(color: AppColor().textFieldBorder)),
       ),
     );
