@@ -11,4 +11,9 @@ enum AppEnum {
   POST,
   PUT,
   PATCH,
+  BOOL,
+  STRING,
+  INT,
+  DOUBLE,
+  STRINGLIST
 }

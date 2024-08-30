@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/app/core/core_lib.dart';
 import 'package:flutter_application/app/core/values/gloabal_values.dart';
-import 'package:flutter_application/app/data/models/login/responses/error_response_model.dart';
+import 'package:flutter_application/app/data/models/error_response_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -39,14 +39,15 @@ class AppHelpers {
     return MaterialColor(color.value, swatch);
   }
 
-  Map<String, dynamic> mHandleResponse(http.Response response) {
+  Map<String, dynamic> mHandleRemoteResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
+      gLoggerNoStack.i("Successfully get api response");
       return jsonDecode(response.body);
     } else {
       var errorResponseModel =
           ErrorResponseModel.fromMap(jsonDecode(response.body));
-      gLogger.w(errorResponseModel.message, error: "Response message");
-      AppHelpers().showSnackBarFailed(message: errorResponseModel.message);
+      gLogger.e(errorResponseModel.message, error: "Response message");
+      // AppHelpers().showSnackBarFailed(message: errorResponseModel.message);
       throw Exception('Failed with status code: ${response.statusCode}');
     }
   }
@@ -105,5 +106,18 @@ class AppHelpers {
       backgroundColor: AppColor().accent,
       colorText: Colors.white,
     );
+  }
+
+  bool mHandleLocalResponse(bool? res) {
+    if (res != null && res) {
+      gLoggerNoStack.i("Successfully save access_token");
+      return true;
+    } else {
+      gLogger.w("Failed to save", error: "Local Response");
+      AppHelpers().showSnackBarFailed(
+        message: "Failed to login",
+      );
+    }
+    return false;
   }
 }

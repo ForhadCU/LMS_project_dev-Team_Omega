@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/app/core/core_lib.dart';
 import 'package:flutter_application/app/core/values/gloabal_values.dart';
+import 'package:flutter_application/app/data/models/login/responses/login_response_model.dart';
 import 'package:flutter_application/app/data/repositories/login_repo.dart';
+import 'package:flutter_application/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_application/app/data/models/login/payloads/login_payload.dart';
@@ -14,57 +16,92 @@ class LoginController extends GetxController {
   final count = 0.obs;
   var emailCtrl = TextEditingController();
   var passCtrl = TextEditingController();
-  var isSessionChecked = false.obs;
+
+  // Observables for managing UI state
+  // var isSessionChecked = false.obs;
   var isPassObscure = true.obs;
-  final _isLoading = false.obs;
+  var isLoading = false.obs;
+  var isSuccess = false.obs;
+  var isFailed = false.obs;
 
   @override
   void onInit() {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  // login user
-  Future<void> mLoginUser(LoginPayload loginPayload) async {
-    if (AppHelpers().isEmpty(loginPayload.email) &&
-        AppHelpers().isEmpty(loginPayload.password)) {
-      AppHelpers()
-          .showSnackBarWarning(message: "Email and Password cannot be empty");
+  // Login method
+  Future<void> handleLogin(LoginPayload loginPayload) async {
+    if (_validateInput(loginPayload)) {
+      _showInputError();
       return;
     }
 
-    _isLoading.value = true;
-    gLoggerNoStack.i("Loging start...");
+    // Start loading
+    _setLoadingState();
+
     try {
+      // Attempt login
       final response =
           await loginRepository.mLoginUser(loginPayload: loginPayload);
+      final isAccessTokenSaved = response != null
+          ? await _saveAccessToken(response.accesToken ?? "")
+          : false;
 
-      if (response != null) {
-        gLogger.t(response.toJson());
-      } else {
-        gLogger.i("response: null");
+      // Update UI state
+      _updateState(response, isAccessTokenSaved);
+
+      // Navigate if successful
+      if (isSuccess.value) {
+        // Show success message or animation
+
+        // To finish button animation
+        await Future.delayed(const Duration(milliseconds: 800));
+
+        Get.offAllNamed(Routes.HOME);
       }
     } catch (e) {
-      gLogger.e(e, error: 'Api error');
-      // AppHelpers().showSnackBarFailed(message: e.toString());
+      _handleError(e);
     } finally {
-      _isLoading.value = false;
-      gLoggerNoStack.i("Loging end...");
+      isLoading.value = false;
     }
   }
 
-  mUpdateSessionChecked(bool v) {
-    isSessionChecked.value = v;
+  // Private methods
+  bool _validateInput(LoginPayload loginPayload) {
+    return AppHelpers().isEmpty(loginPayload.email) ||
+        AppHelpers().isEmpty(loginPayload.password);
   }
+
+  void _showInputError() {
+    AppHelpers()
+        .showSnackBarWarning(message: "Email or Password cannot be empty");
+  }
+
+  void _setLoadingState() {
+    isLoading.value = true;
+    isSuccess.value = false;
+    isFailed.value = false;
+    gLoggerNoStack.t("Logging start...");
+  }
+
+  Future<bool> _saveAccessToken(String accessToken) async {
+    return await loginRepository.mSaveSessionToLocal(value: accessToken);
+  }
+
+  void _updateState(LoginResponse? response, bool isAccessTokenSaved) {
+    isSuccess.value = response != null && isAccessTokenSaved;
+    isFailed.value = !isSuccess.value;
+    gLoggerNoStack.t("Logging end...");
+  }
+
+  void _handleError(dynamic e) {
+    gLogger.e(e, error: 'Api error');
+    AppHelpers().showSnackBarFailed(message: 'Login failed. Please try again.');
+  }
+
+/*   mUpdateSessionChecked(bool v) {
+    isSessionChecked.value = v;
+  } */
 
   void mTapLoginBtn() {
     // Get.offNamed(Routes.CREATE_COURSES);
@@ -72,5 +109,11 @@ class LoginController extends GetxController {
 
   void mTapRegisterText() {
     // Get.offNamed(Routes.REGISTER);
+  }
+
+  void mHandleForgotPassBtn() {}
+
+  void mHandleForgotPassText() {
+    Get.toNamed(Routes.PASSWORD_RECOVER);
   }
 }
