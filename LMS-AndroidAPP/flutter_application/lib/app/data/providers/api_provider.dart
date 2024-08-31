@@ -104,24 +104,24 @@ class ApiProvider {
   }
 
   // public methods for each local get action ////////////
-  dynamic getBool({required String key, required bool value}) {
-    return _getRequestToLocal(AppEnum.BOOL, key);
+  Future<bool?> getBool({required String key, required bool value}) async {
+    return await _getRequestToLocal(AppEnum.BOOL, key);
   }
 
-  dynamic getString({required String key}) {
-    return _getRequestToLocal(AppEnum.STRING, key);
+  Future<String?> getString({required String key}) async {
+    return await _getRequestToLocal(AppEnum.STRING, key);
   }
 
-  dynamic getInt({required String key}) {
-    return _getRequestToLocal(AppEnum.INT, key);
+  Future<int?> getInt({required String key}) async {
+    return await _getRequestToLocal(AppEnum.INT, key);
   }
 
-  dynamic getDouble({required String key}) {
-    return _getRequestToLocal(AppEnum.DOUBLE, key);
+  Future<double?> getDouble({required String key}) async {
+    return await _getRequestToLocal(AppEnum.DOUBLE, key);
   }
 
-  dynamic getStringList({required String key}) {
-    return _getRequestToLocal(AppEnum.BOOL, key);
+  Future<List<String>> getStringList({required String key}) async {
+    return await _getRequestToLocal(AppEnum.BOOL, key);
   }
 
   // private method to handle local set requests ////////////
@@ -147,7 +147,7 @@ class ApiProvider {
   }
 
   // private method to handle local get requests ////////////
-  dynamic _getRequestToLocal(AppEnum method, String key) async {
+  Future<dynamic> _getRequestToLocal(AppEnum method, String key) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     switch (method) {

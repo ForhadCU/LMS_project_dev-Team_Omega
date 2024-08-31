@@ -23,8 +23,8 @@ class PasswordRecoverRepository {
   }
 
   //  get user access token
-  Future<String> mGetSessionFromLocal() async {
-    String response = await apiProvider.getString(key: AppKeys().accessToken);
+  Future<String?> mGetSessionFromLocal() async {
+    String? response = await apiProvider.getString(key: AppKeys().accessToken);
     return response;
   }
 }
