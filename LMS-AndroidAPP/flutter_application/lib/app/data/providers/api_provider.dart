@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_application/app/core/core_lib.dart';
-import 'package:flutter_application/app/core/values/gloabal_values.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
