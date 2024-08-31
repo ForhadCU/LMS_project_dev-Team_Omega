@@ -7,4 +7,5 @@ class AppKeys {
   }
   // codes start from here
   // Methods or variables shouldn't be static
+  final accessToken = "access_token";
 }

@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+/* import 'package:get/get.dart';
 
 import '../models/login/responses/login_response_model.dart';
 
@@ -24,3 +24,4 @@ class LoginResponseProvider extends GetConnect {
   Future<Response> deleteLoginResponse(int id) async =>
       await delete('loginresponse/$id');
 }
+ */
