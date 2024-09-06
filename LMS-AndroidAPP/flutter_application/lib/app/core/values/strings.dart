@@ -8,11 +8,12 @@ class AppStrings {
   // codes start from here
   // Methods or variables shouldn't be static
 
-  double sAppFontsize = 0;
   final String sOnGoing = "Ongoing";
   final String sUpComing = "Upcoming";
   final String sEnded = "Ended";
   final String sEdit = "Edit";
   final String sDelete = "Delete";
   final List<String> sCourseCardMenuItems = ["Edit", "Delete"];
+
+
 }

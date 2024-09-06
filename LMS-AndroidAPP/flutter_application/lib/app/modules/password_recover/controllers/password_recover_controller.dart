@@ -55,6 +55,12 @@ class PasswordRecoverController extends GetxController {
       final userAccessToken =
           await passwordRecoverRepository.mGetSessionFromLocal();
 
+      // check user access token expiry
+      if (userAccessToken == null) {
+        _showSessionExpiredMesseage();
+        return;
+      }
+
       // Attempt change password
       final response = await passwordRecoverRepository.mChangePassword(
           changePasswordPayload: changePasswordPayload,
@@ -105,5 +111,10 @@ class PasswordRecoverController extends GetxController {
     } else {
       AppHelpers().showSnackBarFailed(message: "Failed to change password");
     }
+  }
+
+  void _showSessionExpiredMesseage() {
+    AppHelpers()
+        .showSnackBarFailed(message: "Session expired. Please login again.");
   }
 }

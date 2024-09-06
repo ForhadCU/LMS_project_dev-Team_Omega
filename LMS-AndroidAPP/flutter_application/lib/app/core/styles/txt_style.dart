@@ -12,26 +12,23 @@ class AppTextStyle {
   // codes start from here
   // Methods or variables shouldn't be static
 
-  TextStyle clickable =
-      TextStyle(color: AppColor().clickableText, fontSize: 24);
+  TextStyle clickable = TextStyle(
+      color: AppColor().clickableText,
+      fontSize: 24,
+      fontWeight: FontWeight.bold);
   TextStyle normal = TextStyle(color: AppColor().normalText);
   TextStyle clickableText =
       TextStyle(color: AppColor().clickableText, fontSize: 24);
 
   // Headlines
-  TextStyle headLineLarge =
-      TextStyle(color: AppColor().testHeadLine, fontSize: 24);
+  TextStyle displayLarge = TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
   TextStyle headLineMedium =
-      TextStyle(color: AppColor().testHeadLine, fontSize: 24);
+      TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500);
   TextStyle headLineSmall =
       TextStyle(color: AppColor().testHeadLine, fontSize: 10);
 
   // title
-  TextStyle titleLarge = TextStyle(
-      color: AppColor().normalText,
-      fontSize: 16,
-      fontWeight: FontWeight.w600,
-      overflow: TextOverflow.ellipsis);
+  TextStyle titleLarge = TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500, overflow: TextOverflow.ellipsis);
   // subtitle
   TextStyle titleMedium = TextStyle(
       color: AppColor().secondaryText,
@@ -42,9 +39,9 @@ class AppTextStyle {
   TextStyle titleSmall = TextStyle(color: AppColor().testTitle, fontSize: 24);
 
   // body
-  TextStyle bodyLarge = TextStyle(color: AppColor().testBody, fontSize: 16);
+  TextStyle bodyLarge = TextStyle(fontSize: 16);
   // body main
-  TextStyle bodyMedium = TextStyle(color: AppColor().normalText, fontSize: 14);
+  TextStyle bodyMedium = TextStyle(fontSize: 14);
   // caption
   TextStyle bodySmall = TextStyle(color: AppColor().testBody, fontSize: 12);
 
@@ -61,6 +58,7 @@ class AppTextStyle {
       color: AppColor().secondaryBg, fontSize: 14, fontWeight: FontWeight.w500);
   // secondary text
   TextStyle secodaryText = TextStyle(
+      overflow: TextOverflow.ellipsis,
       color: AppColor().secondaryText,
       fontSize: 14,
       fontWeight: FontWeight.w400);

@@ -7,5 +7,6 @@ class AppFonts {
   }
   // codes start from here
   // Methods or variables shouldn't be static
-  final String inter = "Inter";
+  final String montserrat = 'Montserrat';
+  final String roboto = 'Roboto';
 }

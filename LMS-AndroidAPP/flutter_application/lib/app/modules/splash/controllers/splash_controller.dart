@@ -1,38 +1,39 @@
+import 'package:flutter_application/app/core/values/gloabal_values.dart';
+import 'package:flutter_application/app/data/repositories/password_recover_repo.dart';
+import 'package:flutter_application/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
-import '../../../core/core_lib.dart';
-import '../../../routes/app_pages.dart';
-
 class SplashController extends GetxController {
-  //TODO: Implement HomeController
+  final PasswordRecoverRepository passwordRecoverRepository;
+  SplashController({required this.passwordRecoverRepository});
 
-  final count = 0.obs;
-
-  var fontsize = 0.0.obs;
   @override
   void onInit() async {
     super.onInit();
-    // print("Called Splash Controller");
-    mSaveAppData();
+
+    await Future.delayed(const Duration(milliseconds: 2000));
+    await mCheckSessionStatus();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  mCheckSessionStatus() async {
+    try {
+      final userAccessToken =
+          await passwordRecoverRepository.mGetSessionFromLocal();
+      if (userAccessToken == null) {
+        Get.offNamed(Routes.LOGIN);
+        return;
+      } else {
+        // Get.offNamed(Routes.HOME);
+        // Get.offNamed(Routes.ALLCOURSES);
+        Get.offNamed(Routes.COURSE_DETAILS);
+        return;
+      }
+    } catch (e) {
+      _handleError(e);
+    }
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
-
-  mSaveAppData() async {
-    // appFontsize = DeviceScreenLongestSide.tenPercent;
-    // print("before");
-    await Future.delayed(Duration(seconds: 2));
-    Get.offNamed(Routes.LOGIN);
-    // print("after");
+  void _handleError(Object e) {
+    gLogger.e(e, error: "Local Strorage Error");
   }
 }

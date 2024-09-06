@@ -16,6 +16,7 @@ dependencies:
   intl: ^0.19.0
   loading_btn: ^1.0.3
   shared_preferences: ^2.2.3
+  getwidget: ^4.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -29,3 +30,20 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/animations/
+    - assets/fonts/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto-Black.ttf
+          weight: 900

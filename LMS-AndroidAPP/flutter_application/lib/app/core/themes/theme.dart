@@ -4,7 +4,7 @@ import '../core_lib.dart';
 
 ThemeData appTheme = ThemeData(
   textTheme: appTextTheme,
-  fontFamily: AppFonts().inter,
+  fontFamily: AppFonts().roboto, // Default font
   primarySwatch: AppHelpers().mCreateMaterialColor(AppColor().primary),
   scaffoldBackgroundColor: AppColor().defaultBg,
   checkboxTheme: appCheckboxTheme,

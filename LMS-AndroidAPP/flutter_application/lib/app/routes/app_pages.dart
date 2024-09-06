@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
+import '../modules/content_details/bindings/content_details_binding.dart';
+import '../modules/content_details/views/content_details_view.dart';
+import '../modules/course_details/bindings/course_details_binding.dart';
+import '../modules/course_details/views/course_details_view.dart';
 import '../modules/courses/bindings/all_courses_binding.dart';
 import '../modules/courses/views/all_courses_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -18,7 +22,8 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.SPLASH;
+  // static const initial = Routes.SPLASH;
+  static const initial = Routes.ALLCOURSES;
   static const _transitionDuration = Duration(milliseconds: 500);
 
   static final routes = [
@@ -45,7 +50,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ALLCOURSES,
-      page: () => const AllCoursesView(),
+      page: () =>  AllCoursesView(),
       binding: AllCoursesBinding(),
     ),
     GetPage(
@@ -54,6 +59,16 @@ class AppPages {
       binding: PasswordRecoverBinding(),
       transition: Transition.downToUp,
       transitionDuration: _transitionDuration,
+    ),
+    GetPage(
+      name: _Paths.COURSE_DETAILS,
+      page: () => CourseDetailsView(),
+      binding: CourseDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONTENT_DETAILS,
+      page: () => const ContentDetailsView(),
+      binding: ContentDetailsBinding(),
     ),
   ];
 }

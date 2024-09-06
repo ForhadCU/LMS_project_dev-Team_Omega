@@ -32,3 +32,4 @@ export 'widgets/divider.dart';
 export 'widgets/dot_active_status.dart';
 export 'widgets/textfield.dart';
 export 'widgets/time_schedule.dart';
+export 'widgets/app_bar.dart';
