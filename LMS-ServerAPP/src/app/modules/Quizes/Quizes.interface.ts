@@ -5,11 +5,12 @@ export type TQuiz = {
   Quiz_No: string;
   Quiz_Type: "daily" | "weekly";
   Date: string;
+  Questions: Array<TQuestion>;
   Form_link?: string;
 };
 
 export type TQuestion = {
-  Quiz_ID: Types.ObjectId;
+  Question_NO: number;
   Question: string;
   Mark: number;
   Options: Array<string>;
