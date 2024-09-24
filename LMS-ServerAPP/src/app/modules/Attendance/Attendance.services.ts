@@ -38,6 +38,19 @@ const StudentCheckIn = async (studentID: string) => {
   return result;
 };
 
+const getAllAttendance = async (rawQuery: any) => {
+  let query: any = {};
+  for (let key in rawQuery) {
+    query[key] = rawQuery[key];
+  }
+  const result = await Attendance.find(query).populate(
+    "Student_ID",
+    "name email"
+  );
+  return result;
+};
+
 export const AttendanceServices = {
   StudentCheckIn,
+  getAllAttendance,
 };

@@ -16,7 +16,16 @@ const StudentCheckIn = catchAsync(async (req: Request, res: Response) => {
 });
 
 const GetAllStudentAttendance = catchAsync(
-  async (req: Request, res: Response) => {}
+  async (req: Request, res: Response) => {
+    const rawQuery = req.query;
+    const result = await AttendanceServices.getAllAttendance(rawQuery);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Attendance data fetched successfully!",
+      data: result,
+    });
+  }
 );
 
 export const AttendanceControllers = {

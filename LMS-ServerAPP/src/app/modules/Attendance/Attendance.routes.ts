@@ -11,4 +11,10 @@ router.post(
   AttendanceControllers.StudentCheckIn
 );
 
+router.get(
+  "/get-all-attendance",
+  auth(USER_ROLE.admin, USER_ROLE.super_admin),
+  AttendanceControllers.GetAllStudentAttendance
+);
+
 export const AttendanceRoutes = router;
