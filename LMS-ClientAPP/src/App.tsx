@@ -1,11 +1,11 @@
-import "./App.css";
-import SignIn from "./pages/Sign In/Signin";
+import { MainLayout } from "./layouts/MainLayout";
+import { PrivateRoute } from "./routes/PrivateRoute";
 
 function App() {
   return (
-    <div className="App">
-      <SignIn />
-    </div>
+    <PrivateRoute>
+      <MainLayout />;
+    </PrivateRoute>
   );
 }
 

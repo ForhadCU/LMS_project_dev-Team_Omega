@@ -1,0 +1,38 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - master # Change this to the branch you want to trigger deployment on
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "21.2.0" # Specify your Node.js version
+
+      - name: Change Directory to server folder
+        run: cd LMS-ServerAPP
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: LMS-ServerAPP
+
+      - name: Build project
+        run: npm run build # Adjust this if your build command is different
+        working-directory: LMS-ServerAPP
+
+      - name: Deploy to Vercel
+        working-directory: LMS-ServerAPP
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel --prod --token $VERCEL_TOKEN

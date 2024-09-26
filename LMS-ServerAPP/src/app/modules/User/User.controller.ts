@@ -78,10 +78,22 @@ const userChangePassword = catchAsync(async (req, res) => {
   });
 });
 
+const createUsers = catchAsync(async (req: Request, res: Response) => {
+  const users = req.body.users;
+  const result = await UserServices.createUsers(users);
+  sendResponse(res, {
+    statusCode: 201,
+    success: true,
+    message: "Users created successfully",
+    data: result,
+  });
+});
+
 export const UserControllers = {
   createNewUser,
   userLogin,
   userSoftDelete,
   userChangePassword,
   getAllUser,
+  createUsers,
 };

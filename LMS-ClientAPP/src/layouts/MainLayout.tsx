@@ -1,5 +1,9 @@
-import React from "react";
+import { SideNav } from "../components/SideNav/SideNav";
 
 export const MainLayout = () => {
-  return <div>MainLayout</div>;
+  return (
+    <>
+      <SideNav />
+    </>
+  );
 };

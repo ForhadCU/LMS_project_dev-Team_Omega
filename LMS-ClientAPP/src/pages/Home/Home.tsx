@@ -1,5 +1,7 @@
-import React from "react";
-
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <h1>Learning Management System</h1>
+    </div>
+  );
 };

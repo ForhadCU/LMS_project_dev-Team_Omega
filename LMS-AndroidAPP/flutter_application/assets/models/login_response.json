@@ -1,0 +1,16 @@
+{
+    "statusCode": 200,
+    "success": true,
+    "message": "User is logged in succesfully",
+    "data": {
+        "_id": "669612163fe664e9ac8047b5",
+        "name": "LMS dummy student2",
+        "email": "abcd2@gmail.com",
+        "role": "student",
+        "isActive": true,
+        "createdAt": "2024-07-16T06:24:22.958Z",
+        "updatedAt": "2024-07-16T06:24:22.958Z",
+        "__v": 0
+    },
+    "accesToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njk2MTIxNjNmZTY2NGU5YWM4MDQ3YjUiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcyMTExMTE1MCwiZXhwIjoxNzIxOTc1MTUwfQ.85YXwG7tMbnqtFh1fUkngbboJSq829zyNOjwxZGQ7lQ"
+}
