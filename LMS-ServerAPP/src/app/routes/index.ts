@@ -4,6 +4,8 @@ import { CourseRouters } from "../modules/Courses/Courses.routes";
 import { ContentRoutes } from "../modules/Content/Content.routes";
 import { QuizRoutes } from "../modules/Quizes/Quizes.routes";
 import { AttendanceRoutes } from "../modules/Attendance/Attendance.routes";
+import { EnrollmentRoutes } from "../modules/Enrollment/Enrollment.routes";
+import { EventsRoutes } from "../modules/Events/Events.routes";
 
 const router = Router();
 
@@ -13,6 +15,8 @@ const moduleRoutes = [
   { path: "/contents", route: ContentRoutes },
   { path: "/quiz", route: QuizRoutes },
   { path: "/attendance", route: AttendanceRoutes },
+  { path: "/enrollment", route: EnrollmentRoutes },
+  { path: "/events", route: EventsRoutes },
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
