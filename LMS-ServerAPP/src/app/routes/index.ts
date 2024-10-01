@@ -6,6 +6,7 @@ import { QuizRoutes } from "../modules/Quizes/Quizes.routes";
 import { AttendanceRoutes } from "../modules/Attendance/Attendance.routes";
 import { EnrollmentRoutes } from "../modules/Enrollment/Enrollment.routes";
 import { EventsRoutes } from "../modules/Events/Events.routes";
+import { ForumROutes } from "../modules/Forums/Forum.routes";
 
 const router = Router();
 
@@ -17,6 +18,7 @@ const moduleRoutes = [
   { path: "/attendance", route: AttendanceRoutes },
   { path: "/enrollment", route: EnrollmentRoutes },
   { path: "/events", route: EventsRoutes },
+  { path: "/forums", route: ForumROutes },
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
