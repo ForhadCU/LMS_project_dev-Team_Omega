@@ -8,6 +8,10 @@ import { CreateCourse } from "../pages/TeacherPages/CreateCourse";
 import App from "../App";
 import { GetUser } from "../pages/AdminPages/GetUser";
 import { StudentReportViewr } from "../components/PDF/StudentReportViewr";
+import { StudentDetails } from "../pages/AdminPages/StudentDetails";
+import { CoursesList } from "../pages/Courses/CoursesList";
+import { CourseDetailsAdmin } from "../pages/Courses/CourseDetailsAdmin";
+import { AttendanceList } from "../pages/AdminPages/AttendanceList";
 
 const routes = createBrowserRouter([
   {
@@ -41,6 +45,22 @@ const routes = createBrowserRouter([
       {
         path: "/student-report",
         element: <StudentReportViewr />,
+      },
+      {
+        path: "/student-details",
+        element: <StudentDetails />,
+      },
+      {
+        path: "/course-list",
+        element: <CoursesList />,
+      },
+      {
+        path: "/course-details-admin",
+        element: <CourseDetailsAdmin />,
+      },
+      {
+        path: "/attendance-list",
+        element: <AttendanceList />,
       },
     ],
   },
