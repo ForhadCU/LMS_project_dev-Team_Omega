@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 export const GetUser = () => {
   return (
     <div>
-      <Link to={"/student-report"}>
-        <Button>Student Report</Button>
+      All user table each user row will have a button
+      <Link to={"/student-details"}>
+        <Button>Student Details</Button>
       </Link>
     </div>
   );
