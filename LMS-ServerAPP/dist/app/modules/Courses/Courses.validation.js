@@ -9,6 +9,8 @@ const courseValidationSchema = zod_1.z.object({
         description: zod_1.z.string(),
         duration: zod_1.z.number(),
         img: zod_1.z.string().optional(),
+        instructors: zod_1.z.array(zod_1.z.string()).min(1, "At least one intructor needed"),
+        courseType: zod_1.z.enum(["language", "technical", "personalDevelopment"]),
         isActive: zod_1.z.boolean().optional(),
     }),
 });
@@ -19,6 +21,13 @@ const courseUpdateValidationSchema = zod_1.z.object({
         description: zod_1.z.string().optional(),
         duration: zod_1.z.number().optional(),
         img: zod_1.z.string().optional(),
+        instructors: zod_1.z
+            .array(zod_1.z.string())
+            .min(1, "At least one intructor needed")
+            .optional(),
+        courseType: zod_1.z
+            .enum(["language", "technical", "personalDevelopment"])
+            .optional(),
         isActive: zod_1.z.boolean().optional(),
     }),
 });

@@ -6,7 +6,7 @@ import {
   Image,
   View,
 } from "@react-pdf/renderer";
-import mockChart from "../../../public/bar_chart.png";
+import mockChart from "/bar_chart.png";
 
 const styles = StyleSheet.create({
   page: { padding: 30 },
