@@ -1,13 +1,9 @@
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Table } from "../../components/DataTable/Table";
 
 export const GetUser = () => {
   return (
     <div>
-      All user table each user row will have a button
-      <Link to={"/student-details"}>
-        <Button>Student Details</Button>
-      </Link>
+      <Table/>
     </div>
   );
 };
