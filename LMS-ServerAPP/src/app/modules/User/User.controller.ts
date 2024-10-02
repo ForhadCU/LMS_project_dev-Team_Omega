@@ -5,7 +5,8 @@ import sendResponse from "../../utils/sendResponse";
 import config from "../../config";
 
 const createNewUser = catchAsync(async (req: Request, res: Response) => {
-  const result = await UserServices.createNewUser(req.body);
+  let batch = req.body.batch;
+  const result = await UserServices.createNewUser(req.body, batch as string);
   sendResponse(res, {
     statusCode: 200,
     success: true,
