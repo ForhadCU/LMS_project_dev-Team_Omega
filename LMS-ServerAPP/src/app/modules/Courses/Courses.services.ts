@@ -12,7 +12,10 @@ const createNewCourse = async (courseData: TCourse) => {
 };
 
 const getAllCourses = async () => {
-  const getallCourse = await Course.find({ isActive: true });
+  const getallCourse = await Course.find({ isActive: true }).populate(
+    "instructors",
+    "name email"
+  );
   return getallCourse;
 };
 

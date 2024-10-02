@@ -6,6 +6,8 @@ import { CreateUser } from "../pages/AdminPages/CreateUser";
 import { StudentCourses } from "../pages/StudentPages/StudentCourses";
 import { CreateCourse } from "../pages/TeacherPages/CreateCourse";
 import App from "../App";
+import { GetUser } from "../pages/AdminPages/GetUser";
+import { StudentReportViewr } from "../components/PDF/StudentReportViewr";
 
 const routes = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const routes = createBrowserRouter([
       {
         path: "/create-course",
         element: <CreateCourse />,
+      },
+      {
+        path: "/get-users",
+        element: <GetUser />,
+      },
+      {
+        path: "/student-report",
+        element: <StudentReportViewr />,
       },
     ],
   },
