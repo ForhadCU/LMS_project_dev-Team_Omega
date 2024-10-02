@@ -10,8 +10,10 @@ import { GetUser } from "../pages/AdminPages/GetUser";
 import { StudentReportViewr } from "../components/PDF/StudentReportViewr";
 import { StudentDetails } from "../pages/AdminPages/StudentDetails";
 import { CoursesList } from "../pages/Courses/CoursesList";
-import { CourseDetailsAdmin } from "../pages/Courses/CourseDetailsAdmin";
+import { CourseDetails } from "../pages/Courses/CourseDetails";
 import { AttendanceList } from "../pages/AdminPages/AttendanceList";
+import { Forums } from "../pages/Forum/Forums";
+import { MyCourses } from "../pages/TeacherPages/MyCourses";
 
 const routes = createBrowserRouter([
   {
@@ -55,12 +57,20 @@ const routes = createBrowserRouter([
         element: <CoursesList />,
       },
       {
-        path: "/course-details-admin",
-        element: <CourseDetailsAdmin />,
+        path: "/course-details/:id",
+        element: <CourseDetails />,
       },
       {
         path: "/attendance-list",
         element: <AttendanceList />,
+      },
+      {
+        path: "/forums",
+        element: <Forums />,
+      },
+      {
+        path: "/instructor-courses/:id",
+        element: <MyCourses />,
       },
     ],
   },
