@@ -53,8 +53,12 @@ const createNewUser = async (user: TUser, batch?: string) => {
   }
 };
 
-const getAllUsers = async () => {
-  const result = await User.find({}).select("-password -__v");
+const getAllUsers = async (rawquery: any) => {
+  let query: any = {};
+  for (let key in rawquery) {
+    query[key] = rawquery[key];
+  }
+  const result = await User.find(query).select("-password -__v");
   return result;
 };
 

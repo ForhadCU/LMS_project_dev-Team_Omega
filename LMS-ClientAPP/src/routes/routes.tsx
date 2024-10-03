@@ -14,6 +14,10 @@ import { CourseDetails } from "../pages/Courses/CourseDetails";
 import { AttendanceList } from "../pages/AdminPages/AttendanceList";
 import { Forums } from "../pages/Forum/Forums";
 import { MyCourses } from "../pages/TeacherPages/MyCourses";
+import { AllQuiz } from "../pages/Quiz/AllQuiz";
+import { Lectures } from "../pages/Lectures/Lectures";
+import { Resources } from "../pages/Resources/Resources";
+import { CreateContents } from "../pages/TeacherPages/CreateContents";
 
 const routes = createBrowserRouter([
   {
@@ -69,8 +73,24 @@ const routes = createBrowserRouter([
         element: <Forums />,
       },
       {
-        path: "/instructor-courses/:id",
+        path: "/instructor-courses",
         element: <MyCourses />,
+      },
+      {
+        path: "/course-quizzes/:id",
+        element: <AllQuiz />,
+      },
+      {
+        path: "/course-lectures/:id",
+        element: <Lectures />,
+      },
+      {
+        path: "/course-resources/:id",
+        element: <Resources />,
+      },
+      {
+        path: "/course-content-create/:id",
+        element: <CreateContents />,
       },
     ],
   },

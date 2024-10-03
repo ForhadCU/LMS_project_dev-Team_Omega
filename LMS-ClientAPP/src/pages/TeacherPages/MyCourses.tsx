@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import { Cards } from "../../components/ui/Cards";
 import { Button } from "@mui/material";
+import { useAppSelector } from "../../redux/hook";
+import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
+import { TUser } from "../../Types/user.type";
 
 export const MyCourses = () => {
+  const user = useAppSelector(selectCurrentUser) as TUser;
+  console.log(user.userId);
   return (
     <div className=" flex flex-col w-full items-center">
       <div className=" text-center">

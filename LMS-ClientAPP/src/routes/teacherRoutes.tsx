@@ -8,7 +8,7 @@ export const teacherRoutes = [
   },
   {
     name: "My Courses",
-    path: `/instructor-courses/${1}`,
+    path: `/instructor-courses`,
     icon: <ImportContactsIcon />,
   },
   {
