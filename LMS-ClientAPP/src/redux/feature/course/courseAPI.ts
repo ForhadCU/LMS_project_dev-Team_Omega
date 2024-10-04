@@ -9,7 +9,21 @@ const courseAPI = baseAPI.injectEndpoints({
         body: courseData,
       }),
     }),
+    getAllCourses: builder.query({
+      query: (query) => {
+        const params = new URLSearchParams();
+        for (let key in query) {
+          params.append(key, query[key]);
+        }
+        return {
+          url: "/courses/get-all-courses",
+          method: "GET",
+          params: params,
+        };
+      },
+      providesTags: ["courses"],
+    }),
   }),
 });
 
-export const { useCreateNewCourseMutation } = courseAPI;
+export const { useCreateNewCourseMutation, useGetAllCoursesQuery } = courseAPI;

@@ -19,6 +19,12 @@ router.get(
   CourseControllers.getAllCourses
 );
 
+router.get(
+  "/get-single-course",
+  auth("admin", "super admin", "student", "instructor"),
+  CourseControllers.getSingleCourse
+);
+
 router.put(
   "/update-course",
   auth("admin", "super admin"),

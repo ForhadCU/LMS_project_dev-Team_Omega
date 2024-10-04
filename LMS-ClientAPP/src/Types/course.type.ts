@@ -1,5 +1,5 @@
 export type TCourse = {
-  id: string;
+  _id: string;
   title: string;
   code: string;
   description: string;
