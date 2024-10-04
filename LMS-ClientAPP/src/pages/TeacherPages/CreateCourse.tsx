@@ -1,11 +1,40 @@
 import { useForm } from "react-hook-form";
+import { useAppSelector } from "../../redux/hook";
+import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
+import { TUser } from "../../Types/user.type";
+import { useCreateNewCourseMutation } from "../../redux/feature/course/courseAPI";
+import toast from "react-hot-toast";
 
 export const CreateCourse = () => {
+  const user = useAppSelector(selectCurrentUser) as TUser;
   const Instructors = ["Zubayer Ahmed", "Roy Sensei", "Uzawa Sensei"];
   const { register, handleSubmit } = useForm();
+  const [createNewCourse, { error }] = useCreateNewCourseMutation();
+  const handleAddCourse = async (data: any) => {
+    const newCourse = {
+      title: data.courseName,
+      code: data.courseCode,
+      duration: Number(data.duration),
+      instructors: [user.userId],
+      courseType: data.courseType,
+      description: data.description,
+    };
+    try {
+      const res = await createNewCourse(newCourse).unwrap();
+      console.log(res);
+      if (res.success) {
+        toast.success(res.message);
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err: any) {
+      const error_msg = err.data;
+      error_msg.errorSources.forEach((error: any) => {
+        toast.error(`${error.path}   ${error.message}`);
+      });
 
-  const handleAddCourse = (data: any) => {
-    console.log(data);
+      console.log(error_msg);
+    }
   };
 
   return (
@@ -93,6 +122,19 @@ export const CreateCourse = () => {
           </select>
         </div>
 
+        {/* Course description */}
+        <div className="space-y-1">
+          <label className="block text-l font-semibold" htmlFor="courseCode">
+            Course Description
+          </label>
+          <input
+            type="text"
+            id="description"
+            placeholder="Short description of the course"
+            className="border rounded-md w-full p-2 border-indigo-400 focus:outline-0"
+            {...register("description", { required: true })}
+          />
+        </div>
         {/* Submit Button */}
         <div className="py-4">
           <button
