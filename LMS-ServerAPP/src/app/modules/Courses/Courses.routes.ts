@@ -8,7 +8,7 @@ const router = Router();
 
 router.post(
   "/create-course",
-  auth("admin", "super admin"),
+  auth("admin", "super admin", "instructor"),
   validationMiddleware(courseValidationSchemas.courseValidationSchema),
   CourseControllers.createNewCourse
 );

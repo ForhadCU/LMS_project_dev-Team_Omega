@@ -58,6 +58,7 @@ const getAllUsers = async (rawquery: any) => {
   for (let key in rawquery) {
     query[key] = rawquery[key];
   }
+  console.log(query);
   const result = await User.find(query).select("-password -__v");
   return result;
 };
