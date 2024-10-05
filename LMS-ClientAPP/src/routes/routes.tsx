@@ -19,6 +19,7 @@ import { Lectures } from "../pages/Lectures/Lectures";
 import { Resources } from "../pages/Resources/Resources";
 import { CreateContents } from "../pages/TeacherPages/CreateContents";
 import CreateQuiz from "../pages/Quiz/CreateQuiz";
+import { QuizQuestions } from "../pages/Quiz/QuizQuestions";
 
 const routes = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const routes = createBrowserRouter([
       {
         path: "/course-quiz-create/:id",
         element: <CreateQuiz />,
+      },
+      {
+        path: "/course-quiz-questions/:id",
+        element: <QuizQuestions />,
       },
       {
         path: "/course-lectures/:id",

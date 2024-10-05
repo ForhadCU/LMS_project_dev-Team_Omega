@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useAppSelector } from "../../redux/hook";
 import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
 import { TUser } from "../../Types/user.type";
+import { QuizCards } from "../../components/ui/QuizCards";
 
 export const AllQuiz = () => {
   const user = useAppSelector(selectCurrentUser) as TUser;
@@ -18,6 +19,9 @@ export const AllQuiz = () => {
           </Link>
         </div>
       )}
+      <div className=" my-2 w-full flex flex-col gap-2">
+        <QuizCards quizName="Quiz Name" quizType="Quiz Type" quizId="123" />
+      </div>
     </div>
   );
 };
