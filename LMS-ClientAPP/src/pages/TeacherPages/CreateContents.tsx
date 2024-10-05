@@ -1,6 +1,8 @@
 import { Divider } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { useCreateNewContentMutation } from "../../redux/feature/content/contentAPI";
+import toast from "react-hot-toast";
 
 type TFormData = {
   title: string;
@@ -17,12 +19,19 @@ export const CreateContents = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<TFormData>();
-  const onSubmit = (data: TFormData) => {
+  const [createNewContent] = useCreateNewContentMutation();
+  const onSubmit = async (data: TFormData) => {
     const contentData = {
       ...data,
       courseID,
     };
     console.log("Form Submitted:", contentData);
+    const res = await createNewContent(contentData).unwrap();
+    if (res.success) {
+      toast.success(res.message);
+    } else {
+      toast.error(res.message);
+    }
   };
 
   return (

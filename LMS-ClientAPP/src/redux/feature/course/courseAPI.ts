@@ -23,7 +23,22 @@ const courseAPI = baseAPI.injectEndpoints({
       },
       providesTags: ["courses"],
     }),
+    getSingleCourse: builder.query({
+      query: (courseID) => {
+        const params = new URLSearchParams();
+        params.append("id", courseID);
+        return {
+          url: "/courses/get-single-course",
+          method: "GET",
+          params: params,
+        };
+      },
+    }),
   }),
 });
 
-export const { useCreateNewCourseMutation, useGetAllCoursesQuery } = courseAPI;
+export const {
+  useCreateNewCourseMutation,
+  useGetAllCoursesQuery,
+  useGetSingleCourseQuery,
+} = courseAPI;

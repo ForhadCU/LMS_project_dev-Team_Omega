@@ -4,7 +4,7 @@ const contentValidationSchema = z.object({
   body: z.object({
     title: z.string(),
     description: z.string(),
-    courseCode: z.string(),
+    courseID: z.string(),
     contentType: z.string(),
     contentlink: z.string(),
   }),

@@ -24,7 +24,10 @@ const getAllCourses = async (rawQuery: any) => {
 };
 
 const getSingleCourse = async (id: string) => {
-  const result = await Course.findById(id);
+  const result = await Course.findById(id).populate(
+    "instructors",
+    "name email"
+  );
   if (!result) {
     throw new AppError(404, "Course not found");
   }
