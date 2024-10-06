@@ -10,9 +10,17 @@ import { GetUser } from "../pages/AdminPages/GetUser";
 import { StudentReportViewr } from "../components/PDF/StudentReportViewr";
 import { StudentDetails } from "../pages/AdminPages/StudentDetails";
 import { CoursesList } from "../pages/Courses/CoursesList";
-import { CourseDetailsAdmin } from "../pages/Courses/CourseDetailsAdmin";
+import { CourseDetails } from "../pages/Courses/CourseDetails";
 import { AttendanceList } from "../pages/AdminPages/AttendanceList";
-import CreateEvent from "../pages/AdminPages/CreateEvent";
+import { Forums } from "../pages/Forum/Forums";
+import { MyCourses } from "../pages/TeacherPages/MyCourses";
+import { AllQuiz } from "../pages/Quiz/AllQuiz";
+import { Lectures } from "../pages/Lectures/Lectures";
+import { Resources } from "../pages/Resources/Resources";
+import { CreateContents } from "../pages/TeacherPages/CreateContents";
+import CreateQuiz from "../pages/Quiz/CreateQuiz";
+import { QuizQuestions } from "../pages/Quiz/QuizQuestions";
+import { PostQuiz } from "../pages/Quiz/PostQuiz";
 
 const routes = createBrowserRouter([
   {
@@ -56,16 +64,48 @@ const routes = createBrowserRouter([
         element: <CoursesList />,
       },
       {
-        path: "/course-details-admin",
-        element: <CourseDetailsAdmin />,
+        path: "/course-details/:id",
+        element: <CourseDetails />,
       },
       {
         path: "/attendance-list",
         element: <AttendanceList />,
       },
       {
-        path: "/create-event",
-        element: <CreateEvent />,
+        path: "/forums",
+        element: <Forums />,
+      },
+      {
+        path: "/instructor-courses",
+        element: <MyCourses />,
+      },
+      {
+        path: "/course-quizzes/:id",
+        element: <AllQuiz />,
+      },
+      {
+        path: "/course-quiz-create/:id",
+        element: <CreateQuiz />,
+      },
+      {
+        path: "/course-quiz-questions/:id",
+        element: <QuizQuestions />,
+      },
+      {
+        path: "/course-quiz-result/:id",
+        element: <PostQuiz />,
+      },
+      {
+        path: "/course-lectures/:id",
+        element: <Lectures />,
+      },
+      {
+        path: "/course-resources/:id",
+        element: <Resources />,
+      },
+      {
+        path: "/course-content-create/:id",
+        element: <CreateContents />,
       },
     ],
   },

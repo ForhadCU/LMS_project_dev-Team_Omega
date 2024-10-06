@@ -1,10 +1,13 @@
-import { Types } from "mongoose";
-
 export type TContent = {
+  _id: string;
   title: string;
   description: string;
-  courseID: Types.ObjectId;
+  courseID: string;
   contentType: "file" | "video" | "resource" | "lecture";
   contentlink: string;
   createDate: string;
+};
+
+export type TContents = {
+  contents: TContent[];
 };

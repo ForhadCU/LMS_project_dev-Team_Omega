@@ -12,6 +12,9 @@ import {
 import storage from "redux-persist/lib/storage";
 import authReducer from "./feature/auth/authSlice";
 import { baseAPI } from "./API/baseAPI";
+import courseReducer from "./feature/course/courseSlice";
+import contentReducer from "./feature/content/contentSlice";
+import answerReducer from "./feature/quiz/totalScoreSlice";
 
 const persistConfig = {
   key: "authBjet",
@@ -23,6 +26,9 @@ export const store = configureStore({
   reducer: {
     [baseAPI.reducerPath]: baseAPI.reducer,
     auth: persistedAuthReducer,
+    courses: courseReducer,
+    contents: contentReducer,
+    answer: answerReducer,
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({

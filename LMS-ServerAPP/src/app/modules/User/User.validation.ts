@@ -7,6 +7,7 @@ const userValidationSchema = z.object({
     password: z.string().max(20),
     role: z.string(),
     isActive: z.boolean(),
+    batch: z.string().optional(),
   }),
 });
 
