@@ -16,3 +16,9 @@ export type TGeneralResources = {
   link: string;
   status: "pending" | "active" | "inactive";
 };
+
+export type TClassRecordings = {
+  title: string;
+  date: string;
+  link: string;
+};

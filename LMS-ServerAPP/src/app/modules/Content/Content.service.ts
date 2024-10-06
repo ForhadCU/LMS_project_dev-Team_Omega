@@ -1,7 +1,11 @@
 import AppError from "../../errors/AppError";
 import { Course } from "../Courses/Courses.model";
-import { TContent, TGeneralResources } from "./Content.interface";
-import { Content, GeneralContent } from "./Content.model";
+import {
+  TClassRecordings,
+  TContent,
+  TGeneralResources,
+} from "./Content.interface";
+import { ClassRecording, Content, GeneralContent } from "./Content.model";
 
 const addNewContent = async (contentData: TContent) => {
   const getCourse = await Course.findById(contentData.courseID);
@@ -15,6 +19,11 @@ const addNewContent = async (contentData: TContent) => {
 const addNewGeneralResource = async (generalResource: TGeneralResources) => {
   const createNewGenResource = await GeneralContent.create(generalResource);
   return createNewGenResource;
+};
+
+const addNewClassRecording = async (classRecording: TClassRecordings) => {
+  const addNewRecording = await ClassRecording.create(classRecording);
+  return addNewRecording;
 };
 
 const getAllGeneralResources = async (rawQuery: any) => {
@@ -33,7 +42,28 @@ const getAllGeneralResources = async (rawQuery: any) => {
   }
   const allGenResources = await GeneralContent.find(query)
     .skip((page - 1) * limit)
-    .limit(limit);
+    .limit(limit)
+    .sort("createdAt");
+  return allGenResources;
+};
+const getAllClassRecordings = async (rawQuery: any) => {
+  let query: any = {};
+  let page = 1;
+  let limit = 4;
+
+  for (let key in rawQuery) {
+    if (key === "page") {
+      page = rawQuery[key];
+    }
+    if (key === "limit") {
+      limit = rawQuery[key];
+    }
+    query[key] = rawQuery[key];
+  }
+  const allGenResources = await ClassRecording.find(query)
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .sort("createdAt");
   return allGenResources;
 };
 
@@ -57,9 +87,21 @@ const getContents = async (rawQuery: any) => {
   return result;
 };
 
+const changeGeneralContentStatus = async (status: string, id: string) => {
+  const result = await GeneralContent.findByIdAndUpdate(
+    id,
+    { status: status },
+    { new: true }
+  );
+  return result;
+};
+
 export const ContentServices = {
   addNewContent,
   getContents,
   addNewGeneralResource,
   getAllGeneralResources,
+  changeGeneralContentStatus,
+  addNewClassRecording,
+  getAllClassRecordings,
 };

@@ -18,4 +18,10 @@ router.post(
   EventsController.createNewEvent
 );
 
+router.get(
+  "/get-all-events",
+  auth("admin", "super admin", "student", "instructor"),
+  EventsController.getAllEvents
+);
+
 export const EventsRoutes = router;
