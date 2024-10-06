@@ -1,10 +1,26 @@
+import { createSlice } from "@reduxjs/toolkit";
 import { TQuestions } from "../../../Types/question.type";
 
-const initialValue: TQuestions = {
-  Course_ID: "",
-  Quiz_No: "",
-  Quiz_Type: "daily",
-  Date: "",
-  Questions: [],
-  Form_link: "",
+type TQuiz = {
+  quiz: TQuestions[];
 };
+
+const initialValue: TQuiz = {
+  quiz: [],
+};
+
+const quizSlice = createSlice({
+  name: "quiz",
+  initialState: initialValue,
+  reducers: {
+    setQuizes: (state, action) => {
+      state.quiz = action.payload;
+    },
+    unsetQuizes: (state) => {
+      state.quiz = [];
+    },
+  },
+});
+
+export const { setQuizes, unsetQuizes } = quizSlice.actions;
+export default quizSlice.reducer;

@@ -1,5 +1,4 @@
 export type TQuestion = {
-  _id: string;
   Question_NO: number;
   Question: string;
   Mark: number;
@@ -8,6 +7,7 @@ export type TQuestion = {
 };
 
 export type TQuestions = {
+  _id: string;
   Course_ID: string;
   Quiz_No: string;
   Quiz_Type: "daily" | "weekly";

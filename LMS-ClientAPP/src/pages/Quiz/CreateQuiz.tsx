@@ -2,7 +2,6 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 export type TQuestion = {
-  _id: string;
   Question_NO: number;
   Question: string;
   Mark: number;
@@ -197,7 +196,6 @@ export default function CreateQuiz() {
             type="button"
             onClick={() =>
               append({
-                _id: "",
                 Question_NO: fields.length + 1,
                 Question: "",
                 Mark: 0,
