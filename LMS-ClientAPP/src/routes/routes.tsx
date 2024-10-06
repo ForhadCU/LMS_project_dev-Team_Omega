@@ -12,6 +12,7 @@ import { StudentDetails } from "../pages/AdminPages/StudentDetails";
 import { CoursesList } from "../pages/Courses/CoursesList";
 import { CourseDetailsAdmin } from "../pages/Courses/CourseDetailsAdmin";
 import { AttendanceList } from "../pages/AdminPages/AttendanceList";
+import CreateEvent from "../pages/AdminPages/CreateEvent";
 
 const routes = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const routes = createBrowserRouter([
       {
         path: "/attendance-list",
         element: <AttendanceList />,
+      },
+      {
+        path: "/create-event",
+        element: <CreateEvent />,
       },
     ],
   },
