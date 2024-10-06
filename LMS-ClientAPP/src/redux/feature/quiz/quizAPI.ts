@@ -16,7 +16,16 @@ const quizAPI = baseAPI.injectEndpoints({
       },
       providesTags: ["quizzes"],
     }),
+    createNewQuiz: builder.mutation({
+      query: (quizData) => {
+        return {
+          url: "/quiz/create-quiz",
+          method: "POST",
+          body: quizData,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetQuizzesQuery } = quizAPI;
+export const { useGetQuizzesQuery, useCreateNewQuizMutation } = quizAPI;

@@ -8,3 +8,11 @@ export type TContent = {
   contentlink: string;
   createDate: string;
 };
+
+export type TGeneralResources = {
+  title: string;
+  description: string;
+  img: string;
+  link: string;
+  status: "pending" | "active" | "inactive";
+};

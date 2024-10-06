@@ -1,5 +1,5 @@
 import { model, Schema, Types } from "mongoose";
-import { TContent } from "./Content.interface";
+import { TContent, TGeneralResources } from "./Content.interface";
 
 const ContentSchema = new Schema<TContent>(
   {
@@ -37,4 +37,37 @@ const ContentSchema = new Schema<TContent>(
   }
 );
 
+const GeneralContentSchema = new Schema<TGeneralResources>(
+  {
+    title: {
+      type: String,
+      required: [true, "Title required."],
+    },
+    description: {
+      type: String,
+      required: [true, "Description needed"],
+    },
+    img: {
+      type: String,
+      required: [true, "Image required"],
+    },
+    link: {
+      type: String,
+      required: [true, "link required"],
+    },
+    status: {
+      type: String,
+      enum: ["pending", "active", "inactive"],
+      required: [true, "Status not found"],
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 export const Content = model<TContent>("Content", ContentSchema);
+export const GeneralContent = model<TGeneralResources>(
+  "GeneralContent",
+  GeneralContentSchema
+);

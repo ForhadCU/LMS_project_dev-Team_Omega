@@ -1,7 +1,7 @@
 import AppError from "../../errors/AppError";
 import { Course } from "../Courses/Courses.model";
-import { TContent } from "./Content.interface";
-import { Content } from "./Content.model";
+import { TContent, TGeneralResources } from "./Content.interface";
+import { Content, GeneralContent } from "./Content.model";
 
 const addNewContent = async (contentData: TContent) => {
   const getCourse = await Course.findById(contentData.courseID);
@@ -10,6 +10,31 @@ const addNewContent = async (contentData: TContent) => {
   }
   const result = await Content.create(contentData);
   return result;
+};
+
+const addNewGeneralResource = async (generalResource: TGeneralResources) => {
+  const createNewGenResource = await GeneralContent.create(generalResource);
+  return createNewGenResource;
+};
+
+const getAllGeneralResources = async (rawQuery: any) => {
+  let query: any = {};
+  let page = 1;
+  let limit = 4;
+
+  for (let key in rawQuery) {
+    if (key === "page") {
+      page = rawQuery[key];
+    }
+    if (key === "limit") {
+      limit = rawQuery[key];
+    }
+    query[key] = rawQuery[key];
+  }
+  const allGenResources = await GeneralContent.find(query)
+    .skip((page - 1) * limit)
+    .limit(limit);
+  return allGenResources;
 };
 
 const getContents = async (rawQuery: any) => {
@@ -35,4 +60,6 @@ const getContents = async (rawQuery: any) => {
 export const ContentServices = {
   addNewContent,
   getContents,
+  addNewGeneralResource,
+  getAllGeneralResources,
 };

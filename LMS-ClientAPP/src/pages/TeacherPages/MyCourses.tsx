@@ -16,6 +16,7 @@ export const MyCourses = () => {
     isError,
   } = useGetAllCoursesQuery({
     instructors: user.userId,
+    isActive: true,
   });
   return (
     <div className=" flex flex-col w-full items-center">
