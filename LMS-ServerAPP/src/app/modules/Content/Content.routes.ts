@@ -13,4 +13,10 @@ router.post(
   ContentControllers.addNewContent
 );
 
+router.get(
+  "/get-contents",
+  auth("admin", "super admin", "instructor", "student"),
+  ContentControllers.getAllContents
+);
+
 export const ContentRoutes = router;

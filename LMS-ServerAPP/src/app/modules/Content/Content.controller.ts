@@ -14,6 +14,18 @@ const addNewContent = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAllContents = catchAsync(async (req: Request, res: Response) => {
+  const rawquery = req.query;
+  const result = await ContentServices.getContents(rawquery);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Contents fetched successfully",
+    data: result,
+  });
+});
+
 export const ContentControllers = {
   addNewContent,
+  getAllContents,
 };

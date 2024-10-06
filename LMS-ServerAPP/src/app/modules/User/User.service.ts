@@ -6,16 +6,60 @@ import { createAccessToken, verifyPassword } from "./User.utils";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { sendEmail } from "../../utils/sendEmail";
+import mongoose from "mongoose";
+import { StudentProfile } from "../Student/Student.model";
 
-const createNewUser = async (user: TUser) => {
-  const result = await User.create(user);
-  const mailBody = `<p> ${user.name} your account has been created. Login with this password ${user.password} </p>`;
-  sendEmail(user.email, mailBody);
-  return result;
+const createNewUser = async (user: TUser, batch?: string) => {
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+    const newUser = await User.create([user], { session });
+    if (!newUser.length) {
+      throw new AppError(400, "Failed to create user");
+    }
+    if (user.role === "student") {
+      const newStudentData = {
+        fullName: user.name,
+        userID: newUser[0]._id,
+        age: 20,
+        subjectMajor: "N/A",
+        batch: batch,
+        address: "N/A",
+        img: "https://cdn-icons-png.flaticon.com/512/67/67902.png",
+        performance: {
+          totalAttendance: 0,
+          avgDailyQuizMarks: 0,
+          avgWeeklyQuizMarks: 0,
+          classAttention: "Good",
+        },
+      };
+      const newStudent = await StudentProfile.create([newStudentData], {
+        session,
+      });
+      if (!newStudent.length) {
+        throw new AppError(400, "Failed to create student profile");
+      }
+    }
+    const mailBody = `<p> ${user.name} your account has been created. Login with this password ${user.password} </p>`;
+    sendEmail(user.email, mailBody);
+    await session.commitTransaction();
+    await session.endSession();
+
+    return newUser;
+  } catch (err: any) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw new Error(err);
+  }
 };
 
-const getAllUsers = async () => {
-  const result = await User.find({}).select("-password -__v");
+const getAllUsers = async (rawquery: any) => {
+  let query: any = {};
+  for (let key in rawquery) {
+    query[key] = rawquery[key];
+  }
+  console.log(query);
+  const result = await User.find(query).select("-password -__v");
   return result;
 };
 

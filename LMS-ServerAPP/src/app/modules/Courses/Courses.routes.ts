@@ -8,7 +8,7 @@ const router = Router();
 
 router.post(
   "/create-course",
-  auth("admin", "super admin"),
+  auth("admin", "super admin", "instructor"),
   validationMiddleware(courseValidationSchemas.courseValidationSchema),
   CourseControllers.createNewCourse
 );
@@ -17,6 +17,12 @@ router.get(
   "/get-all-courses",
   auth("admin", "super admin", "student", "instructor"),
   CourseControllers.getAllCourses
+);
+
+router.get(
+  "/get-single-course",
+  auth("admin", "super admin", "student", "instructor"),
+  CourseControllers.getSingleCourse
 );
 
 router.put(
