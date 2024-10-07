@@ -45,6 +45,28 @@ const contentAPI = baseAPI.injectEndpoints({
       },
       providesTags: ["recordings"],
     }),
+    addNewGeneralResource: builder.mutation({
+      query: (resourceData) => {
+        return {
+          url: "/contents/post-gen-resources",
+          method: "POST",
+          body: resourceData,
+        };
+      },
+    }),
+    getAllGeneralResource: builder.query({
+      query: (rawQuery) => {
+        const params = new URLSearchParams();
+        for (let key in rawQuery) {
+          params.append(key, rawQuery[key]);
+        }
+        return {
+          url: "/contents/get-all-gen-resources",
+          method: "GET",
+          params: params,
+        };
+      },
+    }),
   }),
 });
 
@@ -53,4 +75,6 @@ export const {
   useGetContentsQuery,
   useAddClassRecordingsMutation,
   useGetAllClassRecordingsQuery,
+  useAddNewGeneralResourceMutation,
+  useGetAllGeneralResourceQuery,
 } = contentAPI;

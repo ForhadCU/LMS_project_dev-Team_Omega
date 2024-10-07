@@ -23,6 +23,8 @@ import { QuizQuestions } from "../pages/Quiz/QuizQuestions";
 import { PostQuiz } from "../pages/Quiz/PostQuiz";
 import { ClassRecordings } from "../pages/ClassRecordings/ClassRecordings";
 import { CreateClassRecordings } from "../pages/ClassRecordings/CreateClassRecordings";
+import { GeneralResources } from "../pages/Resources/GeneralResources";
+import { CreateGeneralResources } from "../pages/Resources/CreateGeneralResources";
 
 const routes = createBrowserRouter([
   {
@@ -116,6 +118,14 @@ const routes = createBrowserRouter([
       {
         path: "/add-class-recordings",
         element: <CreateClassRecordings />,
+      },
+      {
+        path: "/general-resources",
+        element: <GeneralResources />,
+      },
+      {
+        path: "/add-general-resources",
+        element: <CreateGeneralResources />,
       },
     ],
   },
