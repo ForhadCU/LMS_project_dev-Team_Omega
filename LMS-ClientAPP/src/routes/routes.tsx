@@ -26,6 +26,7 @@ import { CreateClassRecordings } from "../pages/ClassRecordings/CreateClassRecor
 import { GeneralResources } from "../pages/Resources/GeneralResources";
 import { CreateGeneralResources } from "../pages/Resources/CreateGeneralResources";
 import { CourseUpdate } from "../pages/Courses/CourseUpdate";
+import { CourseEnrolledStuds } from "../pages/TeacherPages/CourseEnrolledStuds";
 
 const routes = createBrowserRouter([
   {
@@ -115,6 +116,10 @@ const routes = createBrowserRouter([
       {
         path: "/course-content-create/:id",
         element: <CreateContents />,
+      },
+      {
+        path: "/course-enrolled-students/:id",
+        element: <CourseEnrolledStuds />,
       },
       {
         path: "/class-recordings",

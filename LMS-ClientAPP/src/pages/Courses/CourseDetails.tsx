@@ -53,10 +53,17 @@ export const CourseDetails = () => {
                 {" "}
                 <p>{courseData?.data.title}</p>{" "}
                 {user.role === "instructor" && (
-                  <div>
-                    <Link to={`/update-course/${courseID}`}>
-                      <Button variant="contained">UPDATE INFO</Button>
-                    </Link>
+                  <div className=" flex flex-col lg:flex-row gap-2">
+                    <div>
+                      <Link to={`/update-course/${courseID}`}>
+                        <Button variant="contained">UPDATE INFO</Button>
+                      </Link>
+                    </div>
+                    <div>
+                      <Link to={`/course-enrolled-students/${courseID}`}>
+                        <Button variant="contained">ENROLLED STUDENTS</Button>
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>

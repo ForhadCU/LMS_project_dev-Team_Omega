@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import { Chip } from "@mui/material";
 
 interface IButtons {
   link: string;
@@ -16,6 +17,7 @@ interface ICardsProps {
   title: string;
   description: string;
   singleAction: string;
+  status?: "pending" | "active" | "inactive";
 }
 export const Cards = ({
   link,
@@ -23,6 +25,7 @@ export const Cards = ({
   description,
   singleAction,
   buttons,
+  status,
 }: ICardsProps) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -42,7 +45,9 @@ export const Cards = ({
       </CardContent>
       <CardActions>
         <Link to={link}>
-          <Button size="small">{singleAction}</Button>
+          <Button size="small" variant="outlined">
+            {singleAction}
+          </Button>
         </Link>
       </CardActions>
       {buttons &&
@@ -50,11 +55,30 @@ export const Cards = ({
           return (
             <CardActions>
               <Link to={button.link}>
-                <Button size="small">{button.actionName}</Button>
+                <Button size="small" variant="outlined">
+                  {button.actionName}
+                </Button>
               </Link>
             </CardActions>
           );
         })}
+      {status && (
+        <div className=" p-3 flex-row flex gap-2">
+          {status === "pending" && (
+            <Chip
+              label="Pending for Approval"
+              color="warning"
+              variant="outlined"
+            />
+          )}
+          {status === "active" && (
+            <Chip label="Active" color="success" variant="outlined" />
+          )}
+          {status === "inactive" && (
+            <Chip label="Not Active Course" color="error" variant="outlined" />
+          )}
+        </div>
+      )}
     </Card>
   );
 };
