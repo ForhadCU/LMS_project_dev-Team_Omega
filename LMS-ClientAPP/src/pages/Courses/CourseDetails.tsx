@@ -1,10 +1,13 @@
-import { Avatar, Divider, Typography } from "@mui/material";
+import { Avatar, Button, Divider, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { InfoCards } from "../../components/ui/InfoCards";
 import { useGetSingleCourseQuery } from "../../redux/feature/course/courseAPI";
 import { Loader } from "../../components/loader/Loader";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
+import { useAppSelector } from "../../redux/hook";
+import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
+import { TUser } from "../../Types/user.type";
 
 interface ITeacherProps {
   _id: string;
@@ -16,6 +19,7 @@ interface ITeacherProps {
 export const CourseDetails = () => {
   const params = useParams();
   const courseID = params.id;
+  const user = useAppSelector(selectCurrentUser) as TUser;
   const sensei_prof_pic_default =
     "https://res.cloudinary.com/teepublic/image/private/s--NtcgQRqE--/c_crop,x_10,y_10/c_fit,h_830/c_crop,g_north_west,h_1038,w_1038,x_-293,y_-104/l_upload:v1565806151:production:blanks:vdbwo35fw6qtflw9kezw/fl_layer_apply,g_north_west,x_-404,y_-215/b_rgb:ffffff/c_limit,f_auto,h_630,q_auto:good:420,w_630/v1631035680/production/designs/24167377_0.jpg";
   const Quiz_logo =
@@ -44,8 +48,15 @@ export const CourseDetails = () => {
         <>
           <div className=" w-full p-2 block">
             <Typography variant="h3" component={"p"}>
-              {" "}
-              <p>{courseData?.data.title}</p>{" "}
+              <div className=" flex flex-row justify-between items-start">
+                {" "}
+                <p>{courseData?.data.title}</p>{" "}
+                {user.role === "instructor" && (
+                  <div>
+                    <Button variant="contained">UPDATE INFO</Button>
+                  </div>
+                )}
+              </div>
             </Typography>
             <div className=" flex flex-row gap-2">
               <Typography variant="body1" gutterBottom className=" my-2">
