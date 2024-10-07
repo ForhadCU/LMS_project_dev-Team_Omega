@@ -8,6 +8,7 @@ import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 import { useAppSelector } from "../../redux/hook";
 import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
 import { TUser } from "../../Types/user.type";
+import { Link } from "react-router-dom";
 
 interface ITeacherProps {
   _id: string;
@@ -53,7 +54,9 @@ export const CourseDetails = () => {
                 <p>{courseData?.data.title}</p>{" "}
                 {user.role === "instructor" && (
                   <div>
-                    <Button variant="contained">UPDATE INFO</Button>
+                    <Link to={`/update-course/${courseID}`}>
+                      <Button variant="contained">UPDATE INFO</Button>
+                    </Link>
                   </div>
                 )}
               </div>

@@ -24,6 +24,7 @@ const quizAPI = baseAPI.injectEndpoints({
           body: quizData,
         };
       },
+      invalidatesTags: ["quizzes"],
     }),
   }),
 });

@@ -8,7 +8,9 @@ const contentAPI = baseAPI.injectEndpoints({
         method: "POST",
         body: contentData,
       }),
+      invalidatesTags: ["contents"],
     }),
+
     getContents: builder.query({
       query: (rawQuery) => {
         const params = new URLSearchParams();
@@ -31,6 +33,7 @@ const contentAPI = baseAPI.injectEndpoints({
           body: classRecordingsData,
         };
       },
+      invalidatesTags: ["recordings"],
     }),
     getAllClassRecordings: builder.query({
       query: (rawQuery) => {
@@ -53,6 +56,7 @@ const contentAPI = baseAPI.injectEndpoints({
           body: resourceData,
         };
       },
+      invalidatesTags: ["genResources"],
     }),
     getAllGeneralResource: builder.query({
       query: (rawQuery) => {
@@ -66,6 +70,7 @@ const contentAPI = baseAPI.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ["genResources"],
     }),
   }),
 });

@@ -8,5 +8,5 @@ export type TCourse = {
   img: string;
   instructors: Array<Types.ObjectId>;
   courseType: "language" | "technical" | "personalDevelopment";
-  isActive: boolean;
+  isActive: "pending" | "active" | "inactive";
 };

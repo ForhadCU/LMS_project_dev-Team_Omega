@@ -27,7 +27,7 @@ router.get(
 
 router.put(
   "/update-course",
-  auth("admin", "super admin"),
+  auth("admin", "super admin", "instructor"),
   CourseControllers.updateCourse
 );
 

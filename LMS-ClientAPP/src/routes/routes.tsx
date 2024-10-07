@@ -25,6 +25,7 @@ import { ClassRecordings } from "../pages/ClassRecordings/ClassRecordings";
 import { CreateClassRecordings } from "../pages/ClassRecordings/CreateClassRecordings";
 import { GeneralResources } from "../pages/Resources/GeneralResources";
 import { CreateGeneralResources } from "../pages/Resources/CreateGeneralResources";
+import { CourseUpdate } from "../pages/Courses/CourseUpdate";
 
 const routes = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const routes = createBrowserRouter([
       {
         path: "/create-course",
         element: <CreateCourse />,
+      },
+      {
+        path: "/update-course/:id",
+        element: <CourseUpdate />,
       },
       {
         path: "/get-users",
