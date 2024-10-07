@@ -50,7 +50,7 @@ const updateCourse = async (
   return result;
 };
 
-const deactivateCourse = async (courseCode: string) => {
+const deactivateCourse = async (courseCode: string, status: string) => {
   const getExistingCourse = await Course.findOne({ code: courseCode });
   if (!getExistingCourse) {
     throw new AppError(404, "Course not found!");
@@ -60,7 +60,7 @@ const deactivateCourse = async (courseCode: string) => {
   }
   const result = await Course.findOneAndUpdate(
     { code: courseCode },
-    { isActive: false },
+    { isActive: status },
     { new: true }
   );
   return result;
