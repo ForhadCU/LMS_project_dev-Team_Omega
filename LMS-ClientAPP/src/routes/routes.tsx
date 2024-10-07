@@ -21,6 +21,8 @@ import { CreateContents } from "../pages/TeacherPages/CreateContents";
 import CreateQuiz from "../pages/Quiz/CreateQuiz";
 import { QuizQuestions } from "../pages/Quiz/QuizQuestions";
 import { PostQuiz } from "../pages/Quiz/PostQuiz";
+import { ClassRecordings } from "../pages/ClassRecordings/ClassRecordings";
+import { CreateClassRecordings } from "../pages/ClassRecordings/CreateClassRecordings";
 
 const routes = createBrowserRouter([
   {
@@ -106,6 +108,14 @@ const routes = createBrowserRouter([
       {
         path: "/course-content-create/:id",
         element: <CreateContents />,
+      },
+      {
+        path: "/class-recordings",
+        element: <ClassRecordings />,
+      },
+      {
+        path: "/add-class-recordings",
+        element: <CreateClassRecordings />,
       },
     ],
   },

@@ -23,7 +23,34 @@ const contentAPI = baseAPI.injectEndpoints({
       },
       providesTags: ["contents"],
     }),
+    addClassRecordings: builder.mutation({
+      query: (classRecordingsData) => {
+        return {
+          url: "/contents/post-class-records",
+          method: "POST",
+          body: classRecordingsData,
+        };
+      },
+    }),
+    getAllClassRecordings: builder.query({
+      query: (rawQuery) => {
+        const params = new URLSearchParams();
+        for (let key in rawQuery) {
+          params.append(key, rawQuery[key]);
+        }
+        return {
+          url: "/contents/get-all-class-records",
+          method: "GET",
+        };
+      },
+      providesTags: ["recordings"],
+    }),
   }),
 });
 
-export const { useCreateNewContentMutation, useGetContentsQuery } = contentAPI;
+export const {
+  useCreateNewContentMutation,
+  useGetContentsQuery,
+  useAddClassRecordingsMutation,
+  useGetAllClassRecordingsQuery,
+} = contentAPI;
