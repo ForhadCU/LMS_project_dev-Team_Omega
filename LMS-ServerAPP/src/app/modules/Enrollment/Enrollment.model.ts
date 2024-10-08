@@ -19,6 +19,10 @@ const EnrollmentSchema = new Schema<TEnrollment>({
     type: Date,
     required: [true, "Date required"],
   },
+  student_batch: {
+    type: String,
+    required: [true, "Student batch needed"],
+  },
 });
 
 export const Enrollment = model<TEnrollment>("Enrollment", EnrollmentSchema);

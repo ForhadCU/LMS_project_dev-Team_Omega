@@ -4,8 +4,13 @@ import { EnrollmentServices } from "./Enrollment.services";
 import sendResponse from "../../utils/sendResponse";
 
 const enrollIntoCourse = catchAsync(async (req: Request, res: Response) => {
-  const { studentID, courseID } = req.body;
-  const result = await EnrollmentServices.enrollIntoCourse(studentID, courseID);
+  const { Student_ID, Enrolled_Course, student_batch } = req.body;
+  console.log(req.body);
+  const result = await EnrollmentServices.enrollIntoCourse(
+    Student_ID,
+    Enrolled_Course,
+    student_batch
+  );
   sendResponse(res, {
     success: true,
     statusCode: 200,

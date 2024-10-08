@@ -30,6 +30,7 @@ export const AllPlatQuiz = () => {
             </div>
           )}
           <div>
+            <Link to={``}></Link>
             <Button variant="outlined">PRACTICE QUIZ</Button>
           </div>
         </div>

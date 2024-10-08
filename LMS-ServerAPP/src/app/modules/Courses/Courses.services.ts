@@ -55,7 +55,7 @@ const deactivateCourse = async (courseCode: string, status: string) => {
   if (!getExistingCourse) {
     throw new AppError(404, "Course not found!");
   }
-  if (!getExistingCourse.isActive) {
+  if (getExistingCourse.isActive === "inactive") {
     throw new AppError(409, "Course already deactivated!");
   }
   const result = await Course.findOneAndUpdate(

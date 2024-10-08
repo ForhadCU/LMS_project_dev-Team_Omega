@@ -195,14 +195,14 @@ export const CourseUpdate = () => {
             {/* Status */}
             <div>
               <label className="block text-sm font-medium">Course Status</label>
-              <select
-                {...register("isActive", { required: "Status is required" })}
+              <input
+                type="text"
+                {...register("isActive", {
+                  required: "Course status is required",
+                })}
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-              >
-                <option value="pending">Pending</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-              </select>
+                value={courseData?.data.isActive}
+              />
               {errors.isActive && (
                 <p className="text-red-500 text-sm">
                   {errors.isActive.message}
