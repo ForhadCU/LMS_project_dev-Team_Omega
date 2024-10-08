@@ -27,6 +27,8 @@ import { GeneralResources } from "../pages/Resources/GeneralResources";
 import { CreateGeneralResources } from "../pages/Resources/CreateGeneralResources";
 import { CourseUpdate } from "../pages/Courses/CourseUpdate";
 import { CourseEnrolledStuds } from "../pages/TeacherPages/CourseEnrolledStuds";
+import { CreateAllPlatQuiz } from "../pages/Quiz/CreateAllPlatQuiz";
+import { AllPlatQuiz } from "../pages/Quiz/AllPlatQuiz";
 
 const routes = createBrowserRouter([
   {
@@ -104,6 +106,14 @@ const routes = createBrowserRouter([
       {
         path: "/course-quiz-result/:id",
         element: <PostQuiz />,
+      },
+      {
+        path: "/course-allplat-quiz-create/:id",
+        element: <CreateAllPlatQuiz />,
+      },
+      {
+        path: "/course-allplat-quizzes/:id",
+        element: <AllPlatQuiz />,
       },
       {
         path: "/course-lectures/:id",

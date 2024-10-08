@@ -15,3 +15,13 @@ export type TQuestions = {
   Questions: Array<TQuestion>;
   Form_link?: string;
 };
+
+export type TIOSQuiz = {
+  _id: string;
+  CourseID: string;
+  quiz_title: string;
+  quiz_type: "daily" | "weekly";
+  img?: string;
+  form_link: string;
+  quiz_date: string;
+};

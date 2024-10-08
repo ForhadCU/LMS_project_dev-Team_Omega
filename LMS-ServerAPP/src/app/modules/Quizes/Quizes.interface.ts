@@ -16,3 +16,12 @@ export type TQuestion = {
   Options: Array<string>;
   Answer: string;
 };
+
+export type TIOSQuiz = {
+  CourseID: Types.ObjectId;
+  quiz_title: string;
+  quiz_type: "daily" | "weekly";
+  img?: string;
+  form_link: string;
+  quiz_date: string;
+};

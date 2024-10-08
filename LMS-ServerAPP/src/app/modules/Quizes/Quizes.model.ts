@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { TQuiz } from "./Quizes.interface";
+import { TIOSQuiz, TQuiz } from "./Quizes.interface";
 
 const QuestionSchema = new Schema({
   Question_NO: { type: Number, required: true },
@@ -45,4 +45,34 @@ const QuizModelSchema = new Schema<TQuiz>(
   }
 );
 
+const IOSQuizModelSchema = new Schema<TIOSQuiz>({
+  CourseID: {
+    type: Schema.Types.ObjectId,
+    required: [true, "Course ID is required"],
+    ref: "Courses",
+  },
+  quiz_title: {
+    type: String,
+    required: [true, "Quiz Title"],
+  },
+  quiz_type: {
+    type: String,
+    enum: ["daily", "weekly"],
+    required: [true, "Quiz type required.Must be either daily or weekly type."],
+  },
+  quiz_date: {
+    type: String,
+    required: [true, "Quiz date required"],
+  },
+  img: {
+    type: String,
+    required: [true, "Image link needed"],
+  },
+  form_link: {
+    type: String,
+    required: [true, "Form link needed."],
+  },
+});
+
 export const Quiz = model<TQuiz>("Quizes", QuizModelSchema);
+export const IOSQuiz = model<TIOSQuiz>("GeneralQuiz", IOSQuizModelSchema);

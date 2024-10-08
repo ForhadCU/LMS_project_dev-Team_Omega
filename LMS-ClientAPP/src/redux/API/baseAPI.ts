@@ -25,5 +25,6 @@ export const baseAPI = createApi({
     "genResources",
     "lecture",
     "contents",
+    "allplatquiz",
   ],
 });

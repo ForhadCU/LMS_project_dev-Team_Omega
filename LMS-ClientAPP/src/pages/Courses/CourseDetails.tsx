@@ -127,7 +127,7 @@ export const CourseDetails = () => {
               <InfoCards
                 pics={Quiz_logo}
                 title={"Quizes"}
-                link={`/course-quizzes/${courseID}`}
+                link={`/course-allplat-quizzes/${courseID}`}
               />
               <InfoCards
                 pics={Lectures_logo}
