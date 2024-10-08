@@ -10,12 +10,31 @@ router.post(
   "/create-event",
   auth(USER_ROLE.super_admin, USER_ROLE.admin),
   upload.single("img"),
+
   (req: Request, res: Response, next: NextFunction) => {
+    // console.log(req.body);
+
     req.body = JSON.parse(req.body.data);
+    // console.log(req.file);
 
     next();
   },
   EventsController.createNewEvent
+);
+router.post(
+  "/create-event-alt",
+  auth("admin", "super admin"),
+  EventsController.createNewEventAlt
+);
+router.get(
+  "/get-all-events",
+  auth("admin", "super admin", "student", "instructor"),
+  EventsController.getAllEvents
+);
+router.get(
+  "/:id",
+  auth("admin", "super admin", "student", "instructor"),
+  EventsController.getEventById
 );
 
 export const EventsRoutes = router;
