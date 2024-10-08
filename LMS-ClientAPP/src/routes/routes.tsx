@@ -21,6 +21,8 @@ import { CreateContents } from "../pages/TeacherPages/CreateContents";
 import CreateQuiz from "../pages/Quiz/CreateQuiz";
 import { QuizQuestions } from "../pages/Quiz/QuizQuestions";
 import { PostQuiz } from "../pages/Quiz/PostQuiz";
+import CreateEvent from "../pages/AdminPages/CreateEvent";
+import EventDetails from "../pages/AdminPages/EventDetails";
 
 const routes = createBrowserRouter([
   {
@@ -106,6 +108,14 @@ const routes = createBrowserRouter([
       {
         path: "/course-content-create/:id",
         element: <CreateContents />,
+      },
+      {
+        path: "/create-event",
+        element: <CreateEvent></CreateEvent>,
+      },
+      {
+        path: "/event/:id",
+        element: <EventDetails />,
       },
     ],
   },

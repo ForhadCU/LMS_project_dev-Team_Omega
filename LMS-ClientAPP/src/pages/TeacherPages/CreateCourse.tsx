@@ -127,11 +127,10 @@ export const CreateCourse = () => {
           <label className="block text-l font-semibold" htmlFor="courseCode">
             Course Description
           </label>
-          <input
-            type="text"
+          <textarea
             id="description"
             placeholder="Short description of the course"
-            className="border rounded-md w-full p-2 border-indigo-400 focus:outline-0"
+            className="border rounded-md w-full p-2 h-24 border-indigo-400 focus:outline-0"
             {...register("description", { required: true })}
           />
         </div>
