@@ -51,11 +51,12 @@ const updateCourse = catchAsync(async (req: Request, res: Response) => {
 
 const deactivateCourse = catchAsync(async (req: Request, res: Response) => {
   const code = req.body.code;
-  const result = await CourseServices.deactivateCourse(code);
+  const status = req.body.status;
+  const result = await CourseServices.deactivateCourse(code, status);
   sendResponse(res, {
     success: true,
     statusCode: 200,
-    message: "Course deactivated successfully",
+    message: "Course Status changed successfully",
     data: result,
   });
 });

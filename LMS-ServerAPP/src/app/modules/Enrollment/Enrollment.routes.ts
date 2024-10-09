@@ -10,10 +10,6 @@ router.post(
   auth(USER_ROLE.student),
   EnrollmentControllers.enrollIntoCourse
 );
-router.get(
-  "/enrolled-courses",
-  auth(USER_ROLE.student),
-  EnrollmentControllers.getAllEnrolledCOurses
-);
+router.get("/enrolled-courses", EnrollmentControllers.getAllEnrolledCOurses);
 
 export const EnrollmentRoutes = router;

@@ -31,6 +31,7 @@ const courseUpdateValidationSchema = z.object({
 });
 const courseDeactivateValidationSchema = z.object({
   body: z.object({
+    status: z.string(),
     code: z.string(),
   }),
 });

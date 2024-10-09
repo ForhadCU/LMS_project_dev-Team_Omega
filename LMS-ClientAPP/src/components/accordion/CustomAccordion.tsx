@@ -8,6 +8,7 @@ interface IAccordionProps {
   createdDate: string;
   contentDescription: string;
   link: string;
+  icon?: React.ReactNode;
 }
 
 export const CustomAccordion = ({
@@ -15,6 +16,7 @@ export const CustomAccordion = ({
   createdDate,
   contentDescription,
   link,
+  icon,
 }: IAccordionProps) => {
   return (
     <Accordion>
@@ -24,13 +26,21 @@ export const CustomAccordion = ({
         id="panel1-header"
       >
         <div className=" flex flex-row justify-between w-full">
-          <p className=" font-bold">{title}</p>
+          <div className=" flex gap-1">
+            {icon ? icon : null}
+            <p className=" font-bold">{title}</p>
+          </div>
         </div>
         <p className=" font-light w-1/3">{createdDate}</p>
       </AccordionSummary>
       <AccordionDetails>
         <div className=" font-light">{contentDescription}</div>
-        <a href={link} className=" text-blue-700">
+        <a
+          href={link}
+          target="_blank"
+          rel="noreferrer"
+          className=" text-blue-700"
+        >
           {link}
         </a>
       </AccordionDetails>

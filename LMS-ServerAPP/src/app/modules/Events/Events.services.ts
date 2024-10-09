@@ -20,6 +20,22 @@ const createNewEvent = async (file: any, eventData: any) => {
   return result;
 };
 
+const createNewEventAlt = async (data: any) => {
+  const result = await Events.create(data);
+  return result;
+};
+
+const getAllEvents = async (rawQuery: any) => {
+  let query: any = {};
+  for (let key in rawQuery) {
+    query[key] = rawQuery[key];
+  }
+  const result = await Events.find(query);
+  return result;
+};
+
 export const EventServices = {
   createNewEvent,
+  getAllEvents,
+  createNewEventAlt,
 };

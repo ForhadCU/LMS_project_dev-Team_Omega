@@ -27,12 +27,12 @@ router.get(
 
 router.put(
   "/update-course",
-  auth("admin", "super admin"),
+  auth("admin", "super admin", "instructor"),
   CourseControllers.updateCourse
 );
 
-router.delete(
-  "/delete-course",
+router.patch(
+  "/course-status-update",
   auth("admin", "super admin"),
   validationMiddleware(
     courseValidationSchemas.courseDeactivateValidationSchema

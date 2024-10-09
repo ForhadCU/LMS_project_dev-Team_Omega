@@ -18,4 +18,16 @@ router.post(
   EventsController.createNewEvent
 );
 
+router.post(
+  "/create-event-alt",
+  auth("admin", "super admin"),
+  EventsController.createNewEventAlt
+);
+
+router.get(
+  "/get-all-events",
+  auth("admin", "super admin", "student", "instructor"),
+  EventsController.getAllEvents
+);
+
 export const EventsRoutes = router;

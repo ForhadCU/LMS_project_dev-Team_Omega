@@ -11,14 +11,16 @@ export const AllQuiz = () => {
   const courseID = params.id;
   return (
     <div className=" flex flex-col">
-      AllQuiz
-      {user.role === "instructor" && (
-        <div>
-          <Link to={`/course-quiz-create/${courseID}`}>
-            <Button>Create Quiz</Button>
-          </Link>
-        </div>
-      )}
+      <div className=" flex flex-row justify-between items-start p-2">
+        AllQuiz
+        {user.role === "instructor" && (
+          <div>
+            <Link to={`/course-quiz-create/${courseID}`}>
+              <Button variant="contained">Create Quiz</Button>
+            </Link>
+          </div>
+        )}
+      </div>
       <div className=" my-2 w-full flex flex-col gap-2">
         <QuizCards quizName="Quiz Name" quizType="Quiz Type" quizId="123" />
       </div>

@@ -38,8 +38,9 @@ const courseSchema = new Schema<TCourse>(
       ],
     },
     isActive: {
-      type: Boolean,
-      default: true,
+      type: String,
+      enum: ["pending", "active", "inactive"],
+      default: "pending",
     },
   },
   {

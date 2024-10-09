@@ -8,6 +8,7 @@ const courseAPI = baseAPI.injectEndpoints({
         method: "POST",
         body: courseData,
       }),
+      invalidatesTags: ["courses"],
     }),
     getAllCourses: builder.query({
       query: (query) => {
@@ -34,6 +35,29 @@ const courseAPI = baseAPI.injectEndpoints({
         };
       },
     }),
+    updateCourseData: builder.mutation({
+      query: (newData) => {
+        return {
+          url: "/courses/update-course",
+          method: "PUT",
+          body: newData,
+        };
+      },
+      invalidatesTags: ["courses"],
+    }),
+    getEnrollments: builder.query({
+      query: (rawQuery) => {
+        const params = new URLSearchParams();
+        for (let key in rawQuery) {
+          params.append(key, rawQuery[key]);
+        }
+        return {
+          url: "/enrollment/enrolled-courses",
+          method: "GET",
+          params: params,
+        };
+      },
+    }),
   }),
 });
 
@@ -41,4 +65,6 @@ export const {
   useCreateNewCourseMutation,
   useGetAllCoursesQuery,
   useGetSingleCourseQuery,
+  useUpdateCourseDataMutation,
+  useGetEnrollmentsQuery,
 } = courseAPI;

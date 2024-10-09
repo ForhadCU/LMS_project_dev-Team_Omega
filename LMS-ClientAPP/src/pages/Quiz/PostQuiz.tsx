@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppSelector } from "../../redux/hook";
 import { Button, Divider } from "@mui/material";
 import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
@@ -11,6 +11,7 @@ export const PostQuiz = () => {
   const user = useAppSelector(selectCurrentUser) as TUser;
   const params = useParams();
   const quizID = params.id;
+  const navigate = useNavigate();
   const handleRecordScore = () => {
     const gradeInfo = {
       studentID: user.userId,
@@ -19,6 +20,7 @@ export const PostQuiz = () => {
       rightAnswers,
       wrongAnswers,
     };
+    navigate("/");
     console.log(gradeInfo);
   };
   return (
