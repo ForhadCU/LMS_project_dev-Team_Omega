@@ -5,8 +5,12 @@ import { Link } from "react-router-dom";
 import { useGetContentsQuery } from "../../redux/feature/content/contentAPI";
 import { Loader } from "../../components/loader/Loader";
 import { TContent } from "../../Types/content.type";
+import { useAppSelector } from "../../redux/hook";
+import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
+import { TUser } from "../../Types/user.type";
 
 export const Resources = () => {
+  const user = useAppSelector(selectCurrentUser) as TUser;
   const params = useParams();
   const courseID = params.id;
   const query = {
@@ -26,9 +30,11 @@ export const Resources = () => {
       </div>
 
       <div className=" flex flex-row justify-end my-2">
-        <Link to={`/course-content-create/${courseID}`}>
-          <Button variant="contained">Add Resource+</Button>
-        </Link>
+        {user.role === "instructor" && (
+          <Link to={`/course-content-create/${courseID}`}>
+            <Button variant="contained">Add Resource+</Button>
+          </Link>
+        )}
       </div>
       {isError ? (
         <div className=" flex text-red-600">

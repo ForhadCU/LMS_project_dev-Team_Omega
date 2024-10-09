@@ -29,6 +29,8 @@ import { CourseUpdate } from "../pages/Courses/CourseUpdate";
 import { CourseEnrolledStuds } from "../pages/TeacherPages/CourseEnrolledStuds";
 import { CreateAllPlatQuiz } from "../pages/Quiz/CreateAllPlatQuiz";
 import { AllPlatQuiz } from "../pages/Quiz/AllPlatQuiz";
+import { CourseDetailsStudent } from "../pages/Courses/CourseDetailsStudent";
+import { StudentProfile } from "../pages/StudentPages/StudentProfile";
 
 const routes = createBrowserRouter([
   {
@@ -78,6 +80,10 @@ const routes = createBrowserRouter([
       {
         path: "/course-details/:id",
         element: <CourseDetails />,
+      },
+      {
+        path: "/course-details-student/:id",
+        element: <CourseDetailsStudent />,
       },
       {
         path: "/attendance-list",
@@ -146,6 +152,10 @@ const routes = createBrowserRouter([
       {
         path: "/add-general-resources",
         element: <CreateGeneralResources />,
+      },
+      {
+        path: "/student-profile",
+        element: <StudentProfile />,
       },
     ],
   },

@@ -45,6 +45,19 @@ const courseAPI = baseAPI.injectEndpoints({
       },
       invalidatesTags: ["courses"],
     }),
+    getEnrollments: builder.query({
+      query: (rawQuery) => {
+        const params = new URLSearchParams();
+        for (let key in rawQuery) {
+          params.append(key, rawQuery[key]);
+        }
+        return {
+          url: "/enrollment/enrolled-courses",
+          method: "GET",
+          params: params,
+        };
+      },
+    }),
   }),
 });
 
@@ -53,4 +66,5 @@ export const {
   useGetAllCoursesQuery,
   useGetSingleCourseQuery,
   useUpdateCourseDataMutation,
+  useGetEnrollmentsQuery,
 } = courseAPI;
