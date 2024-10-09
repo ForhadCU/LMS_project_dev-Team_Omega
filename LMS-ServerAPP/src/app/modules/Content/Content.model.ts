@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 import { TContent } from "./Content.interface";
 
 const ContentSchema = new Schema<TContent>(
@@ -14,18 +14,22 @@ const ContentSchema = new Schema<TContent>(
         "Description of this title, what this content is about needed.",
       ],
     },
-    courseCode: {
-      type: String,
+    courseID: {
+      type: Schema.Types.ObjectId,
       required: [true, "Course code required.Content belongs to which course?"],
     },
     contentType: {
       type: String,
-      enum: ["file", "video"],
+      enum: ["file", "video", "resource", "lecture"],
       required: [true, "What kind of content? File or video?"],
     },
     contentlink: {
       type: String,
       required: [true, "content link required"],
+    },
+    createDate: {
+      type: String,
+      required: [true, "Creation Date needed"],
     },
   },
   {

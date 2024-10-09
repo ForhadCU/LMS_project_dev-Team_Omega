@@ -11,9 +11,27 @@ const createNewCourse = async (courseData: TCourse) => {
   return newCourse;
 };
 
-const getAllCourses = async () => {
-  const getallCourse = await Course.find({ isActive: true });
+const getAllCourses = async (rawQuery: any) => {
+  let initalQuery: any = {};
+  for (let key in rawQuery) {
+    initalQuery[key] = rawQuery[key];
+  }
+  const getallCourse = await Course.find(initalQuery).populate(
+    "instructors",
+    "name email"
+  );
   return getallCourse;
+};
+
+const getSingleCourse = async (id: string) => {
+  const result = await Course.findById(id).populate(
+    "instructors",
+    "name email"
+  );
+  if (!result) {
+    throw new AppError(404, "Course not found");
+  }
+  return result;
 };
 
 const updateCourse = async (
@@ -53,4 +71,5 @@ export const CourseServices = {
   getAllCourses,
   updateCourse,
   deactivateCourse,
+  getSingleCourse,
 };

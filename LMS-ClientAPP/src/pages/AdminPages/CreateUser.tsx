@@ -13,7 +13,7 @@ export const CreateUser = () => {
       </h2>
       <form
         onSubmit={handleSubmit(handleAddClass)}
-        className="w-2/5 mx-auto space-y-4  bg-indigo-400 rounded-md p-5"
+        className="w-2/5 mx-auto space-y-4 bg-[#1976D2] rounded-md p-5"
       >
         {/* User Name */}
         <div className="space-y-1">

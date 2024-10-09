@@ -23,6 +23,19 @@ const courseSchema = new mongoose_1.Schema({
         type: String,
         default: "https://e7.pngegg.com/pngimages/329/915/png-clipart-computer-icons-educational-technology-learning-training-course-training-blue-angle.png",
     },
+    instructors: {
+        type: [mongoose_1.Schema.Types.ObjectId],
+        required: [true, "Instructors need to be added to the course."],
+        ref: "User",
+    },
+    courseType: {
+        type: String,
+        enum: ["language", "technical", "personalDevelopment"],
+        required: [
+            true,
+            "Course type required.Choose type between language , technical and personal development",
+        ],
+    },
     isActive: {
         type: Boolean,
         default: true,

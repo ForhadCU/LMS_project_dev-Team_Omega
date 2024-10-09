@@ -16,11 +16,23 @@ const createNewCourse = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllCourses = catchAsync(async (req: Request, res: Response) => {
-  const result = await CourseServices.getAllCourses();
+  const rawQuery = req.query;
+  const result = await CourseServices.getAllCourses(rawQuery);
   sendResponse(res, {
     success: true,
     statusCode: 200,
     message: "Courses(Active only) fetched successfully",
+    data: result,
+  });
+});
+
+const getSingleCourse = catchAsync(async (req: Request, res: Response) => {
+  const queryID = req.query.id;
+  const result = await CourseServices.getSingleCourse(queryID as string);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Course fetched successfully",
     data: result,
   });
 });
@@ -53,4 +65,5 @@ export const CourseControllers = {
   getAllCourses,
   updateCourse,
   deactivateCourse,
+  getSingleCourse,
 };

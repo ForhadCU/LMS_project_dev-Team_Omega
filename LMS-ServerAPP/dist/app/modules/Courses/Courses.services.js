@@ -24,7 +24,7 @@ const createNewCourse = (courseData) => __awaiter(void 0, void 0, void 0, functi
     return newCourse;
 });
 const getAllCourses = () => __awaiter(void 0, void 0, void 0, function* () {
-    const getallCourse = yield Courses_model_1.Course.find({ isActive: true });
+    const getallCourse = yield Courses_model_1.Course.find({ isActive: true }).populate("instructors", "name email");
     return getallCourse;
 });
 const updateCourse = (courseCode, updateData) => __awaiter(void 0, void 0, void 0, function* () {

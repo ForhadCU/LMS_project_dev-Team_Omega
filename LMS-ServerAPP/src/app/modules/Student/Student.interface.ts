@@ -1,3 +1,9 @@
+export type TStudentPerformance = {
+  totalAttendance: number;
+  avgDailyQuizMarks: number;
+  avgWeeklyQuizMarks: number;
+  classAttention: "Good" | "Avarage";
+};
 export type TStudent = {
   fullName: string;
   userID: string;
@@ -6,4 +12,5 @@ export type TStudent = {
   batch: string;
   address: string;
   img: string;
+  performance: TStudentPerformance;
 };
