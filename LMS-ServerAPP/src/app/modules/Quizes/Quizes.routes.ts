@@ -41,4 +41,7 @@ routes.get(
   QuizControllers.getAllIOSQuizes
 );
 
+routes.post("/create-jlingo-quiz", QuizControllers.createNewJLingoQuiz);
+routes.get("/get-jlingo-quiz", QuizControllers.getAllJLingoQuizes);
+
 export const QuizRoutes = routes;

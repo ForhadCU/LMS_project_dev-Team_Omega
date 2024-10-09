@@ -31,6 +31,7 @@ import { CreateAllPlatQuiz } from "../pages/Quiz/CreateAllPlatQuiz";
 import { AllPlatQuiz } from "../pages/Quiz/AllPlatQuiz";
 import { CourseDetailsStudent } from "../pages/Courses/CourseDetailsStudent";
 import { StudentProfile } from "../pages/StudentPages/StudentProfile";
+import { CreateJLINGOquiz } from "../pages/Quiz/CreateJLINGOquiz";
 
 const routes = createBrowserRouter([
   {
@@ -156,6 +157,10 @@ const routes = createBrowserRouter([
       {
         path: "/student-profile",
         element: <StudentProfile />,
+      },
+      {
+        path: "/create-jlingo-quiz",
+        element: <CreateJLINGOquiz />,
       },
     ],
   },

@@ -50,6 +50,16 @@ const quizAPI = baseAPI.injectEndpoints({
       },
       invalidatesTags: ["allplatquiz"],
     }),
+    createNewJLINGOQuiz: builder.mutation({
+      query: (quizData) => {
+        return {
+          url: "/quiz/create-jlingo-quiz",
+          method: "POST",
+          body: quizData,
+        };
+      },
+      invalidatesTags: ["allplatquiz"],
+    }),
   }),
 });
 
@@ -58,4 +68,5 @@ export const {
   useCreateNewQuizMutation,
   useCreateNewAllPlatQuizMutation,
   useGetAllPlatQuizzesQuery,
+  useCreateNewJLINGOQuizMutation,
 } = quizAPI;

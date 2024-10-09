@@ -23,6 +23,16 @@ const createNewIOSQuiz = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const createNewJLingoQuiz = catchAsync(async (req: Request, res: Response) => {
+  const result = await QuizServices.createJLingoQuiz(req.body);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Quiz created (JLINGO) successfully",
+    data: result,
+  });
+});
+
 const getAllQuizes = catchAsync(async (req: Request, res: Response) => {
   const result = await QuizServices.getAllQuizes(req.query);
   sendResponse(res, {
@@ -43,9 +53,21 @@ const getAllIOSQuizes = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAllJLingoQuizes = catchAsync(async (req: Request, res: Response) => {
+  const result = await QuizServices.getAllJLingoQuizzes(req.query);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Quizes fetched (JLINGO) successfully",
+    data: result,
+  });
+});
+
 export const QuizControllers = {
   createNewQuiz,
   getAllQuizes,
   createNewIOSQuiz,
   getAllIOSQuizes,
+  createNewJLingoQuiz,
+  getAllJLingoQuizes,
 };

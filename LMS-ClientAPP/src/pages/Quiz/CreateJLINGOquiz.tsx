@@ -1,30 +1,29 @@
-import { Divider } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { DQ_IMG, WQ_IMG } from "../../constants";
-import { useNavigate, useParams } from "react-router-dom";
-import { useCreateNewAllPlatQuizMutation } from "../../redux/feature/quiz/quizAPI";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { DQ_IMG, WQ_IMG } from "../../constants";
+import { Divider } from "@mui/material";
+import { useCreateNewJLINGOQuizMutation } from "../../redux/feature/quiz/quizAPI";
 
-type TIOSQuiz = {
-  CourseID: string;
+type TJLINGOQuiz = {
   quiz_title: string;
   quiz_type: "daily" | "weekly" | "practice";
   quiz_date: string;
   img: string;
   form_link: string;
 };
-export const CreateAllPlatQuiz = () => {
-  const params = useParams();
-  const courseID = params.id;
+
+export const CreateJLINGOquiz = () => {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TIOSQuiz>();
-  const [createNewAllPlatQuiz, { isError }] = useCreateNewAllPlatQuizMutation();
+  } = useForm<TJLINGOQuiz>();
 
-  const onSubmit = async (data: TIOSQuiz) => {
+  const [createNewJLINGOQuiz, { isError }] = useCreateNewJLINGOQuizMutation();
+
+  const onSubmit = async (data: TJLINGOQuiz) => {
     if (data.quiz_type === "daily") {
       data.img = DQ_IMG;
     }
@@ -34,10 +33,10 @@ export const CreateAllPlatQuiz = () => {
 
     // Handle form submission (e.g., post data to your backend)
     try {
-      const res = await createNewAllPlatQuiz(data).unwrap();
+      const res = await createNewJLINGOQuiz(data).unwrap();
       if (res.success) {
         toast.success(res.message);
-        navigate(`/course-allplat-quizzes/${courseID}`);
+        navigate(`/`);
       }
       if (!res.success) {
         toast.error(res.message);
@@ -50,7 +49,6 @@ export const CreateAllPlatQuiz = () => {
       console.log(error);
     }
   };
-
   return (
     <div className=" flex flex-col gap-2 p-2">
       <div className=" p-2 text-center text-xl">
@@ -63,20 +61,6 @@ export const CreateAllPlatQuiz = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="max-w-lg mx-auto p-4 space-y-4"
         >
-          {/* CourseID */}
-          <div>
-            <label className="block text-sm font-medium">Course ID</label>
-            <input
-              type="text"
-              {...register("CourseID", { required: "Course ID is required" })}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-              value={courseID}
-            />
-            {errors.CourseID && (
-              <p className="text-red-500 text-sm">{errors.CourseID.message}</p>
-            )}
-          </div>
-
           {/* Quiz Title */}
           <div>
             <label className="block text-sm font-medium">Quiz Title</label>
@@ -124,18 +108,18 @@ export const CreateAllPlatQuiz = () => {
           </div>
 
           {/* Image URL 
-          <div>
-            <label className="block text-sm font-medium">Image URL</label>
-            <input
-              type="text"
-              {...register("img", { required: "Image link is required" })}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-            />
-            {errors.img && (
-              <p className="text-red-500 text-sm">{errors.img.message}</p>
-            )}
-          </div>
-            */}
+      <div>
+        <label className="block text-sm font-medium">Image URL</label>
+        <input
+          type="text"
+          {...register("img", { required: "Image link is required" })}
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+        />
+        {errors.img && (
+          <p className="text-red-500 text-sm">{errors.img.message}</p>
+        )}
+      </div>
+        */}
 
           {/* Form Link */}
           <div>

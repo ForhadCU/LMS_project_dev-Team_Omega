@@ -3,7 +3,7 @@ import { Types } from "mongoose";
 export type TQuiz = {
   Course_ID: Types.ObjectId;
   Quiz_No: string;
-  Quiz_Type: "daily" | "weekly";
+  Quiz_Type: "daily" | "weekly" | "practice";
   Date: string;
   Questions: Array<TQuestion>;
   Form_link?: string;
@@ -20,7 +20,15 @@ export type TQuestion = {
 export type TIOSQuiz = {
   CourseID: Types.ObjectId;
   quiz_title: string;
-  quiz_type: "daily" | "weekly";
+  quiz_type: "daily" | "weekly" | "practice";
+  img?: string;
+  form_link: string;
+  quiz_date: string;
+};
+
+export type TJLingoQuiz = {
+  quiz_title: string;
+  quiz_type: "daily" | "weekly" | "practice";
   img?: string;
   form_link: string;
   quiz_date: string;
