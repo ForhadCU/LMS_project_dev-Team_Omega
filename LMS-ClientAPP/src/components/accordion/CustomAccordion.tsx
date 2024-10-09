@@ -35,7 +35,12 @@ export const CustomAccordion = ({
       </AccordionSummary>
       <AccordionDetails>
         <div className=" font-light">{contentDescription}</div>
-        <a href={link} className=" text-blue-700">
+        <a
+          href={link}
+          target="_blank"
+          rel="noreferrer"
+          className=" text-blue-700"
+        >
           {link}
         </a>
       </AccordionDetails>

@@ -49,9 +49,11 @@ export const AllPlatQuiz = () => {
             </div>
           )}
           <div>
-            <Link to={`/course-quizzes/${courseID}`}>
-              <Button variant="outlined">PRACTICE QUIZ</Button>
-            </Link>
+            {user.role === "student" && (
+              <Link to={`/course-quizzes/${courseID}`}>
+                <Button variant="outlined">PRACTICE QUIZ</Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -72,6 +74,7 @@ export const AllPlatQuiz = () => {
                     img={quiz.img}
                     title={quiz.quiz_title}
                     quizType={quiz.quiz_type}
+                    link={quiz.form_link}
                   />
                 );
               })}

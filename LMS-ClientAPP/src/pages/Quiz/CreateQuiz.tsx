@@ -1,5 +1,5 @@
 import { useForm, useFieldArray } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCreateNewQuizMutation } from "../../redux/feature/quiz/quizAPI";
 import toast from "react-hot-toast";
 
@@ -23,6 +23,7 @@ export type TQuestions = {
 export default function CreateQuiz() {
   const params = useParams();
   const courseID = params.id;
+  const navigate = useNavigate();
   const [createNewQuiz] = useCreateNewQuizMutation();
   const {
     register,
@@ -39,6 +40,7 @@ export default function CreateQuiz() {
     const res = await createNewQuiz(data).unwrap();
     if (res.success) {
       toast.success(res.message);
+      navigate(-1);
     } else {
       toast.error(res.message);
     }

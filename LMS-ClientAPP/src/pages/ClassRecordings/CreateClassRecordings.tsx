@@ -4,6 +4,7 @@ import { Divider } from "@mui/material";
 import { useAddClassRecordingsMutation } from "../../redux/feature/content/contentAPI";
 import toast from "react-hot-toast";
 import { Loader } from "../../components/loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 export const CreateClassRecordings = () => {
   const {
@@ -15,11 +16,14 @@ export const CreateClassRecordings = () => {
   const [addClassRecordings, { isLoading, isError }] =
     useAddClassRecordingsMutation();
 
+  const navigate = useNavigate();
+
   const onSubmit = async (data: TClassRecordings) => {
     // Handle form submission, like sending the data to an API
     const res = await addClassRecordings(data).unwrap();
     if (res.success) {
       toast.success(res.message);
+      navigate(-1);
     }
 
     if (isError) {

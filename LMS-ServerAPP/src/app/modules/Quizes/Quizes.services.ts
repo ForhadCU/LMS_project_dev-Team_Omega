@@ -44,7 +44,7 @@ const getIOSQuizes = async (queryBody: any) => {
   }
   const allquizes = await IOSQuiz.find(query)
     .populate("CourseID", "title code courseType")
-    .sort("-createdAt");
+    .sort("createdAt");
   return allquizes;
 };
 

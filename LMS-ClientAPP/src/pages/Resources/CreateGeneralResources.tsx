@@ -4,6 +4,7 @@ import { TGeneralResources } from "../../Types/content.type";
 import { useAddNewGeneralResourceMutation } from "../../redux/feature/content/contentAPI";
 import toast from "react-hot-toast";
 import { Loader } from "../../components/loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 export const CreateGeneralResources = () => {
   const {
@@ -13,12 +14,14 @@ export const CreateGeneralResources = () => {
   } = useForm<TGeneralResources>();
   const [addNewGeneralResource, { isLoading, isError }] =
     useAddNewGeneralResourceMutation();
+  const navigate = useNavigate();
   const onSubmit = async (data: TGeneralResources) => {
     data.status = "pending";
     console.log(data);
     const res = await addNewGeneralResource(data).unwrap();
     if (res.success) {
       toast.success(res.message);
+      navigate(-1);
     }
 
     if (isError) {
