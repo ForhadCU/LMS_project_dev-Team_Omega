@@ -4,11 +4,13 @@ import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
 import { TUser } from "../../Types/user.type";
 import { useCreateNewCourseMutation } from "../../redux/feature/course/courseAPI";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const CreateCourse = () => {
   const user = useAppSelector(selectCurrentUser) as TUser;
   const Instructors = ["Zubayer Ahmed", "Roy Sensei", "Uzawa Sensei"];
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   const [createNewCourse, { error }] = useCreateNewCourseMutation();
   const handleAddCourse = async (data: any) => {
     const newCourse = {
@@ -24,6 +26,7 @@ export const CreateCourse = () => {
       console.log(res);
       if (res.success) {
         toast.success(res.message);
+        navigate("/instructor-courses");
       } else {
         toast.error(res.message);
       }
@@ -34,6 +37,7 @@ export const CreateCourse = () => {
       });
 
       console.log(error_msg);
+      console.log(error);
     }
   };
 

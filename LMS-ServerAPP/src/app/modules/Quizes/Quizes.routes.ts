@@ -14,6 +14,12 @@ routes.post(
   QuizControllers.createNewQuiz
 );
 
+routes.post(
+  "/create-all-plat-quiz",
+  auth("instructor"),
+  QuizControllers.createNewIOSQuiz
+);
+
 routes.get(
   "/get-all-quiz",
   auth(
@@ -24,5 +30,18 @@ routes.get(
   ),
   QuizControllers.getAllQuizes
 );
+routes.get(
+  "/get-all-plat-quiz",
+  auth(
+    USER_ROLE.admin,
+    USER_ROLE.instructor,
+    USER_ROLE.super_admin,
+    USER_ROLE.student
+  ),
+  QuizControllers.getAllIOSQuizes
+);
+
+routes.post("/create-jlingo-quiz", QuizControllers.createNewJLingoQuiz);
+routes.get("/get-jlingo-quiz", QuizControllers.getAllJLingoQuizes);
 
 export const QuizRoutes = routes;

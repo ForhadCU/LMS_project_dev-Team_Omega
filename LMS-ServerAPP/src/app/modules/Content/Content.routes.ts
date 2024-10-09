@@ -19,4 +19,34 @@ router.get(
   ContentControllers.getAllContents
 );
 
+router.post(
+  "/post-gen-resources",
+  auth("instructor"),
+  ContentControllers.addNewGeneralContent
+);
+
+router.get(
+  "/get-all-gen-resources",
+  auth("student", "instructor", "admin", "super admin"),
+  ContentControllers.getGeneralResources
+);
+
+router.patch(
+  "/update-gen-resource-status",
+  auth("admin"),
+  ContentControllers.changeGeneralContentStatus
+);
+
+router.post(
+  "/post-class-records",
+  auth("instructor"),
+  ContentControllers.addNewClassRecording
+);
+
+router.get(
+  "/get-all-class-records",
+  auth("student", "instructor", "admin", "super admin"),
+  ContentControllers.getAllClassRecording
+);
+
 export const ContentRoutes = router;

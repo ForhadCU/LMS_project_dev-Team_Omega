@@ -1,6 +1,6 @@
 import { Divider } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCreateNewContentMutation } from "../../redux/feature/content/contentAPI";
 import toast from "react-hot-toast";
 
@@ -13,6 +13,7 @@ type TFormData = {
 };
 export const CreateContents = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const courseID = params.id;
   const {
     register,
@@ -29,6 +30,7 @@ export const CreateContents = () => {
     const res = await createNewContent(contentData).unwrap();
     if (res.success) {
       toast.success(res.message);
+      navigate(-1);
     } else {
       toast.error(res.message);
     }

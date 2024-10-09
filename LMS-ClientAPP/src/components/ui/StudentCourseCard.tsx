@@ -7,26 +7,20 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { Chip } from "@mui/material";
 
-interface IButtons {
+interface IStudentCourseCardsProps {
   link: string;
-  actionName: string;
-}
-interface ICardsProps {
-  link: string;
-  buttons?: IButtons[];
   title: string;
   description: string;
   singleAction: string;
   status?: "pending" | "active" | "inactive";
 }
-export const Cards = ({
-  link,
+
+export const StudentCourseCard = ({
   title,
   description,
+  link,
   singleAction,
-  buttons,
-  status,
-}: ICardsProps) => {
+}: IStudentCourseCardsProps) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -50,35 +44,6 @@ export const Cards = ({
           </Button>
         </Link>
       </CardActions>
-      {buttons &&
-        buttons.map((button) => {
-          return (
-            <CardActions>
-              <Link to={button.link}>
-                <Button size="small" variant="outlined">
-                  {button.actionName}
-                </Button>
-              </Link>
-            </CardActions>
-          );
-        })}
-      {status && (
-        <div className=" p-3 flex-row flex gap-2">
-          {status === "pending" && (
-            <Chip
-              label="Pending for Approval"
-              color="warning"
-              variant="outlined"
-            />
-          )}
-          {status === "active" && (
-            <Chip label="Active" color="success" variant="outlined" />
-          )}
-          {status === "inactive" && (
-            <Chip label="Not Active Course" color="error" variant="outlined" />
-          )}
-        </div>
-      )}
     </Card>
   );
 };

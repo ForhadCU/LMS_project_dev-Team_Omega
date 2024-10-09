@@ -7,7 +7,7 @@ export type TCourse = {
   img: string;
   instructors: Array<string>;
   courseType: "language" | "technical" | "personalDevelopment";
-  isActive: boolean;
+  isActive: "pending" | "active" | "inactive";
 };
 
 export type TCourses = {

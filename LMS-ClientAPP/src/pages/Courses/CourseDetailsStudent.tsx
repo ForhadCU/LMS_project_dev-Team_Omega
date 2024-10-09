@@ -1,20 +1,23 @@
-import { Avatar, Button, Divider, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { InfoCards } from "../../components/ui/InfoCards";
-import { useGetSingleCourseQuery } from "../../redux/feature/course/courseAPI";
-import { Loader } from "../../components/loader/Loader";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 import { useAppSelector } from "../../redux/hook";
 import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
 import { TUser } from "../../Types/user.type";
-import { Link } from "react-router-dom";
+import {
+  useGetEnrollmentsQuery,
+  useGetSingleCourseQuery,
+} from "../../redux/feature/course/courseAPI";
+import { Loader } from "../../components/loader/Loader";
+import { Avatar, Button, Divider, Typography } from "@mui/material";
+
 import {
   Lectures_logo,
   Quiz_logo,
   Resources_logo,
   sensei_prof_pic_default,
 } from "../../constants";
+import { InfoCards } from "../../components/ui/InfoCards";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 
 interface ITeacherProps {
   _id: string;
@@ -23,7 +26,7 @@ interface ITeacherProps {
   img?: string;
 }
 
-export const CourseDetails = () => {
+export const CourseDetailsStudent = () => {
   const params = useParams();
   const courseID = params.id;
   const user = useAppSelector(selectCurrentUser) as TUser;
@@ -32,8 +35,13 @@ export const CourseDetails = () => {
     data: courseData,
     isError,
     isLoading,
+    isSuccess,
   } = useGetSingleCourseQuery(courseID);
 
+  const { data: enrollment } = useGetEnrollmentsQuery(
+    { Enrolled_Course: courseID, Student_ID: user.userId },
+    { skip: !isSuccess }
+  );
   return (
     <div className=" w-full p-3 mx-0 flex flex-col">
       {isError ? (
@@ -50,20 +58,6 @@ export const CourseDetails = () => {
               <div className=" flex flex-row justify-between items-start">
                 {" "}
                 <p>{courseData?.data.title}</p>{" "}
-                {user.role === "instructor" && (
-                  <div className=" flex flex-col lg:flex-row gap-2">
-                    <div>
-                      <Link to={`/update-course/${courseID}`}>
-                        <Button variant="contained">UPDATE INFO</Button>
-                      </Link>
-                    </div>
-                    <div>
-                      <Link to={`/course-enrolled-students/${courseID}`}>
-                        <Button variant="contained">ENROLLED STUDENTS</Button>
-                      </Link>
-                    </div>
-                  </div>
-                )}
               </div>
             </Typography>
             <div className=" flex flex-row gap-2">
@@ -121,23 +115,31 @@ export const CourseDetails = () => {
                 Course Contents
               </Typography>
             </div>
-            <div className=" flex flex-col md:flex-row p-2 gap-2 justify-center">
-              <InfoCards
-                pics={Quiz_logo}
-                title={"Quizes"}
-                link={`/course-allplat-quizzes/${courseID}`}
-              />
-              <InfoCards
-                pics={Lectures_logo}
-                title={"Lectures"}
-                link={`/course-lectures/${courseID}`}
-              />
-              <InfoCards
-                pics={Resources_logo}
-                title={"Resources"}
-                link={`/course-resources/${courseID}`}
-              />
-            </div>
+            {enrollment?.data.length === 0 ? (
+              <div className=" flex justify-center items-center">
+                <Button variant="contained" color="warning" size="large">
+                  Enroll
+                </Button>
+              </div>
+            ) : (
+              <div className=" flex flex-col md:flex-row p-2 gap-2 justify-center">
+                <InfoCards
+                  pics={Quiz_logo}
+                  title={"Quizes"}
+                  link={`/course-allplat-quizzes/${courseID}`}
+                />
+                <InfoCards
+                  pics={Lectures_logo}
+                  title={"Lectures"}
+                  link={`/course-lectures/${courseID}`}
+                />
+                <InfoCards
+                  pics={Resources_logo}
+                  title={"Resources"}
+                  link={`/course-resources/${courseID}`}
+                />
+              </div>
+            )}
           </div>
         </>
       )}

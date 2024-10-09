@@ -42,6 +42,7 @@ export const MyCourses = () => {
                   title={course.title}
                   description={course.description}
                   singleAction="Course Details"
+                  status={course.isActive}
                 />
               );
             })}

@@ -21,8 +21,22 @@ import { CreateContents } from "../pages/TeacherPages/CreateContents";
 import CreateQuiz from "../pages/Quiz/CreateQuiz";
 import { QuizQuestions } from "../pages/Quiz/QuizQuestions";
 import { PostQuiz } from "../pages/Quiz/PostQuiz";
+<<<<<<< HEAD
 import CreateEvent from "../pages/AdminPages/CreateEvent";
 import EventDetails from "../pages/AdminPages/EventDetails";
+=======
+import { ClassRecordings } from "../pages/ClassRecordings/ClassRecordings";
+import { CreateClassRecordings } from "../pages/ClassRecordings/CreateClassRecordings";
+import { GeneralResources } from "../pages/Resources/GeneralResources";
+import { CreateGeneralResources } from "../pages/Resources/CreateGeneralResources";
+import { CourseUpdate } from "../pages/Courses/CourseUpdate";
+import { CourseEnrolledStuds } from "../pages/TeacherPages/CourseEnrolledStuds";
+import { CreateAllPlatQuiz } from "../pages/Quiz/CreateAllPlatQuiz";
+import { AllPlatQuiz } from "../pages/Quiz/AllPlatQuiz";
+import { CourseDetailsStudent } from "../pages/Courses/CourseDetailsStudent";
+import { StudentProfile } from "../pages/StudentPages/StudentProfile";
+import { CreateJLINGOquiz } from "../pages/Quiz/CreateJLINGOquiz";
+>>>>>>> master
 
 const routes = createBrowserRouter([
   {
@@ -50,6 +64,10 @@ const routes = createBrowserRouter([
         element: <CreateCourse />,
       },
       {
+        path: "/update-course/:id",
+        element: <CourseUpdate />,
+      },
+      {
         path: "/get-users",
         element: <GetUser />,
       },
@@ -68,6 +86,10 @@ const routes = createBrowserRouter([
       {
         path: "/course-details/:id",
         element: <CourseDetails />,
+      },
+      {
+        path: "/course-details-student/:id",
+        element: <CourseDetailsStudent />,
       },
       {
         path: "/attendance-list",
@@ -98,6 +120,14 @@ const routes = createBrowserRouter([
         element: <PostQuiz />,
       },
       {
+        path: "/course-allplat-quiz-create/:id",
+        element: <CreateAllPlatQuiz />,
+      },
+      {
+        path: "/course-allplat-quizzes/:id",
+        element: <AllPlatQuiz />,
+      },
+      {
         path: "/course-lectures/:id",
         element: <Lectures />,
       },
@@ -110,12 +140,41 @@ const routes = createBrowserRouter([
         element: <CreateContents />,
       },
       {
+<<<<<<< HEAD
         path: "/create-event",
         element: <CreateEvent></CreateEvent>,
       },
       {
         path: "/event/:id",
         element: <EventDetails />,
+=======
+        path: "/course-enrolled-students/:id",
+        element: <CourseEnrolledStuds />,
+      },
+      {
+        path: "/class-recordings",
+        element: <ClassRecordings />,
+      },
+      {
+        path: "/add-class-recordings",
+        element: <CreateClassRecordings />,
+      },
+      {
+        path: "/general-resources",
+        element: <GeneralResources />,
+      },
+      {
+        path: "/add-general-resources",
+        element: <CreateGeneralResources />,
+      },
+      {
+        path: "/student-profile",
+        element: <StudentProfile />,
+      },
+      {
+        path: "/create-jlingo-quiz",
+        element: <CreateJLINGOquiz />,
+>>>>>>> master
       },
     ],
   },

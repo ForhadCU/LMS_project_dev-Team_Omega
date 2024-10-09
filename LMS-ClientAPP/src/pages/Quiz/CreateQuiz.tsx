@@ -1,5 +1,7 @@
 import { useForm, useFieldArray } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useCreateNewQuizMutation } from "../../redux/feature/quiz/quizAPI";
+import toast from "react-hot-toast";
 
 export type TQuestion = {
   Question_NO: number;
@@ -21,6 +23,8 @@ export type TQuestions = {
 export default function CreateQuiz() {
   const params = useParams();
   const courseID = params.id;
+  const navigate = useNavigate();
+  const [createNewQuiz] = useCreateNewQuizMutation();
   const {
     register,
     handleSubmit,
@@ -32,7 +36,14 @@ export default function CreateQuiz() {
     name: "Questions",
   });
 
-  const onSubmit = (data: TQuestions) => {
+  const onSubmit = async (data: TQuestions) => {
+    const res = await createNewQuiz(data).unwrap();
+    if (res.success) {
+      toast.success(res.message);
+      navigate(-1);
+    } else {
+      toast.error(res.message);
+    }
     console.log(data);
   };
 
@@ -53,7 +64,6 @@ export default function CreateQuiz() {
             value={courseID}
             {...register("Course_ID")}
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-            disabled
           />
           {errors.Course_ID && (
             <p className="text-red-500 text-sm">{errors.Course_ID.message}</p>
@@ -62,7 +72,7 @@ export default function CreateQuiz() {
 
         {/* Quiz No */}
         <div>
-          <label className="block text-sm font-medium">Quiz No</label>
+          <label className="block text-sm font-medium">Quiz Name</label>
           <input
             type="text"
             {...register("Quiz_No", { required: "Quiz No is required" })}
