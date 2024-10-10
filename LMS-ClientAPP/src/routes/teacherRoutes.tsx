@@ -14,11 +14,6 @@ export const teacherRoutes = [
     icon: <ImportContactsIcon />,
   },
   {
-    name: "Forums",
-    path: "/forums",
-    icon: <Forum />,
-  },
-  {
     name: "Class Recordings",
     path: "/class-recordings",
     icon: <VideocamIcon />,
@@ -27,5 +22,10 @@ export const teacherRoutes = [
     name: "General Resources",
     path: "/general-resources",
     icon: <LibraryBooksIcon />,
+  },
+  {
+    name: "Forums",
+    path: "/forums",
+    icon: <Forum />,
   },
 ];
