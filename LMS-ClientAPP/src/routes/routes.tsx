@@ -34,6 +34,7 @@ import { GeneralResources } from "../pages/Resources/GeneralResources";
 import { CreateGeneralResources } from "../pages/Resources/CreateGeneralResources";
 import { StudentProfile } from "../pages/StudentPages/StudentProfile";
 import { CreateJLINGOquiz } from "../pages/Quiz/CreateJLINGOquiz";
+import { ForumCreate } from "../pages/Forum/ForumCreate";
 
 const routes = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ const routes = createBrowserRouter([
       {
         path: "/forums",
         element: <Forums />,
+      },
+      {
+        path: "/create-forums",
+        element: <ForumCreate />,
       },
       {
         path: "/instructor-courses",

@@ -22,7 +22,7 @@ const getAllForums = async (rawQuery: any) => {
   const res = await Forums.find(query)
     .skip((page - 1) * limit)
     .limit(limit)
-    .sort()
+    .sort("-createdAt")
     .populate("UserID", "name email role");
   return res;
 };
