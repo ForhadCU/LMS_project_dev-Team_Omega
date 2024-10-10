@@ -44,8 +44,9 @@ export const Login = () => {
           password: data.get("password"),
         };
         const res = await login(userInfo).unwrap();
-
+        // console.log(res);
         const user = jwtDecode(res.accesToken) as TUser;
+        console.log(user);
 
         dispatcher(setUser({ user: user, token: res.accesToken }));
         toast.success("Logged in seccessfully");

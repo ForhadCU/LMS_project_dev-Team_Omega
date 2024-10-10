@@ -1,84 +1,104 @@
 import { useForm } from "react-hook-form";
 
 export const CreateUser = () => {
-  const { register, handleSubmit } = useForm();
-  const handleAddClass = (data: any) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleAddUser = (data: any) => {
     console.log(data);
   };
 
   return (
-    <div>
-      <h2 className="text-center my-5  text-2xl font-semibold">
-        Create User Here!!
-      </h2>
+    <div className=" bg-gradient-to-r from-blue-50 to-blue-100 py-10 ">
       <form
-        onSubmit={handleSubmit(handleAddClass)}
-        className="w-2/5 mx-auto space-y-4 bg-[#1976D2] rounded-md p-5"
+        onSubmit={handleSubmit(handleAddUser)}
+        className="space-y-4 w-2/5 mx-auto bg-white shadow-lg rounded-lg  p-5"
       >
+        <h2 className="text-center mb-4 text-3xl font-bold text-indigo-600">
+          Create User
+        </h2>
         {/* User Name */}
-        <div className="space-y-1">
-          <label className="block text-l font-semibold" htmlFor="userName">
+        <div className="space-y-2">
+          <label className="block text-lg font-semibold" htmlFor="userName">
             User Name
           </label>
           <input
             type="text"
             id="userName"
-            placeholder="Enter User Name Here"
-            className="border rounded-md w-full p-2 border-indigo-400 focus:outline-0"
-            {...register("userName", { required: true })}
+            placeholder="Enter User Name"
+            className={`border rounded-md w-full p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition ${
+              errors.userName ? "border-red-500" : "border-gray-300"
+            }`}
+            {...register("userName", { required: "User name is required" })}
           />
+          {errors.userName && (
+            <p className="text-red-500 text-sm">{errors.userName.message}</p>
+          )}
         </div>
 
         {/* User Email */}
-        <div className="space-y-1">
-          <label className="block text-l font-semibold" htmlFor="userEmail">
+        <div className="space-y-2">
+          <label className="block text-lg font-semibold" htmlFor="userEmail">
             User Email
           </label>
           <input
             type="email"
             id="userEmail"
-            placeholder="Enter User Email Here"
-            className="border rounded-md w-full p-2 border-indigo-300 focus:outline-0"
-            {...register("userEmail", { required: true })}
+            placeholder="Enter User Email"
+            className={`border rounded-md w-full p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition ${
+              errors.userEmail ? "border-red-500" : "border-gray-300"
+            }`}
+            {...register("userEmail", { required: "User email is required" })}
           />
+          {errors.userEmail && (
+            <p className="text-red-500 text-sm">{errors.userEmail.message}</p>
+          )}
         </div>
 
         {/* User Type Dropdown */}
-        <div className="space-y-1">
-          <label className="block text-l font-semibold" htmlFor="userType">
+        <div className="space-y-2">
+          <label className="block text-lg font-semibold" htmlFor="userType">
             User Type
           </label>
           <select
             id="userType"
-            className="border rounded-md w-full p-2 border-sky-300 focus:outline-0"
-            {...register("userType", { required: true })}
+            className={`border rounded-md w-full p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition ${
+              errors.userType ? "border-red-500" : "border-gray-300"
+            }`}
+            {...register("userType", { required: "User type is required" })}
           >
             <option value="student">Student</option>
             <option value="instructor">Instructor</option>
             <option value="admin">Admin</option>
           </select>
+          {errors.userType && (
+            <p className="text-red-500 text-sm">{errors.userType.message}</p>
+          )}
         </div>
 
         {/* Password */}
-        <div className="space-y-1">
-          <label className="block text-l font-semibold" htmlFor="password">
+        <div className="space-y-2">
+          <label className="block text-lg font-semibold" htmlFor="password">
             Password
           </label>
           <input
             type="text"
             id="password"
             value="123456"
-            className="border rounded-md w-full p-2 border-sky-300 focus:outline-0"
+            className="border rounded-md w-full p-3 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
             {...register("password", { required: true })}
             readOnly
           />
         </div>
 
         {/* Submit Button */}
-        <div className="py-4">
+        <div>
           <button
             type="submit"
-            className="btn w-full py-2 rounded-md hover:bg-slate-300 hover:text-slate-800 font-semibold bg-emerald-400 focus:outline-0 border-emerald-400"
+            className="w-full py-3 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-md shadow-md transition focus:outline-none focus:ring-2 focus:ring-indigo-400"
           >
             ADD USER
           </button>

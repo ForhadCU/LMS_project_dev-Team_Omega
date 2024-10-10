@@ -8,6 +8,15 @@ const courseAPI = baseAPI.injectEndpoints({
         method: "POST",
         body: courseData,
       }),
+      invalidatesTags: ["courses"],
+    }),
+    courseStatusUpdate: builder.mutation({
+      query: (statusInfo) => ({
+        url: "/courses/course-status-update",
+        method: "PATCH",
+        body: statusInfo,
+      }),
+      invalidatesTags: ["courses"],
     }),
     getAllCourses: builder.query({
       query: (query) => {
@@ -41,4 +50,5 @@ export const {
   useCreateNewCourseMutation,
   useGetAllCoursesQuery,
   useGetSingleCourseQuery,
+  useCourseStatusUpdateMutation,
 } = courseAPI;

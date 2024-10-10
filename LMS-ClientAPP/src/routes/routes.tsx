@@ -23,6 +23,7 @@ import { QuizQuestions } from "../pages/Quiz/QuizQuestions";
 import { PostQuiz } from "../pages/Quiz/PostQuiz";
 import CreateEvent from "../pages/AdminPages/CreateEvent";
 import EventDetails from "../pages/AdminPages/EventDetails";
+import ManageCourses from "../pages/Courses/ManageCourses";
 
 const routes = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const routes = createBrowserRouter([
         element: <CourseDetails />,
       },
       {
+        path: "/course-manage",
+        element: <ManageCourses />,
+      },
+      {
         path: "/attendance-list",
         element: <AttendanceList />,
       },
@@ -109,6 +114,7 @@ const routes = createBrowserRouter([
         path: "/course-content-create/:id",
         element: <CreateContents />,
       },
+
       {
         path: "/create-event",
         element: <CreateEvent></CreateEvent>,
