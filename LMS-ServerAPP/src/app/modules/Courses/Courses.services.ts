@@ -50,17 +50,27 @@ const updateCourse = async (
   return result;
 };
 
-const deactivateCourse = async (courseCode: string) => {
+const deactivateCourse = async (courseCode: string, status: string) => {
   const getExistingCourse = await Course.findOne({ code: courseCode });
   if (!getExistingCourse) {
     throw new AppError(404, "Course not found!");
   }
-  if (!getExistingCourse.isActive) {
-    throw new AppError(409, "Course already deactivated!");
+  // Handle course activation
+  if (status === "active") {
+    if (getExistingCourse.isActive === "active") {
+      throw new AppError(409, "Course is already active!");
+    }
+  }
+
+  // Handle course deactivation
+  if (status === "inactive") {
+    if (getExistingCourse.isActive === "inactive") {
+      throw new AppError(409, "Course is already inactive!");
+    }
   }
   const result = await Course.findOneAndUpdate(
     { code: courseCode },
-    { isActive: false },
+    { isActive: status },
     { new: true }
   );
   return result;
