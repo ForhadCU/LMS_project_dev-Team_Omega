@@ -1,3 +1,4 @@
+import 'package:flutter_application/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/common_controller.dart';
@@ -29,4 +30,8 @@ class AllCoursesController extends GetxController {
   }
 
   void increment() => count.value++;
+
+  void mNavigateTo() {
+    Get.toNamed(Routes.COURSE_DETAILS);
+  }
 }

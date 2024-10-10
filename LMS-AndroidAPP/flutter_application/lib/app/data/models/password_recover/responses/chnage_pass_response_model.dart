@@ -1,20 +1,19 @@
 class ChangePasswordResponseModel {
-  bool? success;
-  String? message;
+    bool success;
+    String message;
 
-  ChangePasswordResponseModel({
-    this.success,
-    this.message,
-  });
+    ChangePasswordResponseModel({
+        required this.success,
+        required this.message,
+    });
 
-  factory ChangePasswordResponseModel.fromMap(Map<String, dynamic> json) =>
-      ChangePasswordResponseModel(
+    factory ChangePasswordResponseModel.fromJson(Map<String, dynamic> json) => ChangePasswordResponseModel(
         success: json["success"],
         message: json["message"],
-      );
+    );
 
-  Map<String, dynamic> toMap() => {
+    Map<String, dynamic> toJson() => {
         "success": success,
         "message": message,
-      };
+    };
 }

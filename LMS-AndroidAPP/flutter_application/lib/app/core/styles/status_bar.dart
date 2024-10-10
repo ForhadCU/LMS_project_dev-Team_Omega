@@ -17,7 +17,7 @@ class AppStatusBar {
   mLight() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarBrightness: Brightness.light,
-      statusBarColor: AppColor().defaultBg,
+      statusBarColor: AppColor.defaultBg,
       statusBarIconBrightness: Brightness.dark,
     ));
   }
@@ -26,6 +26,13 @@ class AppStatusBar {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarBrightness: Brightness.dark,
       statusBarColor: Colors.black,
+      statusBarIconBrightness: Brightness.light,
+    ));
+  }
+  mPrimary() {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarBrightness: Brightness.dark,
+      statusBarColor:  Color(0xff136537),
       statusBarIconBrightness: Brightness.light,
     ));
   }

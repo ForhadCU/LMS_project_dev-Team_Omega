@@ -6,6 +6,22 @@ import '../modules/course_details/bindings/course_details_binding.dart';
 import '../modules/course_details/views/course_details_view.dart';
 import '../modules/courses/bindings/all_courses_binding.dart';
 import '../modules/courses/views/all_courses_view.dart';
+import '../modules/create_course/bindings/create_course_binding.dart';
+import '../modules/create_course/views/create_course_view.dart';
+import '../modules/create_course_contents/bindings/create_course_contents_binding.dart';
+import '../modules/create_course_contents/views/create_course_contents_view.dart';
+import '../modules/create_forum_posts/bindings/create_forum_posts_binding.dart';
+import '../modules/create_forum_posts/views/create_forum_posts_view.dart';
+import '../modules/create_genral_resources/bindings/create_genral_resources_binding.dart';
+import '../modules/create_genral_resources/views/create_genral_resources_view.dart';
+import '../modules/create_quizes/bindings/create_quizes_binding.dart';
+import '../modules/create_quizes/views/create_quizes_view.dart';
+import '../modules/create_recordings/bindings/create_recordings_binding.dart';
+import '../modules/create_recordings/views/create_recordings_view.dart';
+import '../modules/forum/bindings/forum_binding.dart';
+import '../modules/forum/views/forum_view.dart';
+import '../modules/forum_comments/bindings/forum_comments_binding.dart';
+import '../modules/forum_comments/views/forum_comments_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -23,7 +39,7 @@ class AppPages {
   AppPages._();
 
   // static const initial = Routes.SPLASH;
-  static const initial = Routes.ALLCOURSES;
+  static const initial = Routes.HOME;
   static const _transitionDuration = Duration(milliseconds: 500);
 
   static final routes = [
@@ -50,7 +66,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ALLCOURSES,
-      page: () =>  AllCoursesView(),
+      page: () => AllCoursesView(),
       binding: AllCoursesBinding(),
     ),
     GetPage(
@@ -69,6 +85,46 @@ class AppPages {
       name: _Paths.CONTENT_DETAILS,
       page: () => const ContentDetailsView(),
       binding: ContentDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORUM,
+      page: () => const ForumView(),
+      binding: ForumBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORUM_COMMENTS,
+      page: () => const ForumCommentsView(),
+      binding: ForumCommentsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_COURSE,
+      page: () => CreateCourseView(),
+      binding: CreateCourseBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_COURSE_CONTENTS,
+      page: () => CreateCourseContentsView(),
+      binding: CreateCourseContentsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_GENRAL_RESOURCES,
+      page: () => CreateGenralResourcesView(),
+      binding: CreateGenralResourcesBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_RECORDINGS,
+      page: () => CreateRecordingsView(),
+      binding: CreateRecordingsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_FORUM_POSTS,
+      page: () =>  CreateForumPostsView(),
+      binding: CreateForumPostsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_QUIZES,
+      page: () =>  CreateQuizesView(),
+      binding: CreateQuizesBinding(),
     ),
   ];
 }

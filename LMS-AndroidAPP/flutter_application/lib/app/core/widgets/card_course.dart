@@ -13,11 +13,11 @@ class CourseCard extends StatelessWidget {
   final String? startTime;
   final String? endTime;
   final String? instructoName;
-  // final Function onTapEnrol;
+  // final Function onTapDetails;
   final String? courseActiveStatus;
   final List<String>? menuItems;
   final Function(String selectedMenuItem)? onSelectedmenuItem;
-  final Function()? onTapEnrol;
+  final Function()? onTapDetails;
   const CourseCard({
     super.key,
     this.imgUri,
@@ -26,7 +26,7 @@ class CourseCard extends StatelessWidget {
     this.startTime,
     this.endTime,
     this.instructoName,
-    this.onTapEnrol,
+    this.onTapDetails,
     this.courseActiveStatus,
     this.menuItems,
     this.onSelectedmenuItem,
@@ -35,8 +35,8 @@ class CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
-      margin: EdgeInsets.only(bottom: AppSpacing().md),
+      elevation: 5,
+      margin: EdgeInsets.only(bottom: AppSpacing().xl),
       shape: RoundedRectangleBorder(
           side: const BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.circular(14)),
@@ -69,7 +69,7 @@ class CourseCard extends StatelessWidget {
                 Center(
                   child: Column(
                     children: [
-                      ActiveStatusDotView(color: AppColor().warning),
+                      ActiveStatusDotView(color: AppColor.warning),
                       AppSpacing().md.height,
                       Text(
                         AppConstants().sUpComing,
@@ -97,7 +97,7 @@ class CourseCard extends StatelessWidget {
                           ),
                           AppSpacing().sm.width,
                           PopupMenuButton(
-                              // color: AppColor().divier,
+                              // color: AppColor.divier,
 
                               iconSize: 18,
                               // onSelected: (value) => onSelectedmenuItem!(value),
@@ -130,7 +130,7 @@ class CourseCard extends StatelessWidget {
                   children: [
                     DurationAnndInstructor(instructoName: instructoName),
                     AppSpacing().sm.width,
-                    EnrollButton(onTapEnrol: onTapEnrol)
+                    DetailslButton(onTapDetails: onTapDetails)
                   ],
                 ),
               ],
@@ -142,13 +142,13 @@ class CourseCard extends StatelessWidget {
   }
 }
 
-class EnrollButton extends StatelessWidget {
-  const EnrollButton({
+class DetailslButton extends StatelessWidget {
+  const DetailslButton({
     super.key,
-    required this.onTapEnrol,
+    required this.onTapDetails,
   });
 
-  final Function()? onTapEnrol;
+  final Function()? onTapDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -156,23 +156,23 @@ class EnrollButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         NeumorphicButton(
-          onPressed: onTapEnrol,
+          onPressed: onTapDetails,
           style: AppButtonStyle().submit.copyWith(
-                color: AppColor().secondary,
+                color: AppColor.primary,
                 intensity: 0,
               ),
           child: Text(
-            "Enrol Now",
+            "Details",
             style: AppTextStyle().normal.copyWith(color: Colors.white),
           ),
         )
         /*  ElevatedButton(
         onPressed: () {
-          onTapEnrol != null ? onTapEnrol!() : null;
+          onTapDetails != null ? onTapDetails!() : null;
         },
         style: AppButtonStyle().secondary,
         child: const Text(
-          "Enrol Now",
+          "Details Now",
         )) */
         ,
       ],
@@ -197,7 +197,7 @@ class DurationAnndInstructor extends StatelessWidget {
           children: [
             Icon(
               Icons.timer,
-              color: AppColor().hitnsAndBorder,
+              color: AppColor.hitnsAndBorder,
               size: 14,
             ),
             AppSpacing().md.width,
@@ -214,7 +214,7 @@ class DurationAnndInstructor extends StatelessWidget {
           children: [
             Icon(
               Icons.person,
-              color: AppColor().hitnsAndBorder,
+              color: AppColor.hitnsAndBorder,
               size: 14,
             ),
             AppSpacing().md.width,

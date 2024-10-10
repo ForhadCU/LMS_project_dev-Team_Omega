@@ -10,6 +10,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
+      isDrawer: true,
         title: "Home",
         child: Center(
           child: Column(

@@ -37,7 +37,7 @@ class PasswordRecoverView extends GetView<PasswordRecoverController> {
         height: DeviceScreenHeight.tenPercent / 2.2,
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-            color: AppColor().primary, borderRadius: BorderRadius.circular(50)),
+            color: AppColor.primary, borderRadius: BorderRadius.circular(50)),
         child: ElevatedButton(
           onPressed: () {
             controller.isLoading.value
@@ -57,9 +57,9 @@ class PasswordRecoverView extends GetView<PasswordRecoverController> {
                   ),
                 )
               : controller.isSuccess.value
-                  ? Icon(Icons.done, color: AppColor().defaultBg)
+                  ? Icon(Icons.done, color: AppColor.defaultBg)
                   /* : controller.isFailed.value
-                      ? Icon(Icons.error, color: AppColor().appRed,) */
+                      ? Icon(Icons.error, color: AppColor.appRed,) */
                   : Text(
                       'Submit',
                     ),
@@ -71,7 +71,7 @@ class PasswordRecoverView extends GetView<PasswordRecoverController> {
   _vLogo() {
     return Image(
       image: AssetImage(
-        AppAssetLocations().ic_forgot_password,
+        AppAssetLocations.ic_forgot_password,
       ),
       height: DeviceScreenHeight.tenPercent,
       fit: BoxFit.contain,

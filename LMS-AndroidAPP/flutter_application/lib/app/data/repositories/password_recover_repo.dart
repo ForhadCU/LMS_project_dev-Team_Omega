@@ -13,18 +13,19 @@ class PasswordRecoverRepository {
     required String userAccessToken,
   }) async {
     final response = await apiProvider.post(
-      ApiEndpoint().change_password,
+      ApiEndpoint.changePassword.url,
       headers: AppHelpers().mHeadersGenerator(token: userAccessToken),
       body: changePasswordPayload.toMap(),
       // headers: AppHelpers().mHeadersGenerator(token: token),
     );
-    return ChangePasswordResponseModel.fromMap(
+    return ChangePasswordResponseModel.fromJson(
         AppHelpers().mHandleRemoteResponse(response));
   }
 
   //  get user access token
   Future<String?> mGetSessionFromLocal() async {
-    String? response = await apiProvider.getString(key: AppKeys().accessToken);
+    String? response =
+        await apiProvider.getString(key: AppConstants.apiKeys.accessToken);
     return response;
   }
 }

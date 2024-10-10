@@ -14,7 +14,7 @@ class TimeScheduleView extends StatelessWidget {
       children: [
         Icon(
           Icons.timer,
-          color: AppColor().textFieldBorder,
+          color: AppColor.textFieldBorder,
           size: 14,
         ),
         AppSpacing().md.width,

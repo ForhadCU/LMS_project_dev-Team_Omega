@@ -41,9 +41,9 @@ class AppTextFiled extends StatelessWidget {
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-          color: AppColor().primary,
+          color: AppColor.primary,
         )),
-        floatingLabelStyle: TextStyle(color: AppColor().primary),
+        floatingLabelStyle: TextStyle(color: AppColor.primary),
         label: Text(
           title,
           // style: AppTextStyle().normal,
@@ -51,7 +51,7 @@ class AppTextFiled extends StatelessWidget {
         prefixIcon: prefixIconData != null
             ? Icon(
                 prefixIconData,
-                color: AppColor().secondaryIcon,
+                color: AppColor.secondaryIcon,
               )
             : null,
         suffixIcon: suffixIconData != null
@@ -63,14 +63,14 @@ class AppTextFiled extends StatelessWidget {
                     : null,
                 child: Icon(
                   suffixIconData,
-                  color: AppColor().secondaryIcon,
+                  color: AppColor.secondaryIcon,
                 ),
               )
             : null,
         isDense: true,
         contentPadding: EdgeInsets.all(AppSpacing().md),
         border: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor().textFieldBorder)),
+            borderSide: BorderSide(color: AppColor.textFieldBorder)),
       ),
     );
   }

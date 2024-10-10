@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application/app/core/values/data.dart';
 import 'package:flutter_application/app/core/values/gloabal_values.dart';
+import 'package:flutter_application/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 import '../core_lib.dart';
@@ -10,29 +11,41 @@ import '../core_lib.dart';
 class BaseWidget extends StatelessWidget {
   final String? title;
   final bool? isDrawer;
+  final Widget? actionsWidget;
   final Widget child;
+  final Color? backgroundColor;
+  final bool? isLeadingIcon;
 
-  BaseWidget({super.key, this.title, required this.child, this.isDrawer});
+  BaseWidget(
+      {super.key,
+      this.title,
+      required this.child,
+      this.isDrawer,
+      this.actionsWidget,
+      this.backgroundColor,
+      this.isLeadingIcon});
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: backgroundColor ?? AppColor.defaultBg,
         key: _scaffoldKey,
         appBar: AppBar(
+          automaticallyImplyLeading: isLeadingIcon ?? true,
           title: Text((title ?? "").toUpperCase()),
           leading: isDrawer == true
               ? Container(
                   margin: EdgeInsets.all(AppSpacing().md),
                   decoration: BoxDecoration(
-                    color: AppColor().secondaryBg,
+                    color: AppColor.secondaryBg,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: IconButton(
                     icon: Image(
                       image: AssetImage(
-                        AppAssetLocations().ic_drawer,
+                        AppAssetLocations.ic_drawer,
                       ),
                       width: AppData().appBarIconWidth,
                       height: AppData().appBarIconHeight,
@@ -45,13 +58,13 @@ class BaseWidget extends StatelessWidget {
               : Container(
                   margin: EdgeInsets.all(AppSpacing().md),
                   decoration: BoxDecoration(
-                    color: AppColor().secondaryBg,
+                    color: AppColor.secondaryBg,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: IconButton(
                     icon: Image(
                       image: AssetImage(
-                        AppAssetLocations().ic_back,
+                        AppAssetLocations.ic_back,
                       ),
                       width: AppData().appBarIconWidth,
                       height: AppData().appBarIconHeight,
@@ -68,26 +81,27 @@ class BaseWidget extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.all(AppSpacing().md),
                         decoration: BoxDecoration(
-                          color: AppColor().secondaryBg,
+                          color: AppColor.secondaryBg,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: IconButton(
                           icon: Image(
                             image: AssetImage(
-                              AppAssetLocations().ic_notification,
+                              AppAssetLocations.ic_notification,
                             ),
                             width: AppData().appBarIconWidth,
                             height: AppData().appBarIconHeight,
                           ), // Custom icon color
                           onPressed: () {
-                            _scaffoldKey.currentState!.openDrawer();
+                            // _scaffoldKey.currentState!.openDrawer();
                           },
                         ),
                       ),
                       AppSpacing().md.width
                     ],
                   )
-                : Container()
+                : Container(),
+            actionsWidget == null ? Container() : actionsWidget!,
           ],
         ),
         drawer: isDrawer == true ? vDrawer() : null,
@@ -110,29 +124,29 @@ class BaseWidget extends StatelessWidget {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Color(0xFF136537), // Primary color
-              ),
+                  // color: Color(0xFF136537), // Primary color
+                  color: AppColor.defaultBg),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: NetworkImage(
-                        'https://via.placeholder.com/150'), // Sample profile picture
+                    backgroundImage: AssetImage(AppAssetLocations
+                        .img_roy_sensei), // Sample profile picture
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
-                    'Your Name',
-                    style: TextStyle(
-                      color: Colors.white,
+                    AppConstants.names.jayontoRay,
+                    style: const TextStyle(
+                      color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'your.email@example.com',
                     style: TextStyle(
-                      color: Colors.white70,
+                      color: Colors.black87,
                       fontSize: 14,
                     ),
                   ),
@@ -140,58 +154,187 @@ class BaseWidget extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading:
-                  Icon(Icons.home, color: Color(0xFF136537)), // Primary color
-              title: Text('Home'),
+              dense: true,
+              // leading: Icon(Icons.home, color: Color(0xFF136537)), // Primary color
+              title: const Text('Home'),
               onTap: () {
                 // controller.navigateToPage('/');
               },
               tileColor: Colors.white,
-              textColor: Color(0xFF136537), // Primary color for text
-              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              textColor: AppColor.normalText, // Primary color for text
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+              ),
             ),
             ListTile(
-              leading: Icon(Icons.pageview, color: Color(0xFF136537)),
-              title: Text('Page 1'),
-              onTap: () {
-                // controller.navigateToPage('/page1');
-              },
-              tileColor: Colors.white,
-              textColor: Color(0xFF136537),
-              contentPadding: EdgeInsets.symmetric(horizontal: 16),
-            ),
+                dense: true,
+                // leading: Icon(Icons.pageview, color: Color(0xFF136537)),
+                title: const Text('My Courses'),
+                onTap: () {
+                  Get.toNamed(Routes.ALLCOURSES);
+                },
+                tileColor: Colors.white,
+                textColor: AppColor.normalText, // Primary color for text
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 14,
+                )),
             ListTile(
-              leading: Icon(Icons.pages, color: Color(0xFF136537)),
-              title: Text('Page 2'),
+              dense: true,
+
+              // leading: Icon(Icons.pages, color: Color(0xFF136537)),
+              title: const Text(
+                'Forum',
+              ),
               onTap: () {
                 // controller.navigateToPage('/page2');
+                Get.toNamed(Routes.FORUM);
               },
               tileColor: Colors.white,
-              textColor: Color(0xFF136537),
-              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              textColor: AppColor.normalText, // Primary color for text
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+              ),
             ),
-            Divider(color: Color(0xFF4ABDAC)), // Secondary color for divider
+            const Divider(color: Color(0xFF4ABDAC)),
             ListTile(
+              dense: true,
+              // leading: Icon(Icons.home, color: Color(0xFF136537)), // Primary color
+              title: const Text('Create Course'),
+              onTap: () {
+                Get.toNamed(Routes.CREATE_COURSE);
+              },
+              tileColor: Colors.white,
+              textColor: AppColor.normalText, // Primary color for text
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+              ),
+            ),
+            ListTile(
+                dense: true,
+
+                // leading: Icon(Icons.pageview, color: Color(0xFF136537)),
+                title: const Text('Create Course Content'),
+                onTap: () {
+                  Get.toNamed(Routes.CREATE_COURSE_CONTENTS);
+                },
+                tileColor: Colors.white,
+                textColor: AppColor.normalText, // Primary color for text
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 14,
+                )),
+            ListTile(
+              dense: true,
+
+              // leading: Icon(Icons.pages, color: Color(0xFF136537)),
+              title: const Text('Create Post'),
+              onTap: () {
+                // controller.navigateToPage('/page2');
+                Get.toNamed(Routes.CREATE_FORUM_POSTS);
+              },
+              tileColor: Colors.white,
+              textColor: AppColor.normalText, // Primary color for text
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+              ),
+            ),
+            ListTile(
+              dense: true,
+
+              // leading: Icon(Icons.pages, color: Color(0xFF136537)),
+              title: const Text('Create Quiz'),
+              onTap: () {
+                // controller.navigateToPage('/page2');
+                Get.toNamed(Routes.CREATE_QUIZES);
+              },
+              tileColor: Colors.white,
+              textColor: AppColor.normalText, // Primary color for text
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+              ),
+            ),
+            ListTile(
+              dense: true,
+
+              // leading: Icon(Icons.pages, color: Color(0xFF136537)),
+              title: const Text('Upload Resourse'),
+              onTap: () {
+                // controller.navigateToPage('/page2');
+                Get.toNamed(Routes.CREATE_GENRAL_RESOURCES);
+              },
+              tileColor: Colors.white,
+              textColor: AppColor.normalText, // Primary color for text
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+              ),
+            ),
+            ListTile(
+              dense: true,
+
+              // leading: Icon(Icons.pages, color: Color(0xFF136537)),
+              title: const Text('Upload Recording'),
+              onTap: () {
+                // controller.navigateToPage('/page2');
+                Get.toNamed(Routes.CREATE_RECORDINGS);
+              },
+              tileColor: Colors.white,
+              textColor: AppColor.normalText, // Primary color for text
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+              ),
+            ), // Secondary color for divider
+            const Divider(color: Color(0xFF4ABDAC)),
+
+            ListTile(
+              dense: true,
+/* 
               leading: Icon(Icons.settings,
-                  color: Color(0xFF4ABDAC)), // Secondary color
-              title: Text('Settings'),
+                  color: Color(0xFF4ABDAC)),  */ // Secondary color
+              title: const Text('Settings'),
               onTap: () {
                 // Navigate to Settings or add your custom logic
               },
               tileColor: Colors.white,
-              textColor: Color(0xFF4ABDAC),
-              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              textColor: AppColor.normalText, // Primary color for text
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+              ),
             ),
             ListTile(
-              leading: Icon(Icons.logout,
-                  color: Color(0xFFFF6F61)), // Accent color for logout
-              title: Text('Logout'),
+              dense: true,
+
+              /*  leading: Icon(Icons.logout,
+                  color: Color(0xFFFF6F61)),  */ // Accent color for logout
+              title: const Text('Logout'),
               onTap: () {
                 // Handle logout
               },
               tileColor: Colors.white,
-              textColor: Color(0xFFFF6F61),
-              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              textColor: AppColor.normalText, // Primary color for text
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+              ),
             ),
           ],
         ),

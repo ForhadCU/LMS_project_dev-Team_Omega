@@ -13,25 +13,33 @@ class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BaseWidget(
-        title: "Login",
-        child: Center(
+    return Scaffold(
+        backgroundColor: AppColor.secondaryBg,
+        appBar: AppBar(
+          title: Text("Login".toUpperCase()),
+          backgroundColor: Colors.white,
+          elevation: 0,
+        ),
+        body: Center(
             child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _vLogo(),
-              AppSpacing().xxl.height,
-              _vEmailTextField(),
-              AppSpacing().md.height,
-              _vPassTextField(),
-              /*       AppSpacing().md.height,
-              _vSessionCheckbox(), */
-              AppSpacing().xxl.height,
-              _vLoginBtn(),
-              AppSpacing().xxl.height,
-              _vForgotPass(),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _vLogo(),
+                AppSpacing().xxl.height,
+                _vEmailTextField(),
+                AppSpacing().md.height,
+                _vPassTextField(),
+                /*       AppSpacing().md.height,
+                _vSessionCheckbox(), */
+                AppSpacing().xxl.height,
+                _vLoginBtn(),
+                AppSpacing().xxl.height,
+                _vForgotPass(),
+              ],
+            ),
           ),
         )));
   }
@@ -44,7 +52,7 @@ class LoginView extends GetView<LoginController> {
       child: Text(
         "Forgot password?",
         style: AppTextStyle().normal.copyWith(
-              color: AppColor().secondary,
+              color: AppColor.secondary,
             ),
       ),
     );
@@ -62,7 +70,7 @@ class LoginView extends GetView<LoginController> {
   _vLogo() {
     return Image(
       image: AssetImage(
-        AppAssetLocations().ic_bjet,
+        AppAssetLocations.ic_bjet,
       ),
       height: DeviceScreenHeight.twentyPercent,
       fit: BoxFit.contain,
@@ -110,7 +118,7 @@ class LoginView extends GetView<LoginController> {
         height: DeviceScreenHeight.tenPercent / 2.2,
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-            color: AppColor().primary, borderRadius: BorderRadius.circular(50)),
+            color: AppColor.primary, borderRadius: BorderRadius.circular(50)),
         child: ElevatedButton(
           onPressed: () {
             controller.isLoading.value
@@ -131,9 +139,9 @@ class LoginView extends GetView<LoginController> {
                   ),
                 )
               : controller.isSuccess.value
-                  ? Icon(Icons.done, color: AppColor().defaultBg)
+                  ? Icon(Icons.done, color: AppColor.defaultBg)
                   /* : controller.isFailed.value
-                      ? Icon(Icons.error, color: AppColor().appRed,) */
+                      ? Icon(Icons.error, color: AppColor.appRed,) */
                   : Text(
                       'Login',
                     ),

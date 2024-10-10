@@ -17,7 +17,7 @@ class AppButtonStyle {
     shape: NeumorphicShape.convex,
     boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
     lightSource: LightSource.topLeft,
-    color: AppColor().primary,
+    color: AppColor.primary,
   );
 
   final NeumorphicStyle secondary = NeumorphicStyle(
@@ -27,6 +27,6 @@ class AppButtonStyle {
     boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
     lightSource: LightSource.topLeft,
     
-    color: AppColor().secondary,
+    color: AppColor.secondary,
   );
 }

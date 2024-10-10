@@ -9,7 +9,7 @@ AppBar vMyAppBar({String? title, bool? isDrawer, BuildContext? context}) {
     leading: isDrawer == true && context != null
         ? IconButton(
             icon: Icon(Icons.menu,
-                color: AppColor().primary), // Custom icon color
+                color: AppColor.primary), // Custom icon color
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },

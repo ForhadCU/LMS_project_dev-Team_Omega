@@ -1,77 +1,75 @@
 class LoginResponse {
-  int? statusCode;
-  bool? success;
-  String? message;
-  Data? data;
-  String? accesToken;
+  int statusCode;
+  bool success;
+  String message;
+  Data data;
+  String accesToken;
 
-  LoginResponse(
-      {this.statusCode,
-      this.success,
-      this.message,
-      this.data,
-      this.accesToken});
+  LoginResponse({
+    required this.statusCode,
+    required this.success,
+    required this.message,
+    required this.data,
+    required this.accesToken,
+  });
 
-  LoginResponse.fromJson(Map<String, dynamic> json) {
-    statusCode = json['statusCode'];
-    success = json['success'];
-    message = json['message'];
-    data = json['data'] != null ? Data?.fromJson(json['data']) : null;
-    accesToken = json['accesToken'];
-  }
+  factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
+        statusCode: json["statusCode"],
+        success: json["success"],
+        message: json["message"],
+        data: Data.fromJson(json["data"]),
+        accesToken: json["accesToken"],
+      );
 
-  Map<String, dynamic> toJson() {
-    final res = <String, dynamic>{};
-    res['statusCode'] = statusCode;
-    res['success'] = success;
-    res['message'] = message;
-    res['data'] = data?.toJson();
-      res['accesToken'] = accesToken;
-    return res;
-  }
+  Map<String, dynamic> toJson() => {
+        "statusCode": statusCode,
+        "success": success,
+        "message": message,
+        "data": data.toJson(),
+        "accesToken": accesToken,
+      };
 }
 
 class Data {
-  String? sId;
-  String? name;
-  String? email;
-  String? role;
-  bool? isActive;
-  String? createdAt;
-  String? updatedAt;
-  int? iV;
+  String id;
+  String name;
+  String email;
+  String role;
+  bool isActive;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int v;
 
-  Data(
-      {this.sId,
-      this.name,
-      this.email,
-      this.role,
-      this.isActive,
-      this.createdAt,
-      this.updatedAt,
-      this.iV});
+  Data({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.role,
+    required this.isActive,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.v,
+  });
 
-  Data.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-    email = json['email'];
-    role = json['role'];
-    isActive = json['isActive'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    iV = json['__v'];
-  }
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        id: json["_id"],
+        name: json["name"],
+        email: json["email"],
+        role: json["role"],
+        isActive: json["isActive"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
+      );
 
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['_id'] = sId;
-    data['name'] = name;
-    data['email'] = email;
-    data['role'] = role;
-    data['isActive'] = isActive;
-    data['createdAt'] = createdAt;
-    data['updatedAt'] = updatedAt;
-    data['__v'] = iV;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "name": name,
+        "email": email,
+        "role": role,
+        "isActive": isActive,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "__v": v,
+      };
 }

@@ -13,22 +13,15 @@ class AllCoursesView extends GetView<AllCoursesController> {
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
-        isDrawer: true,
+        isDrawer: false,
         title: "All Courses",
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [QueryPart(), OutputResultPart()],
+          children: [QueryPart(), vOutputResultPart()],
         ));
   }
-}
 
-class OutputResultPart extends StatelessWidget {
-  const OutputResultPart({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  vOutputResultPart() {
     return Expanded(
         child: Container(
             padding: EdgeInsets.all(AppSpacing().md),
@@ -36,11 +29,12 @@ class OutputResultPart extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: ((context, index) {
                   return CourseCard(
-                    onTapEnrol: () {
-                      Get.toNamed(Routes.COURSE_DETAILS);
+                    onTapDetails: () {
+                      controller.mNavigateTo();
                     },
-                    imgUri: AppAssetLocations().ic_course2,
-                    menuItems: AppStrings().sCourseCardMenuItems,
+                    imgUri: AppAssetLocations.ic_course2,
+                    menuItems:
+                        AppConstants.commonViewProperties.sCourseCardMenuItems,
                     onSelectedmenuItem: (String selectedMenuItem) {
                       print(selectedMenuItem);
                     },
@@ -78,7 +72,7 @@ class CategoryPart extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Card(
-              color: index == 4 ? AppColor().primary : AppColor().teaGreen,
+              color: index == 4 ? AppColor.primary : AppColor.teaGreen,
               elevation: 0,
               // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               child: Container(
@@ -88,9 +82,8 @@ class CategoryPart extends StatelessWidget {
                 child: Text(
                   "Category $index",
                   style: appTextTheme.bodyLarge!.copyWith(
-                      color: index == 4
-                          ? AppColor().secondaryBg
-                          : AppColor().primary,
+                      color:
+                          index == 4 ? AppColor.secondaryBg : AppColor.primary,
                       fontWeight: FontWeight.w500),
                 ),
               ),
@@ -113,7 +106,7 @@ class SearchAndFilterPart extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              color: AppColor().secondaryBg,
+              color: AppColor.secondaryBg,
               child: TextFormField(
                 // controller: textEditingController,
                 onChanged: (String text) {},
@@ -124,10 +117,10 @@ class SearchAndFilterPart extends StatelessWidget {
                 decoration: InputDecoration(
                   /* focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                    color: AppColor().primary,
+                    color: AppColor.primary,
                   )), */
 
-                  floatingLabelStyle: TextStyle(color: AppColor().primary),
+                  floatingLabelStyle: TextStyle(color: AppColor.primary),
                   hintText: "Search Course",
                   prefixIcon: InkWell(
                       onTap: () {},
@@ -141,7 +134,7 @@ class SearchAndFilterPart extends StatelessWidget {
                   isDense: true,
                   contentPadding: EdgeInsets.all(AppSpacing().md),
                   border: InputBorder.none,
-                  fillColor: AppColor().secondaryBg,
+                  fillColor: AppColor.secondaryBg,
                 ),
               ),
             ),
@@ -149,13 +142,13 @@ class SearchAndFilterPart extends StatelessWidget {
           AppSpacing().xl.width,
           Container(
             decoration: BoxDecoration(
-              color: AppColor().secondaryBg,
+              color: AppColor.secondaryBg,
               borderRadius: BorderRadius.circular(5),
             ),
             child: IconButton(
               icon: Image(
                 image: AssetImage(
-                  AppAssetLocations().ic_filter,
+                  AppAssetLocations.ic_filter,
                 ),
                 width: AppData().appBarIconWidth,
                 height: AppData().appBarIconHeight,

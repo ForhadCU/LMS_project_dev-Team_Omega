@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application/app/core/core_lib.dart';
@@ -83,7 +84,7 @@ class AppHelpers {
       title ?? 'Failed',
       message ?? "",
       snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: AppColor().appRed,
+      backgroundColor: AppColor.appRed,
       colorText: Colors.white,
     );
   } // Show a snackbar failed message
@@ -93,7 +94,7 @@ class AppHelpers {
       title ?? 'Success',
       message ?? "",
       snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: AppColor().primary,
+      backgroundColor: AppColor.primary,
       colorText: Colors.white,
     );
   }
@@ -103,7 +104,7 @@ class AppHelpers {
       title ?? 'Warning',
       message ?? "",
       snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: AppColor().accent,
+      backgroundColor: AppColor.accent,
       colorText: Colors.white,
     );
   }
@@ -119,5 +120,11 @@ class AppHelpers {
       );
     }
     return false;
+  }
+
+  int mGenerateRandomIndex({required int from, required int to}) {
+    var random = Random();
+    int generatedNumber = from + random.nextInt(to);
+    return generatedNumber;
   }
 }

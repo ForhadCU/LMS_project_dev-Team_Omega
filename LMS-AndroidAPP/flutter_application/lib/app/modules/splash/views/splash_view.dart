@@ -11,14 +11,15 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     controller.onInit();
-    return BaseWidget(
+    return Scaffold(
+        backgroundColor: AppColor.secondaryBg,
         // title: "Splash",
-        child: Center(
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(image: AssetImage(AppAssetLocations().ic_bjet)),
-             /*  Text(
+              Image(image: AssetImage(AppAssetLocations.ic_bjet)),
+              /*  Text(
                 "Please wait...",
               ), */
             ],

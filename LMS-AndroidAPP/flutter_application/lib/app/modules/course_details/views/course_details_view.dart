@@ -1,7 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application/app/core/core_lib.dart';
+import 'package:flutter_application/app/core/values/gloabal_values.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 
 import 'package:get/get.dart';
+import 'package:getwidget/components/tabs/gf_tabs.dart';
+import 'package:getwidget/getwidget.dart';
 
 import '../controllers/course_details_controller.dart';
 
@@ -20,221 +26,404 @@ class CourseDetailsView extends GetView<CourseDetailsController> {
     return BaseWidget(
       title: "Course Details",
       child: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.only(top: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            buildCourseInfoSection(),
-            SizedBox(height: 20),
-            buildCreateCourseContentButton(),
-            SizedBox(height: 20),
-            buildCourseContentList(),
+            vCourseInfo(),
+            AppSpacing().xxl.height,
+            vInstructors(),
+            AppSpacing().xl.height,
+            vStudents(),
           ],
         ),
       ),
     );
   }
 
-  Widget buildCourseInfoSection() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 5,
-            color: Colors.grey.withOpacity(0.3),
-            offset: Offset(0, 2),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Course Title",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.green[800],
-            ),
-          ),
-          SizedBox(height: 10),
-          Text(
-            "This is the course description. It gives an overview of the course content and objectives.",
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey[600],
-            ),
-          ),
-          SizedBox(height: 10),
-          buildStudentList(),
-          SizedBox(height: 10),
-          buildTeacherList(),
-        ],
-      ),
-    );
-  }
-
-  Widget buildStudentList() {
+  Widget vCourseInfo() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.group, color: Colors.green[800]),
-        SizedBox(width: 8),
-        Text(
-          "Students: ",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.green[800],
-          ),
-        ),
-        Expanded(
-          child: Wrap(
-            spacing: 8.0,
-            children: students.map((student) {
-              return Chip(
-                backgroundColor: AppColor().teaGreen,
-                label: Text(student),
-                labelStyle: TextStyle(color: Colors.green[800]),
-              );
-            }).toList(),
-          ),
+        Column(
+          children: [
+            Image(
+              image: AssetImage(AppAssetLocations.ic_course2),
+              height: DeviceScreenHeight.thirtyPercent / 2,
+              fit: BoxFit.contain,
+            ),
+            AppSpacing().xl.height,
+            Text(
+              "Course Title",
+              style: appTextTheme.titleLarge,
+            ),
+            AppSpacing().md.height,
+            Text(
+              AppConstants.commonViewProperties.demoDesc,
+              style: appTextTheme.bodyMedium!
+                  .copyWith(overflow: TextOverflow.ellipsis),
+            ),
+            AppSpacing().xl.height,
+
+            // Content Button and Duration
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // content
+                NeumorphicButton(
+                  onPressed: () {
+                    vCourseContents();
+                  },
+                  style: AppButtonStyle().submit.copyWith(
+                        color: AppColor.primary,
+                        // intensity: 0.4,
+                        // shadowDarkColor: Colors.black
+                      ),
+                  child: Text(
+                    "Contents",
+                    style: AppTextStyle().normal.copyWith(color: Colors.white),
+                  ),
+                ),
+                AppSpacing().xxl.width,
+
+                // duration
+                NeumorphicButton(
+                  onPressed: () {},
+                  style: AppButtonStyle().submit.copyWith(
+                        color: AppColor.teaGreen,
+                        intensity: 0,
+                      ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "65",
+                        style: AppTextStyle()
+                            .normal
+                            .copyWith(color: AppColor.primary),
+                      ),
+                      Text(
+                        " Days",
+                        style: AppTextStyle()
+                            .normal
+                            .copyWith(color: AppColor.primary),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          ],
         ),
       ],
     );
   }
 
-  Widget buildTeacherList() {
-    return Row(
-      children: [
-        Icon(Icons.person, color: Colors.green[800]),
-        SizedBox(width: 8),
-        Text(
-          "Teachers: ",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.green[800],
-          ),
-        ),
-        Expanded(
-          child: Wrap(
-            spacing: 8.0,
-            children: teachers.map((teacher) {
-              return Chip(
-                backgroundColor: AppColor().teaGreen,
-                label: Text(teacher),
-                labelStyle: TextStyle(color: Color(0xFF2E7D32)),
-              );
-            }).toList(),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget buildCreateCourseContentButton() {
-    return ElevatedButton(
-      onPressed: () {
-        // Handle button press
-      },
-      style: ElevatedButton.styleFrom(
-        primary: Colors.green[800],
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-      child: Text(
-        "Create Course Content",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
-  Widget buildCourseContentList() {
+  vInstructors() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Course Contents",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.green[800],
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                AppConstants.commonViewProperties.instructors,
+                textAlign: TextAlign.left,
+                style: AppTextStyle().titleMedium,
+              ),
+            ),
+            Expanded(
+              child: Text(
+                "See all",
+                textAlign: TextAlign.right,
+                style: AppTextStyle().normal,
+              ),
+            ),
+          ],
+        ),
+        const AppDivider(),
+        SizedBox(
+          height: DeviceScreenHeight.tenPercent,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: controller.dummyInstructorImages.length,
+            itemBuilder: (context, index) {
+              return Container(
+                alignment: Alignment.center,
+                width: DeviceScreenWidth.sixtyPercent,
+                child: Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage(
+                        controller.dummyInstructorImages[index],
+                      ),
+                    ),
+                    title: Text(
+                      controller.dummyInstructorNames[index],
+                      // style: AppTextStyle().titleMedium,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    subtitle: Text(
+                      "Japanese Language Sensei",
+                      style: AppTextStyle().normal,
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
-        ),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: courseContent.length,
-          itemBuilder: (context, index) {
-            return buildCourseContentItem(courseContent[index]);
-          },
-        ),
+        )
       ],
     );
   }
 
-  Widget buildCourseContentItem(Map<String, String> content) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 5,
-            color: Colors.grey.withOpacity(0.3),
-            offset: Offset(0, 2),
+  vStudents() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                AppConstants.commonViewProperties.students,
+                textAlign: TextAlign.left,
+                style: AppTextStyle().titleMedium,
+              ),
+            ),
+            Expanded(
+              child: Text(
+                "See all",
+                textAlign: TextAlign.right,
+                style: AppTextStyle().normal,
+              ),
+            ),
+          ],
+        ),
+        const AppDivider(),
+        SizedBox(
+          height: DeviceScreenHeight.fortyPercent,
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: AppConstants
+                    .commonViewProperties.dummyStudentAssetLocations.length -
+                1,
+            itemBuilder: (context, index) {
+              return Container(
+                alignment: Alignment.center,
+                width: DeviceScreenWidth.sixtyPercent,
+                child: Card(
+                  elevation: 0,
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      // backgroundImage: AssetImage(AppAssetLocations.ic_user),
+                      radius: 20,
+                      backgroundImage: AssetImage(AppConstants
+                          .commonViewProperties
+                          .dummyStudentAssetLocations[index]),
+                    ),
+                    title: Text(
+                      "Student Name ${index + 1}",
+                      style: AppTextStyle().titleMedium,
+                    ),
+                    subtitle: Text(
+                      "sample.user@gamil.com",
+                      style: AppTextStyle().normal,
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
-        ],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            content['title']!,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.green[800],
+        )
+      ],
+    );
+  }
+
+  void vCourseContents() {
+    showModalBottomSheet(
+        elevation: 5,
+        barrierColor: Colors.transparent,
+        context: gGlobalContext,
+        builder: (gGlobalContext) {
+          return Container(
+            height: DeviceScreenHeight.sixtyPercent,
+            decoration: BoxDecoration(
+                color: AppColor.secondaryBg,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24))),
+            child: GFTabs(
+              controller: controller.tabController,
+              length: 3,
+              tabBarColor: Colors.transparent,
+              labelColor: AppColor.primary,
+              tabBarHeight: DeviceScreenHeight.tenPercent / 2,
+              tabs: <Widget>[
+                Tab(
+                  child: Text(
+                    "Lectures",
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Files",
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Videos",
+                  ),
+                ),
+              ],
+              tabBarView: GFTabBarView(
+                controller: controller.tabController,
+                children: <Widget>[
+                  // Lessons
+                  vLessonsTab(),
+
+                  // Files
+                  vFilesTab(),
+
+                  // Videos
+                  vVideos(),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  vLessonsTab() {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: 12,
+      itemBuilder: (context, index) {
+        return Container(
+          alignment: Alignment.center,
+          width: DeviceScreenWidth.sixtyPercent,
+          child: Card(
+            elevation: 0,
+            child: ListTile(
+              leading: CircleAvatar(
+                // radius: 24,
+
+                backgroundColor: Colors.transparent,
+                // backgroundImage: ,
+                child: Image(
+                  image: AssetImage(
+                    AppAssetLocations.ic_lessons,
+                  ),
+                  width: 32,
+                  height: 32,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              title: Text(
+                "Lesson $index",
+                style: AppTextStyle().titleMedium,
+              ),
+              subtitle: Text(
+                "This is sample description",
+                style: AppTextStyle().normal,
+              ),
+              trailing: Text(
+                "Oct 13",
+                style: AppTextStyle().normal,
+              ),
             ),
           ),
-          SizedBox(height: 5),
-          Text(
-            content['description']!,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[600],
+        );
+      },
+    );
+  }
+
+  vFilesTab() {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: 12,
+      itemBuilder: (context, index) {
+        return Container(
+          alignment: Alignment.center,
+          width: DeviceScreenWidth.sixtyPercent,
+          child: Card(
+            elevation: 0,
+            child: ListTile(
+              leading: CircleAvatar(
+                // radius: 24,
+
+                backgroundColor: Colors.transparent,
+                // backgroundImage: ,
+                child: Image(
+                  image: AssetImage(
+                    AppAssetLocations.ic_file,
+                  ),
+                  width: 32,
+                  height: 32,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              title: Text(
+                "File $index",
+                style: AppTextStyle().titleMedium,
+              ),
+              subtitle: Text(
+                "This is sample description",
+                style: AppTextStyle().normal,
+              ),
+              trailing: Text(
+                "Oct 13",
+                style: AppTextStyle().normal,
+              ),
             ),
           ),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  // Handle edit content
-                },
-                icon: Icon(Icons.edit, color: Colors.green[800]),
+        );
+      },
+    );
+  }
+
+  vVideos() {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: 12,
+      itemBuilder: (context, index) {
+        return Container(
+          alignment: Alignment.center,
+          width: DeviceScreenWidth.sixtyPercent,
+          child: Card(
+            elevation: 0,
+            child: ListTile(
+              leading: CircleAvatar(
+                // radius: 24,
+
+                backgroundColor: Colors.transparent,
+                // backgroundImage: ,
+                child: Image(
+                  image: AssetImage(
+                    AppAssetLocations.ic_video,
+                  ),
+                  width: 32,
+                  height: 32,
+                  fit: BoxFit.fill,
+                ),
               ),
-              IconButton(
-                onPressed: () {
-                  // Handle delete content
-                },
-                icon: Icon(Icons.delete, color: Colors.red),
+              title: Text(
+                "Video Resourse ${index + 1}",
+                style: AppTextStyle().titleMedium,
               ),
-            ],
+              subtitle: Text(
+                "This is sample description",
+                style: AppTextStyle().normal,
+              ),
+              trailing: Text(
+                "Oct 13",
+                style: AppTextStyle().normal,
+              ),
+            ),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
