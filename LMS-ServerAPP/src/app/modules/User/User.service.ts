@@ -9,7 +9,7 @@ import { sendEmail } from "../../utils/sendEmail";
 import mongoose from "mongoose";
 import { StudentProfile } from "../Student/Student.model";
 
-const createNewUser = async (user: TUser, batch?: string) => {
+const createNewUser = async (user: TUser) => {
   const session = await mongoose.startSession();
   try {
     session.startTransaction();
@@ -23,7 +23,7 @@ const createNewUser = async (user: TUser, batch?: string) => {
         userID: newUser[0]._id,
         age: 20,
         subjectMajor: "N/A",
-        batch: batch,
+        batch: 0,
         address: "N/A",
         img: "https://cdn-icons-png.flaticon.com/512/67/67902.png",
         performance: {

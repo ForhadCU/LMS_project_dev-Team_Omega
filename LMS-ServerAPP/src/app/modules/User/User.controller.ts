@@ -6,7 +6,7 @@ import config from "../../config";
 
 const createNewUser = catchAsync(async (req: Request, res: Response) => {
   let batch = req.body.batch;
-  const result = await UserServices.createNewUser(req.body, batch as string);
+  const result = await UserServices.createNewUser(req.body);
   sendResponse(res, {
     statusCode: 200,
     success: true,

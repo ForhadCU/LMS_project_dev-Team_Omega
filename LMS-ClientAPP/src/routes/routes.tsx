@@ -37,6 +37,8 @@ import { CreateJLINGOquiz } from "../pages/Quiz/CreateJLINGOquiz";
 import { ForumCreate } from "../pages/Forum/ForumCreate";
 import { StudentEvaluation } from "../pages/TeacherPages/StudentEvaluation";
 import { SingleStudentEval } from "../pages/TeacherPages/SingleStudentEval";
+import { StudentReportFake } from "../components/PDF/StudentReportFake";
+import { Account } from "../pages/Account/Account";
 
 const routes = createBrowserRouter([
   {
@@ -186,6 +188,10 @@ const routes = createBrowserRouter([
       {
         path: "/single-student-evaluation/:id",
         element: <SingleStudentEval />,
+      },
+      {
+        path: "/account-settings",
+        element: <Account />,
       },
     ],
   },

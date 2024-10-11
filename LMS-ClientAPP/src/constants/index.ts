@@ -1,4 +1,5 @@
 import evaluate from "/evaluate.png";
+import progressPDF from "/15_mahmud_progress_report.pdf";
 export const WQ_IMG =
   "https://res.cloudinary.com/dopsga5zr/image/upload/fl_preserve_transparency/v1728362287/WQ_sxc8pc.jpg?_s=public-apps";
 export const DQ_IMG =
@@ -12,3 +13,8 @@ export const Lectures_logo =
 export const Resources_logo =
   "https://www.shutterstock.com/image-vector/internet-education-concept-elearning-resources-600nw-1485832811.jpg";
 export const evaluate_png = evaluate;
+
+export const student_progress =
+  "https://chowdhurynawaf.github.io/Share_Bjet_Profile/";
+
+export const student_progress_local = progressPDF;

@@ -24,7 +24,13 @@ const createNewWeekNotes = async (evalNotes: TNotes[]) => {
   return res;
 };
 
+const createNewEvalNote = async (evalNote: TNotes) => {
+  const res = await WeeklyNotes.create(evalNote);
+  return res;
+};
+
 export const WeeklyNotesServices = {
   createFirstWeekNote,
   createNewWeekNotes,
+  createNewEvalNote,
 };
