@@ -22,7 +22,7 @@ router.post(
 
 router.get(
   "/get-all-users",
-  auth("admin", "super admin"),
+  auth("admin", "super admin", "instructor"),
   UserControllers.getAllUser
 );
 

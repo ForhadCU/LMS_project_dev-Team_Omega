@@ -35,6 +35,8 @@ import { CreateGeneralResources } from "../pages/Resources/CreateGeneralResource
 import { StudentProfile } from "../pages/StudentPages/StudentProfile";
 import { CreateJLINGOquiz } from "../pages/Quiz/CreateJLINGOquiz";
 import { ForumCreate } from "../pages/Forum/ForumCreate";
+import { StudentEvaluation } from "../pages/TeacherPages/StudentEvaluation";
+import { SingleStudentEval } from "../pages/TeacherPages/SingleStudentEval";
 
 const routes = createBrowserRouter([
   {
@@ -176,6 +178,14 @@ const routes = createBrowserRouter([
       {
         path: "/create-jlingo-quiz",
         element: <CreateJLINGOquiz />,
+      },
+      {
+        path: "/student-evaluation",
+        element: <StudentEvaluation />,
+      },
+      {
+        path: "/single-student-evaluation/:id",
+        element: <SingleStudentEval />,
       },
     ],
   },

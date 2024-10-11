@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { CustomPieChart } from "../../components/PieChart/CustomPieChart";
+import { StudentEvaluationCard } from "../../components/ui/StudentEvaluationCard";
 
 export const TeacherHome = () => {
   return (
@@ -7,7 +9,10 @@ export const TeacherHome = () => {
         <p className=" font-bold text-2xl">Welcome Sensei!</p>
       </div>
       <div>Other analytics</div>
-      <div className=" flex flex-row justify-end gap-2 p-2">
+      <div className=" flex flex-row justify-center gap-2 p-2">
+        <Link to={"/student-evaluation"}>
+          <StudentEvaluationCard />
+        </Link>
         <CustomPieChart totalAbsent={3} totalPresent={25} totalLate={5} />
       </div>
     </div>
