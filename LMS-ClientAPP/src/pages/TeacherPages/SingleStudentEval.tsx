@@ -1,7 +1,7 @@
 import { Button, Divider } from "@mui/material";
 import { useState } from "react";
 import { CustomModal } from "../../components/CustomModal/CustomModal";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppSelector } from "../../redux/hook";
 import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
 import { TUser } from "../../Types/user.type";
@@ -18,6 +18,7 @@ export const SingleStudentEval = () => {
   const params = useParams();
   const studID = params.id;
   const user = useAppSelector(selectCurrentUser) as TUser;
+  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -41,6 +42,9 @@ export const SingleStudentEval = () => {
     // Perform your submit action here
     reset(); // Reset form after submit
   };
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   return (
     <div className=" flex flex-col p-2 w-full">
       <div className=" flex flex-col">
@@ -51,13 +55,13 @@ export const SingleStudentEval = () => {
       <Divider variant="fullWidth"></Divider>
 
       <div className=" flex flex-col items-center my-2 w-full p-2">
-        <div className=" flex flex-row justify-end my-2 w-1/2">
+        <div className=" flex flex-row justify-end my-2 w-2/3">
           <Button onClick={handleOpen} variant="outlined">
             {" "}
             ADD NEW NOTE +
           </Button>
         </div>
-        <div className=" flex flex-row items-start gap-1 border rounded-md shadow-md justify-between w-1/2 h-[80px] bg-slate-50">
+        <div className=" flex flex-row items-start gap-1 border rounded-md shadow-md justify-between w-2/3 h-[80px] bg-slate-50">
           <div className=" w-1/2 flex justify-center items-center border h-full">
             <CalendarMonthIcon />
             Weeks
@@ -67,12 +71,17 @@ export const SingleStudentEval = () => {
             Notes{" "}
           </div>
         </div>
-        <div className=" flex flex-row items-start gap-1 border rounded-md shadow-md justify-between w-1/2 h-[80px]">
+        <div className=" flex flex-row items-start gap-1 border rounded-md shadow-md justify-between w-2/3 h-[80px]">
           <div className=" w-1/2 flex justify-center items-center h-full">
             week no
           </div>
           <div className=" w-1/2 flex justify-start h-full">note </div>
         </div>
+      </div>
+      <div className=" flex justify-center">
+        <Button variant="contained" onClick={handleGoBack}>
+          Back
+        </Button>
       </div>
       <CustomModal open={open} onCloseFn={handleClose}>
         <div className="flex flex-col w-full p-4 border shadow-md rounded-lg">

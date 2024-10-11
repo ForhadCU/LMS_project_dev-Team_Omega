@@ -6,12 +6,18 @@ import { Link } from "react-router-dom";
 interface IWeekCardProps {
   id: string;
   studName: string;
+  email: string;
 }
-export const EvaluationStudentCard = ({ studName, id }: IWeekCardProps) => {
+export const EvaluationStudentCard = ({
+  studName,
+  id,
+  email,
+}: IWeekCardProps) => {
   const firstChar = studName
     .split(" ")
     .map((word) => word.charAt(0))
     .join("");
+  console.log(id);
   return (
     <div className=" flex flex-row justify-between h-[100px] bg-slate-100 rounded-md shadow-md p-3">
       <div className=" flex flex-row gap-2 items-start">
@@ -20,7 +26,7 @@ export const EvaluationStudentCard = ({ studName, id }: IWeekCardProps) => {
         </div>
         <div className=" flex flex-col gap-2">
           {" "}
-          <p>Student {studName}</p> <p>email</p>
+          <p>{studName}</p> <p>{email}</p>
         </div>
       </div>
       <div>

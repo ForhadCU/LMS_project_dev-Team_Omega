@@ -1,12 +1,16 @@
 import { Divider } from "@mui/material";
 import { EvaluationStudentCard } from "../../components/ui/EvaluationStudentCard";
+import { useGetAllUsersQuery } from "../../redux/feature/users/usersAPI";
+import { GeneralUser } from "../../Types/user.type";
+import { Loader } from "../../components/loader/Loader";
 
 export const StudentEvaluation = () => {
-  // const [weeksCount, setWeeksCount] = useState([1]);
-  // const addNewWeek = () => {
-  //   setWeeksCount((prevweeks) => [...prevweeks, prevweeks.length + 1]);
-  // };
-  const students = ["1", "2", "3"];
+  const {
+    data: students,
+    isError,
+    isLoading,
+  } = useGetAllUsersQuery({ role: "student" });
+
   return (
     <div className=" flex flex-col p-3 w-full">
       <div className=" m-3 text-center text-xl lg:text-2xl font-bold ">
@@ -21,9 +25,23 @@ export const StudentEvaluation = () => {
           <div>Find a student</div>
         </div>
         <div className=" flex flex-col w-full gap-2">
-          {students.map((numb) => {
-            return <EvaluationStudentCard studName="Name" id={numb} />;
-          })}
+          {isError ? (
+            <h2 className=" text-red-600 font-bold my-3">
+              Error occured while loading
+            </h2>
+          ) : isLoading ? (
+            <Loader />
+          ) : (
+            students?.data.map((stud: GeneralUser) => {
+              return (
+                <EvaluationStudentCard
+                  studName={stud.name}
+                  id={stud._id}
+                  email={stud.email}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     </div>
