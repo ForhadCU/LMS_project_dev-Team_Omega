@@ -37,7 +37,7 @@ export const Login = () => {
     if (data.get("email") === "" || data.get("password") === "") {
       toast.error("Email or Password field empty");
     } else {
-      toast.loading("Logging in.....");
+      const toastId = toast.loading("Logging in.....");
       try {
         const userInfo = {
           email: data.get("email"),
@@ -49,7 +49,7 @@ export const Login = () => {
         console.log(user);
 
         dispatcher(setUser({ user: user, token: res.accesToken }));
-        toast.success("Logged in seccessfully");
+        toast.success("Logged in seccessfully", { id: toastId });
         navigate("/");
       } catch (erro) {
         console.log(error);

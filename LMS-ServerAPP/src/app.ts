@@ -17,7 +17,7 @@ app.use(globalErrorHandler);
 
 app.all("*", (req: Request, res: Response) => {
   res.status(400).send({
-    succsess: false,
+    success: false,
     message: "Route not found",
   });
 });

@@ -34,6 +34,12 @@ import { GeneralResources } from "../pages/Resources/GeneralResources";
 import { CreateGeneralResources } from "../pages/Resources/CreateGeneralResources";
 import { StudentProfile } from "../pages/StudentPages/StudentProfile";
 import { CreateJLINGOquiz } from "../pages/Quiz/CreateJLINGOquiz";
+import { ForumCreate } from "../pages/Forum/ForumCreate";
+import { StudentEvaluation } from "../pages/TeacherPages/StudentEvaluation";
+import { SingleStudentEval } from "../pages/TeacherPages/SingleStudentEval";
+import { StudentReportFake } from "../components/PDF/StudentReportFake";
+import { Account } from "../pages/Account/Account";
+import { EnrollmentConfirm } from "../pages/StudentPages/EnrollmentConfirm";
 import ManageCourses from "../pages/Courses/ManageCourses";
 
 const routes = createBrowserRouter([
@@ -100,6 +106,10 @@ const routes = createBrowserRouter([
       {
         path: "/forums",
         element: <Forums />,
+      },
+      {
+        path: "/create-forums",
+        element: <ForumCreate />,
       },
       {
         path: "/instructor-courses",
@@ -177,6 +187,22 @@ const routes = createBrowserRouter([
       {
         path: "/create-jlingo-quiz",
         element: <CreateJLINGOquiz />,
+      },
+      {
+        path: "/student-evaluation",
+        element: <StudentEvaluation />,
+      },
+      {
+        path: "/single-student-evaluation/:id",
+        element: <SingleStudentEval />,
+      },
+      {
+        path: "/account-settings",
+        element: <Account />,
+      },
+      {
+        path: "/enrollment-confirmation/:id",
+        element: <EnrollmentConfirm />,
       },
     ],
   },

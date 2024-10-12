@@ -41,11 +41,13 @@ export const AllPlatQuiz = () => {
           )}
           {course?.data.courseType === "language" && (
             <div>
-              <Link to={`/create-jlingo-quiz`}>
-                <Button variant="contained" color="error">
-                  Create JLINGO Quiz
-                </Button>
-              </Link>
+              {user.role === "instructor" && (
+                <Link to={`/create-jlingo-quiz`}>
+                  <Button variant="contained" color="error">
+                    Create JLINGO Quiz
+                  </Button>
+                </Link>
+              )}
             </div>
           )}
           <div>

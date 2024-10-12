@@ -9,7 +9,7 @@ import { sendEmail } from "../../utils/sendEmail";
 import mongoose from "mongoose";
 import { StudentProfile } from "../Student/Student.model";
 
-const createNewUser = async (user: TUser, batch?: string) => {
+const createNewUser = async (user: TUser) => {
   const session = await mongoose.startSession();
   try {
     session.startTransaction();
@@ -23,7 +23,7 @@ const createNewUser = async (user: TUser, batch?: string) => {
         userID: newUser[0]._id,
         age: 20,
         subjectMajor: "N/A",
-        batch: batch,
+        batch: 0,
         address: "N/A",
         img: "https://cdn-icons-png.flaticon.com/512/67/67902.png",
         performance: {
@@ -113,6 +113,26 @@ const userChangePassword = async (newPass: string, token: string) => {
   );
 };
 
+const getSingleUser = async (id: string) => {
+  const res = await User.findById(id).select("-password");
+  if (!res) {
+    throw new AppError(404, "User not found.");
+  }
+  return res;
+};
+
+const userInfoUpdate = async (updatedData: any) => {
+  let id;
+  for (let key in updatedData) {
+    if (key === "_id") {
+      id = updatedData[key];
+    }
+  }
+  console.log(updatedData);
+  const res = await User.findByIdAndUpdate(id, updatedData, { new: true });
+  return res;
+};
+
 const deleteUser = async (email: string) => {
   const getUser = await User.findOne({ email: email });
   if (!getUser) {
@@ -139,4 +159,6 @@ export const UserServices = {
   deleteUser,
   userChangePassword,
   createUsers,
+  getSingleUser,
+  userInfoUpdate,
 };

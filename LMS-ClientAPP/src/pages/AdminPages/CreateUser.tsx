@@ -1,14 +1,44 @@
 import { useForm } from "react-hook-form";
+import { useCreateNewUserMutation } from "../../redux/feature/users/usersAPI";
+import toast from "react-hot-toast";
+
+interface ICreateUserData {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  isActive: boolean;
+}
+
+type TData = {
+  password: string;
+  userEmail: string;
+  userName: string;
+  userType: string;
+};
 
 export const CreateUser = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm<TData>();
+  const [createNewUser, { isError }] = useCreateNewUserMutation();
 
-  const handleAddUser = (data: any) => {
+  const handleAddClass = async (data: TData) => {
     console.log(data);
+
+    const newUser: ICreateUserData = {
+      name: data.userName,
+      email: data.userEmail,
+      password: data.password,
+      role: data.userType,
+      isActive: true,
+    };
+    const res = await createNewUser(newUser).unwrap();
+    if (res.success) {
+      toast.success(res.message);
+    }
+    if (isError) {
+      toast.error("Error occured while creating user.");
+    }
+    console.log(res);
   };
 
   return (

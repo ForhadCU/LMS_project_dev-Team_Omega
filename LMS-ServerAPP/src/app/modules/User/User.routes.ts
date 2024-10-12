@@ -22,8 +22,20 @@ router.post(
 
 router.get(
   "/get-all-users",
-  auth("admin", "super admin"),
+  auth("admin", "super admin", "instructor"),
   UserControllers.getAllUser
+);
+
+router.get(
+  "/get-single-user",
+  auth("admin", "super admin", "instructor", "student"),
+  UserControllers.getSingleUser
+);
+
+router.patch(
+  "/update-user-info",
+  auth("admin", "instructor", "student", "super admin"),
+  UserControllers.updateUserInfo
 );
 
 router.post(
