@@ -113,6 +113,26 @@ const userChangePassword = async (newPass: string, token: string) => {
   );
 };
 
+const getSingleUser = async (id: string) => {
+  const res = await User.findById(id).select("-password");
+  if (!res) {
+    throw new AppError(404, "User not found.");
+  }
+  return res;
+};
+
+const userInfoUpdate = async (updatedData: any) => {
+  let id;
+  for (let key in updatedData) {
+    if (key === "_id") {
+      id = updatedData[key];
+    }
+  }
+  console.log(updatedData);
+  const res = await User.findByIdAndUpdate(id, updatedData, { new: true });
+  return res;
+};
+
 const deleteUser = async (email: string) => {
   const getUser = await User.findOne({ email: email });
   if (!getUser) {
@@ -139,4 +159,6 @@ export const UserServices = {
   deleteUser,
   userChangePassword,
   createUsers,
+  getSingleUser,
+  userInfoUpdate,
 };

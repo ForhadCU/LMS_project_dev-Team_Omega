@@ -28,5 +28,6 @@ export const baseAPI = createApi({
     "allplatquiz",
     "forums",
     "forumComments",
+    "singleUser",
   ],
 });

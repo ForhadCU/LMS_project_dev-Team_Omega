@@ -26,6 +26,18 @@ router.get(
   UserControllers.getAllUser
 );
 
+router.get(
+  "/get-single-user",
+  auth("admin", "super admin", "instructor", "student"),
+  UserControllers.getSingleUser
+);
+
+router.patch(
+  "/update-user-info",
+  auth("admin", "instructor", "student", "super admin"),
+  UserControllers.updateUserInfo
+);
+
 router.post(
   "/change-password",
   validationMiddleware(UserValidation.changePasswordValidationSchema),
