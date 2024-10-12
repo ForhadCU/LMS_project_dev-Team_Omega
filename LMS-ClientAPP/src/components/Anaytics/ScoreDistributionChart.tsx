@@ -1,69 +1,55 @@
-import WeeklyQuizChart from "../../components/Anaytics/WeeklyQuizChart";
-import DailyQuizChart from "../../components/Anaytics/DailyQuizChart";
-import ScoreDistributionChart from "../../components/Anaytics/ScoreDistributionChart";
-import Rankings from "../../components/Anaytics/Rankings";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { useState } from "react";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 
-const QuizAnalytics = () => {
-  const [quizType, setQuizType] = useState("weekly");
+const scoreDistributionData = [
+  { name: "0-5", value: 3 },
+  { name: "6-10", value: 5 },
+  { name: "11-15", value: 7 },
+  { name: "16-20", value: 5 },
+];
 
-  const handleToggle = (event, newQuizType) => {
-    if (newQuizType !== null) {
-      setQuizType(newQuizType);
-    }
-  };
+const COLORS = ["#0ea5e9", "#34d399", "#fbbf24", "#f97316"];
 
+const ScoreDistributionChart = () => {
   return (
-    <div className="bg-white shadow-md rounded-md p-6">
-      {/* Header with Toggle Button */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-semibold text-indigo-600 text-center flex-grow">
-          {quizType === "weekly"
-            ? "Weekly Quiz Analytics"
-            : "Daily Quiz Analytics"}
-        </h2>
-        <ToggleButtonGroup
-          value={quizType}
-          exclusive
-          onChange={handleToggle}
-          aria-label="quiz type toggle"
-        >
-          <ToggleButton
-            value="weekly"
-            aria-label="weekly quiz"
-            className={`rounded-l-md ${
-              quizType === "weekly"
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 text-indigo-600"
-            } hover:bg-indigo-700 transition-colors`}
+    <div className="bg-indigo-50 p-6 rounded-lg shadow-md">
+      <h3 className="text-xl font-semibold text-indigo-700 mb-4">
+        Score Distribution (Daily Quizzes)
+      </h3>
+      <ResponsiveContainer width="100%" height={300}>
+        <PieChart>
+          <Pie
+            data={scoreDistributionData}
+            dataKey="value" // Ensure this matches your data structure
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius={90}
+            innerRadius={50}
+            fill="#8884d8"
+            label
           >
-            Weekly
-          </ToggleButton>
-          <ToggleButton
-            value="daily"
-            aria-label="daily quiz"
-            className={`rounded-r-md ${
-              quizType === "daily"
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 text-indigo-600"
-            } hover:bg-indigo-700 transition-colors`}
-          >
-            Daily
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </div>
-
-      {/* Charts Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {quizType === "weekly" ? <WeeklyQuizChart /> : <DailyQuizChart />}
-        <ScoreDistributionChart />
-      </div>
-
-      {/* Rankings Section */}
-      <Rankings type={quizType} />
+            {scoreDistributionData.map((_, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+                stroke="#fff"
+                strokeWidth={2}
+              />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend verticalAlign="bottom" height={36} />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 };
 
-export default QuizAnalytics;
+export default ScoreDistributionChart;

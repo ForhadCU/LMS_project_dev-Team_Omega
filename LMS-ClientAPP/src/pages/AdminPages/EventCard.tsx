@@ -22,7 +22,7 @@ const EventCard = ({ event }) => {
   };
 
   return (
-    <Card className="max-w-[24rem] h-[26rem] rounded-xl flex flex-col justify-between shadow-lg border border-gray-200">
+    <Card className="max-w-[26rem] h-[26rem] rounded-xl flex flex-col justify-between shadow-lg border border-gray-200">
       <CardHeader
         floated={false}
         shadow={false}

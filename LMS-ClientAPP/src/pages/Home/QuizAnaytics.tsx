@@ -8,7 +8,7 @@ import { useState } from "react";
 const QuizAnalytics = () => {
   const [quizType, setQuizType] = useState("weekly");
 
-  const handleToggle = (event, newQuizType) => {
+  const handleToggle = (_: any, newQuizType: string) => {
     if (newQuizType !== null) {
       setQuizType(newQuizType);
     }
@@ -31,35 +31,37 @@ const QuizAnalytics = () => {
         >
           <ToggleButton
             value="weekly"
-            aria-label="weekly quiz"
-            className={`rounded-lg shadow-md ${
-              quizType === "weekly"
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 text-indigo-600"
-            } hover:bg-indigo-700 transition-colors border border-indigo-500`}
+            // sx={{
+            //   backgroundColor: quizType === "daily" ? "#3b82f6" : "white",
+            //   color: quizType === "daily" ? "white" : "#3b82f6",
+            //   "&:hover": {
+            //     backgroundColor: "#3b82f6",
+            //     color: "white",
+            //   },
+            // }}
           >
             Weekly
           </ToggleButton>
           <ToggleButton
             value="daily"
-            aria-label="daily quiz"
-            className={`rounded-lg shadow-md ${
-              quizType === "daily"
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 text-indigo-600"
-            } hover:bg-indigo-700 transition-colors border border-indigo-500`}
+            // sx={{
+            //   backgroundColor: quizType === "weekly" ? "#3b82f6" : "white",
+            //   color: quizType === "weekly" ? "white" : "#3b82f6",
+            //   "&:hover": {
+            //     backgroundColor: "#3b82f6",
+            //     color: "white",
+            //   },
+            // }}
           >
             Daily
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
-
       {/* Charts Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {quizType === "weekly" ? <WeeklyQuizChart /> : <DailyQuizChart />}
         <ScoreDistributionChart />
       </div>
-
       {/* Rankings Section */}
       <Rankings type={quizType} />
     </div>

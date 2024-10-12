@@ -17,7 +17,11 @@ const Rankings = ({ type }) => {
   });
 
   return (
-    <TableContainer component={Paper} className="rounded-md mt-6 shadow-md ">
+    <TableContainer
+      component={Paper}
+      sx={{ backgroundColor: "#EEF2FF" }}
+      className="rounded-md mt-6 shadow-md "
+    >
       <h2 className="my-5 text-2xl text-indigo-600 text-center font-semibold">
         {type === "weekly" ? "Weekly Quiz Rankings" : "Daily Quiz Rankings"}
       </h2>
