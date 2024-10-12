@@ -34,6 +34,7 @@ import { GeneralResources } from "../pages/Resources/GeneralResources";
 import { CreateGeneralResources } from "../pages/Resources/CreateGeneralResources";
 import { StudentProfile } from "../pages/StudentPages/StudentProfile";
 import { CreateJLINGOquiz } from "../pages/Quiz/CreateJLINGOquiz";
+import ManageCourses from "../pages/Courses/ManageCourses";
 
 const routes = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const routes = createBrowserRouter([
         element: <CourseDetailsStudent />,
       },
       {
+        path: "/course-manage",
+        element: <ManageCourses />,
+      },
+      {
         path: "/attendance-list",
         element: <AttendanceList />,
       },
@@ -136,6 +141,7 @@ const routes = createBrowserRouter([
         path: "/course-content-create/:id",
         element: <CreateContents />,
       },
+
       {
         path: "/create-event",
         element: <CreateEvent></CreateEvent>,

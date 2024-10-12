@@ -22,17 +22,17 @@ const EventCard = ({ event }) => {
   };
 
   return (
-    <Card className="max-w-[24rem] h-[26rem] rounded-xl flex flex-col justify-between shadow-lg border border-gray-200">
+    <Card className="max-w-[26rem] h-[26rem] rounded-xl flex flex-col justify-between shadow-lg border border-gray-200">
       <CardHeader
         floated={false}
         shadow={false}
         color="transparent"
-        className="m-0 p-0 rounded-none"
+        className="m-0 p-1 rounded-none"
       >
         <img
           src={img}
           alt={title}
-          className="h-56 w-full object-cover rounded-xl hover:brightness-110 hover:scale-105"
+          className="h-56 w-full object-cover rounded-md hover:brightness-110 hover:scale-105"
         />
       </CardHeader>
 
