@@ -39,6 +39,7 @@ import { StudentEvaluation } from "../pages/TeacherPages/StudentEvaluation";
 import { SingleStudentEval } from "../pages/TeacherPages/SingleStudentEval";
 import { StudentReportFake } from "../components/PDF/StudentReportFake";
 import { Account } from "../pages/Account/Account";
+import { EnrollmentConfirm } from "../pages/StudentPages/EnrollmentConfirm";
 
 const routes = createBrowserRouter([
   {
@@ -192,6 +193,10 @@ const routes = createBrowserRouter([
       {
         path: "/account-settings",
         element: <Account />,
+      },
+      {
+        path: "/enrollment-confirmation/:id",
+        element: <EnrollmentConfirm />,
       },
     ],
   },

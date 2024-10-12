@@ -58,6 +58,15 @@ const courseAPI = baseAPI.injectEndpoints({
         };
       },
     }),
+    enrollIntoCourse: builder.mutation({
+      query: (enrollmentData) => {
+        return {
+          url: "/enrollment/student-enroll",
+          method: "POST",
+          body: enrollmentData,
+        };
+      },
+    }),
   }),
 });
 
@@ -67,4 +76,5 @@ export const {
   useGetSingleCourseQuery,
   useUpdateCourseDataMutation,
   useGetEnrollmentsQuery,
+  useEnrollIntoCourseMutation,
 } = courseAPI;
