@@ -80,7 +80,7 @@ const routes = createBrowserRouter([
         element: <StudentReportViewr />,
       },
       {
-        path: "/student-details",
+        path: "/student-details/:id",
         element: <StudentDetails />,
       },
       {
