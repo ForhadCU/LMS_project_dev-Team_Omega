@@ -18,3 +18,6 @@ export const student_progress =
   "https://chowdhurynawaf.github.io/Share_Bjet_Profile/";
 
 export const student_progress_local = progressPDF;
+
+export const defaultAvatar =
+  "https://res.cloudinary.com/teepublic/image/private/s--NtcgQRqE--/c_crop,x_10,y_10/c_fit,h_830/c_crop,g_north_west,h_1038,w_1038,x_-293,y_-104/l_upload:v1565806151:production:blanks:vdbwo35fw6qtflw9kezw/fl_layer_apply,g_north_west,x_-404,y_-215/b_rgb:ffffff/c_limit,f_auto,h_630,q_auto:good:420,w_630/v1631035680/production/designs/24167377_0.jpg";

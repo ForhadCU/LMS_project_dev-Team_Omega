@@ -18,7 +18,11 @@ type TData = {
 };
 
 export const CreateUser = () => {
-  const { register, handleSubmit } = useForm<TData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TData>();
   const [createNewUser, { isError }] = useCreateNewUserMutation();
 
   const handleAddClass = async (data: TData) => {
@@ -44,7 +48,7 @@ export const CreateUser = () => {
   return (
     <div className=" bg-gradient-to-r from-blue-50 to-blue-100 py-10 ">
       <form
-        onSubmit={handleSubmit(handleAddUser)}
+        onSubmit={handleSubmit(handleAddClass)}
         className="space-y-4 w-2/5 mx-auto bg-white shadow-lg rounded-lg  p-5"
       >
         <h2 className="text-center mb-4 text-3xl font-bold text-indigo-600">

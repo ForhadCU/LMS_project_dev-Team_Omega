@@ -12,6 +12,7 @@ import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
 import { TUser } from "../../Types/user.type";
 import { Link } from "react-router-dom";
 import {
+  defaultAvatar,
   Lectures_logo,
   Quiz_logo,
   Resources_logo,
