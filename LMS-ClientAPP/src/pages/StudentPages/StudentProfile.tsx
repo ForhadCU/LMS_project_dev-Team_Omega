@@ -4,7 +4,11 @@ import { useForm } from "react-hook-form";
 import { useAppSelector } from "../../redux/hook";
 import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
 import { TUser } from "../../Types/user.type";
-import { useGetStudentProfileQuery } from "../../redux/feature/student/studentAPI";
+import {
+  useGetStudentProfileQuery,
+  useUpdateStudentProfileMutation,
+} from "../../redux/feature/student/studentAPI";
+import toast from "react-hot-toast";
 
 export type TStudent = {
   fullName: string;
@@ -38,6 +42,9 @@ export const StudentProfile = () => {
     setValue("batch", studentProfile?.data.batch);
     setValue("address", studentProfile?.data.address);
   }, [setValue, studentProfile]);
+
+  const [updateStudentProfile, { error }] = useUpdateStudentProfileMutation();
+
   const onSubmit = async (data: any) => {
     const textData = {
       fullName: data.fullName,
@@ -53,9 +60,22 @@ export const StudentProfile = () => {
     }
 
     formData.append("data", JSON.stringify(textData));
-    // Log FormData contents
-    for (let pair of formData.entries()) {
-      console.log(pair[0], pair[1]);
+    // // Log FormData contents
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0], pair[1]);
+    // }
+
+    try {
+      const res = await updateStudentProfile(formData).unwrap();
+      if (res.success) {
+        toast.success(res.message);
+      }
+      if (!res.success) {
+        toast.error(res.message);
+      }
+    } catch (err: any) {
+      toast.error("Error occured while updating check log");
+      console.log(error + " " + err);
     }
   };
   return (

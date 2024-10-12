@@ -15,7 +15,17 @@ const studentAPI = baseAPI.injectEndpoints({
         };
       },
     }),
+    updateStudentProfile: builder.mutation({
+      query: (updatedData) => {
+        return {
+          url: "/student/update-profile",
+          method: "PATCH",
+          body: updatedData,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetStudentProfileQuery } = studentAPI;
+export const { useGetStudentProfileQuery, useUpdateStudentProfileMutation } =
+  studentAPI;

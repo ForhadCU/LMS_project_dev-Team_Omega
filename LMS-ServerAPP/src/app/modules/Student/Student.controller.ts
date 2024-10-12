@@ -14,6 +14,22 @@ const getStudentProfile = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateStudentData = catchAsync(async (req: Request, res: Response) => {
+  const eventdata = req.body;
+  console.log(eventdata);
+
+  const result = await StudentProfileSrvices.updateStudentData(
+    req.file,
+    eventdata
+  );
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Student Info updated successfully",
+    data: result,
+  });
+});
 export const StudentProfileControllers = {
   getStudentProfile,
+  updateStudentData,
 };
