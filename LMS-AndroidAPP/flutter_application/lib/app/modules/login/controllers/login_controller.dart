@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application/app/core/core_lib.dart';
 import 'package:flutter_application/app/core/values/gloabal_values.dart';
@@ -9,9 +11,9 @@ import 'package:get/get.dart';
 import 'package:flutter_application/app/data/models/login/payloads/login_payload.dart';
 
 class LoginController extends GetxController {
-  final LoginRepository loginRepository;
+  final LoginRepository repo;
 
-  LoginController({required this.loginRepository});
+  LoginController({required this.repo});
 
   final count = 0.obs;
   var emailCtrl = TextEditingController();
@@ -41,10 +43,14 @@ class LoginController extends GetxController {
 
     try {
       // Attempt login
-      final response =
-          await loginRepository.mLoginUser(loginPayload: loginPayload);
-      final isAccessTokenSaved = response != null
-          ? await _saveAccessToken(response.accesToken ?? "")
+      final response = await repo.mLoginUser(loginPayload: loginPayload);
+      late bool isAccessTokenSaved;
+      response != null
+          ? {
+              isAccessTokenSaved =
+                  await _saveAccessToken(response.accesToken ?? ""),
+              await _saveCurrentUserData(response),
+            }
           : false;
 
       // Update UI state
@@ -85,7 +91,7 @@ class LoginController extends GetxController {
   }
 
   Future<bool> _saveAccessToken(String accessToken) async {
-    return await loginRepository.mSaveSessionToLocal(value: accessToken);
+    return await repo.mSaveSessionToLocal(value: accessToken);
   }
 
   void _updateState(LoginResponse? response, bool isAccessTokenSaved) {
@@ -115,5 +121,14 @@ class LoginController extends GetxController {
 
   void mHandleForgotPassText() {
     Get.toNamed(Routes.PASSWORD_RECOVER);
+  }
+
+  _saveCurrentUserData(LoginResponse response) async {
+    // convert respnse object to json and then encode this json to  String
+    String jsonString = jsonEncode(response.toJson());
+    repo.mSaveCurrentUserDataToLocal(
+      value: jsonString,
+      key: AppConstants.apiKeys.currentUserData,
+    );
   }
 }

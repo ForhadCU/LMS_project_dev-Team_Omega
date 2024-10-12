@@ -12,8 +12,7 @@ class CreateGenralResourcesView
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  final TextEditingController contentLinkController = TextEditingController();
-  final TextEditingController createDateController = TextEditingController();
+  final TextEditingController ResourceLinkController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,11 @@ class CreateGenralResourcesView
       title: "Upload Resource",
       actionsWidget: InkWell(
         onTap: () {
-          controller.mSaveGeneralResource(_formKey);
+          controller.mSaveGeneralResource(
+            _formKey,
+            titleController,
+            descriptionController,
+            ResourceLinkController);
         },
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -51,7 +54,7 @@ class CreateGenralResourcesView
                 TextFormField(
                   controller: titleController,
                   decoration: InputDecoration(
-                    labelText: 'Content Title',
+                    labelText: 'Resource Title',
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {
@@ -64,16 +67,16 @@ class CreateGenralResourcesView
 
                 SizedBox(height: 20),
 
-                // Content Link Field
+                // Resource Link Field
                 TextFormField(
-                  controller: contentLinkController,
+                  controller: ResourceLinkController,
                   decoration: InputDecoration(
-                    labelText: 'Content Link',
+                    labelText: 'Resource Link',
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Please enter the content link';
+                      return 'Please enter the Resource link';
                     }
                     return null;
                   },
@@ -85,7 +88,7 @@ class CreateGenralResourcesView
                   controller: descriptionController,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    labelText: 'Content Description',
+                    labelText: 'Resource Description',
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {

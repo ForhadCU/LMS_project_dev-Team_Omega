@@ -11,6 +11,13 @@ class AppConstants {
 
 class ApiKeys {
   final accessToken = "access_token";
+  final instructor = "instructor";
+  final currentUserData = "currentUserData";
+}
+
+class Data {
+  final instructorEmail = "test.sensei@gmail.com";
+  final instructorPass = "123456";
 }
 
 class CommonViewProperties {

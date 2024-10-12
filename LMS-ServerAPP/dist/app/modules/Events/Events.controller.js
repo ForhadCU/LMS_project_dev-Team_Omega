@@ -26,6 +26,27 @@ const createNewEvent = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter
         data: result,
     });
 }));
+const createNewEventAlt = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Events_services_1.EventServices.createNewEventAlt(req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Event was created successfully",
+        data: result,
+    });
+}));
+const getAllEvents = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const rawQuery = req.query;
+    const result = yield Events_services_1.EventServices.getAllEvents(rawQuery);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Events were fetched successfully",
+        data: result,
+    });
+}));
 exports.EventsController = {
     createNewEvent,
+    getAllEvents,
+    createNewEventAlt,
 };

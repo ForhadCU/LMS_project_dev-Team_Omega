@@ -27,11 +27,22 @@ const createNewCourse = (0, globalTryCatchFunc_1.default)((req, res) => __awaite
     });
 }));
 const getAllCourses = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield Courses_services_1.CourseServices.getAllCourses();
+    const rawQuery = req.query;
+    const result = yield Courses_services_1.CourseServices.getAllCourses(rawQuery);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: 200,
         message: "Courses(Active only) fetched successfully",
+        data: result,
+    });
+}));
+const getSingleCourse = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const queryID = req.query.id;
+    const result = yield Courses_services_1.CourseServices.getSingleCourse(queryID);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: 200,
+        message: "Course fetched successfully",
         data: result,
     });
 }));
@@ -48,11 +59,12 @@ const updateCourse = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(v
 }));
 const deactivateCourse = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const code = req.body.code;
-    const result = yield Courses_services_1.CourseServices.deactivateCourse(code);
+    const status = req.body.status;
+    const result = yield Courses_services_1.CourseServices.deactivateCourse(code, status);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: 200,
-        message: "Course deactivated successfully",
+        message: "Course Status changed successfully",
         data: result,
     });
 }));
@@ -61,4 +73,5 @@ exports.CourseControllers = {
     getAllCourses,
     updateCourse,
     deactivateCourse,
+    getSingleCourse,
 };

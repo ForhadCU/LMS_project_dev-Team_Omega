@@ -18,7 +18,8 @@ const User_service_1 = require("./User.service");
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const config_1 = __importDefault(require("../../config"));
 const createNewUser = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield User_service_1.UserServices.createNewUser(req.body);
+    let batch = req.body.batch;
+    const result = yield User_service_1.UserServices.createNewUser(req.body, batch);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
@@ -27,7 +28,8 @@ const createNewUser = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(
     });
 }));
 const getAllUser = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield User_service_1.UserServices.getAllUsers();
+    const rawquery = req.query;
+    const result = yield User_service_1.UserServices.getAllUsers(rawquery);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,

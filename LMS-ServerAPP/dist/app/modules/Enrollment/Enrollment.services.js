@@ -17,22 +17,27 @@ const mongoose_1 = require("mongoose");
 const AppError_1 = __importDefault(require("../../errors/AppError"));
 const Courses_model_1 = require("../Courses/Courses.model");
 const Enrollment_model_1 = require("./Enrollment.model");
-const enrollIntoCourse = (studentID, courseID) => __awaiter(void 0, void 0, void 0, function* () {
+const enrollIntoCourse = (studentID, courseID, batch) => __awaiter(void 0, void 0, void 0, function* () {
     const getExistingEnrollment = yield Enrollment_model_1.Enrollment.find({
         Student_ID: studentID,
         Enrolled_Course: courseID,
     });
     const getExistingCourse = yield Courses_model_1.Course.findById(courseID);
-    if (getExistingEnrollment) {
+    console.log(studentID);
+    if (getExistingEnrollment.length > 0) {
         throw new AppError_1.default(400, "Already enrolled into this Course");
     }
     if (!getExistingCourse) {
-        throw new AppError_1.default(404, "Course nor found");
+        throw new AppError_1.default(404, "Course not found");
+    }
+    if (getExistingCourse.isActive === "inactive") {
+        throw new AppError_1.default(400, "Course not active");
     }
     const today_date = new Date();
     const enrollmentData = {
         Student_ID: new mongoose_1.Types.ObjectId(studentID),
         Enrolled_Course: new mongoose_1.Types.ObjectId(courseID),
+        student_batch: batch,
         Enroll_date: today_date,
     };
     const createEnrollment = yield Enrollment_model_1.Enrollment.create(enrollmentData);
@@ -43,7 +48,9 @@ const getEnrollments = (rawQuery) => __awaiter(void 0, void 0, void 0, function*
     for (let key in rawQuery) {
         query[key] = rawQuery[key];
     }
-    const result = yield Enrollment_model_1.Enrollment.find(query).populate("Enrolled_Course", "title code");
+    const result = yield Enrollment_model_1.Enrollment.find(query)
+        .populate("Enrolled_Course", "title code description")
+        .populate("Student_ID", "name email");
     return result;
 });
 exports.EnrollmentServices = {

@@ -14,4 +14,6 @@ router.post("/create-event", (0, auth_1.default)(User_interface_1.USER_ROLE.supe
     req.body = JSON.parse(req.body.data);
     next();
 }, Events_controller_1.EventsController.createNewEvent);
+router.post("/create-event-alt", (0, auth_1.default)("admin", "super admin"), Events_controller_1.EventsController.createNewEventAlt);
+router.get("/get-all-events", (0, auth_1.default)("admin", "super admin", "student", "instructor"), Events_controller_1.EventsController.getAllEvents);
 exports.EventsRoutes = router;

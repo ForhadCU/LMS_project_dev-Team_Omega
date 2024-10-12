@@ -35,7 +35,7 @@ class CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: 2,
       margin: EdgeInsets.only(bottom: AppSpacing().xl),
       shape: RoundedRectangleBorder(
           side: const BorderSide(color: Colors.transparent),

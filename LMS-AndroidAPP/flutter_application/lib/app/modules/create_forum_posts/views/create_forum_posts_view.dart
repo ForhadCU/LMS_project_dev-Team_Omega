@@ -11,16 +11,15 @@ class CreateForumPostsView extends GetView<CreateForumPostsController> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController titleController = TextEditingController();
-  final TextEditingController codeController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  final TextEditingController durationController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
-      title: 'Create new Course',
+      title: 'Create new Post',
       actionsWidget: InkWell(
         onTap: () {
-          controller.mSavePost(_formKey);
+          controller.mSaveForumPost(
+              _formKey, titleController, descriptionController);
         },
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -50,12 +49,12 @@ class CreateForumPostsView extends GetView<CreateForumPostsController> {
                 TextFormField(
                   controller: titleController,
                   decoration: InputDecoration(
-                    labelText: 'Course Title',
+                    labelText: 'Title',
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Please enter the course title';
+                      return 'Please enter the post title';
                     }
                     return null;
                   },
@@ -72,7 +71,7 @@ class CreateForumPostsView extends GetView<CreateForumPostsController> {
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Please enter the course description';
+                      return 'Please enter the description';
                     }
                     return null;
                   },

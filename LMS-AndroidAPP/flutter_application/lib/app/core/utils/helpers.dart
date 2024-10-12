@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/app/core/core_lib.dart';
 import 'package:flutter_application/app/core/values/gloabal_values.dart';
 import 'package:flutter_application/app/data/models/error_response_model.dart';
+import 'package:flutter_application/app/data/providers/api_provider.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+
+import '../../data/models/login/responses/login_response_model.dart';
+import '../../routes/app_pages.dart';
+import '../widgets/waiting_dialog.dart';
 
 class AppHelpers {
   // make this class singleton
@@ -16,8 +21,23 @@ class AppHelpers {
   factory AppHelpers() {
     return _singleton;
   }
-  // codes start from here
-  // Methods or variables shouldn't be static
+  //  get user data from local storage
+  Future<LoginResponse> mGetCurrentUserDataFromLocal() async {
+    String? response = await ApiProvider()
+        .getString(key: AppConstants.apiKeys.currentUserData);
+
+    if (response != null) {
+      gLogger.t(response);
+      // decode the string to map/json
+      Map<String, dynamic> decodedResponse = jsonDecode(response);
+      // make loginResponse object from this map/json
+      LoginResponse loginResponse = LoginResponse.fromJson(decodedResponse);
+
+      return loginResponse;
+    } else {
+      throw Exception("User Data is empty in local storage");
+    }
+  }
 
   /// Create a MaterialColor from a Color
   MaterialColor mCreateMaterialColor(Color color) {
@@ -40,15 +60,19 @@ class AppHelpers {
     return MaterialColor(color.value, swatch);
   }
 
-  Map<String, dynamic> mHandleRemoteResponse(http.Response response) {
+  Map<String, dynamic> mHandleRemoteResponse(http.Response response)  {
+
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      gLoggerNoStack.i("Successfully get api response");
+      // gLoggerNoStack.i("Successfully get api response");
+      gLoggerNoStack.i(jsonDecode(response.body)['message']);
       return jsonDecode(response.body);
     } else {
+     
+      gLoggerNoStack.w(jsonDecode(response.body));
       var errorResponseModel =
           ErrorResponseModel.fromMap(jsonDecode(response.body));
       gLogger.e(errorResponseModel.message, error: "Response message");
-      // AppHelpers().showSnackBarFailed(message: errorResponseModel.message);
+      AppHelpers().showSnackBarFailed(message: errorResponseModel.message);
       throw Exception('Failed with status code: ${response.statusCode}');
     }
   }
@@ -126,5 +150,24 @@ class AppHelpers {
     var random = Random();
     int generatedNumber = from + random.nextInt(to);
     return generatedNumber;
+  }
+
+  String mGenerateShortName(String name) {
+    String shortName = name[0];
+    for (var i = 0; i < name.length; i++) {
+      if (name[i] == " ") {
+        shortName = shortName + name[i + 1];
+        return shortName;
+      }
+    }
+    return shortName;
+  }
+
+  Future<void> mWait() async {
+    await Future.delayed(Duration(milliseconds: 500));
+  }
+
+  void mNavigateToHome() {
+    Get.offNamed(Routes.HOME);
   }
 }

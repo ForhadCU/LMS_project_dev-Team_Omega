@@ -9,6 +9,7 @@ const userValidationSchema = zod_1.z.object({
         password: zod_1.z.string().max(20),
         role: zod_1.z.string(),
         isActive: zod_1.z.boolean(),
+        batch: zod_1.z.string().optional(),
     }),
 });
 const loginValidationSchema = zod_1.z.object({

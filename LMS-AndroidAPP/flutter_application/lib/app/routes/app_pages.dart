@@ -38,8 +38,8 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  // static const initial = Routes.SPLASH;
-  static const initial = Routes.HOME;
+  static const initial = Routes.SPLASH;
+  // static const initial = Routes.HOME;
   static const _transitionDuration = Duration(milliseconds: 500);
 
   static final routes = [

@@ -23,9 +23,20 @@ const createNewCourse = (courseData) => __awaiter(void 0, void 0, void 0, functi
     const newCourse = yield Courses_model_1.Course.create(courseData);
     return newCourse;
 });
-const getAllCourses = () => __awaiter(void 0, void 0, void 0, function* () {
-    const getallCourse = yield Courses_model_1.Course.find({ isActive: true }).populate("instructors", "name email");
+const getAllCourses = (rawQuery) => __awaiter(void 0, void 0, void 0, function* () {
+    let initalQuery = {};
+    for (let key in rawQuery) {
+        initalQuery[key] = rawQuery[key];
+    }
+    const getallCourse = yield Courses_model_1.Course.find(initalQuery).populate("instructors", "name email");
     return getallCourse;
+});
+const getSingleCourse = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Courses_model_1.Course.findById(id).populate("instructors", "name email");
+    if (!result) {
+        throw new AppError_1.default(404, "Course not found");
+    }
+    return result;
 });
 const updateCourse = (courseCode, updateData) => __awaiter(void 0, void 0, void 0, function* () {
     const getExistingCourse = yield Courses_model_1.Course.findOne({ code: courseCode });
@@ -35,15 +46,15 @@ const updateCourse = (courseCode, updateData) => __awaiter(void 0, void 0, void 
     const result = yield Courses_model_1.Course.findOneAndUpdate({ code: courseCode }, updateData, { new: true });
     return result;
 });
-const deactivateCourse = (courseCode) => __awaiter(void 0, void 0, void 0, function* () {
+const deactivateCourse = (courseCode, status) => __awaiter(void 0, void 0, void 0, function* () {
     const getExistingCourse = yield Courses_model_1.Course.findOne({ code: courseCode });
     if (!getExistingCourse) {
         throw new AppError_1.default(404, "Course not found!");
     }
-    if (!getExistingCourse.isActive) {
+    if (getExistingCourse.isActive === "inactive") {
         throw new AppError_1.default(409, "Course already deactivated!");
     }
-    const result = yield Courses_model_1.Course.findOneAndUpdate({ code: courseCode }, { isActive: false }, { new: true });
+    const result = yield Courses_model_1.Course.findOneAndUpdate({ code: courseCode }, { isActive: status }, { new: true });
     return result;
 });
 exports.CourseServices = {
@@ -51,4 +62,5 @@ exports.CourseServices = {
     getAllCourses,
     updateCourse,
     deactivateCourse,
+    getSingleCourse,
 };

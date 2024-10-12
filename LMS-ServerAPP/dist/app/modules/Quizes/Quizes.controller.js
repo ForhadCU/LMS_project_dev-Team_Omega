@@ -25,6 +25,24 @@ const createNewQuiz = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(
         data: result,
     });
 }));
+const createNewIOSQuiz = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Quizes_services_1.QuizServices.createNewIOSQuiz(req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Quiz created (All platform) successfully",
+        data: result,
+    });
+}));
+const createNewJLingoQuiz = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Quizes_services_1.QuizServices.createJLingoQuiz(req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Quiz created (JLINGO) successfully",
+        data: result,
+    });
+}));
 const getAllQuizes = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield Quizes_services_1.QuizServices.getAllQuizes(req.query);
     (0, sendResponse_1.default)(res, {
@@ -34,7 +52,29 @@ const getAllQuizes = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(v
         data: result,
     });
 }));
+const getAllIOSQuizes = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Quizes_services_1.QuizServices.getIOSQuizes(req.query);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Quizes fetched (All platform) successfully",
+        data: result,
+    });
+}));
+const getAllJLingoQuizes = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Quizes_services_1.QuizServices.getAllJLingoQuizzes(req.query);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Quizes fetched (JLINGO) successfully",
+        data: result,
+    });
+}));
 exports.QuizControllers = {
     createNewQuiz,
     getAllQuizes,
+    createNewIOSQuiz,
+    getAllIOSQuizes,
+    createNewJLingoQuiz,
+    getAllJLingoQuizes,
 };

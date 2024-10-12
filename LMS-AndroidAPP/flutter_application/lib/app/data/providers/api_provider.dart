@@ -15,9 +15,9 @@ class ApiProvider {
   // codes start from here
   // All methods or variables shouldn't be static
 
-  static const String baseUrlLive =
-      'https://lms-project-dev-team-omega.vercel.app/api/v1';
-  static const String baseUrlLocalhost = 'https://localhost:5000/api/v1';
+  static const String baseUrlLive = 'lms-project-dev-team-omega.vercel.app';
+  static const String baseUrlLocalhost = 'localhost:5000';
+  static const String midPoint = "/api/v1";
 
   // Private method to handle requests ////////////
   Future<http.Response> _request({
@@ -25,8 +25,11 @@ class ApiProvider {
     required AppEnum method,
     Map<String, String>? headers,
     dynamic body,
+    Map<String, String>? params,
   }) async {
-    final uri = Uri.parse('$baseUrlLive$endpoint');
+    // final uri =  Uri.https(baseUrlLive,midPoint+endpoint);
+    final uri = Uri.http(baseUrlLocalhost, midPoint + endpoint, params);
+
     final defaultHeaders = {'Content-Type': 'application/json'};
     final mergedHeaders = {...defaultHeaders, ...?headers};
 
@@ -50,8 +53,16 @@ class ApiProvider {
   }
 
   // Public methods for each HTTP verb ////////////
-  Future<http.Response> get(String endpoint, {Map<String, String>? headers}) {
-    return _request(endpoint: endpoint, method: AppEnum.GET, headers: headers);
+  Future<http.Response> get(
+    String endpoint, {
+    Map<String, String>? headers,
+    Map<String, String>? params,
+  }) {
+    return _request(
+        endpoint: endpoint,
+        method: AppEnum.GET,
+        headers: headers,
+        params: params);
   }
 
   Future<http.Response> post(String endpoint,

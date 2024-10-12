@@ -20,14 +20,58 @@ const User_utils_1 = require("./User.utils");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const sendEmail_1 = require("../../utils/sendEmail");
-const createNewUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield User_model_1.User.create(user);
-    const mailBody = `<p> ${user.name} your account has been created. Login with this password ${user.password} </p>`;
-    (0, sendEmail_1.sendEmail)(user.email, mailBody);
-    return result;
+const mongoose_1 = __importDefault(require("mongoose"));
+const Student_model_1 = require("../Student/Student.model");
+const createNewUser = (user, batch) => __awaiter(void 0, void 0, void 0, function* () {
+    const session = yield mongoose_1.default.startSession();
+    try {
+        session.startTransaction();
+        const newUser = yield User_model_1.User.create([user], { session });
+        if (!newUser.length) {
+            throw new AppError_1.default(400, "Failed to create user");
+        }
+        if (user.role === "student") {
+            const newStudentData = {
+                fullName: user.name,
+                userID: newUser[0]._id,
+                age: 20,
+                subjectMajor: "N/A",
+                batch: batch,
+                address: "N/A",
+                img: "https://cdn-icons-png.flaticon.com/512/67/67902.png",
+                performance: {
+                    totalAttendance: 0,
+                    avgDailyQuizMarks: 0,
+                    avgWeeklyQuizMarks: 0,
+                    classAttention: "Good",
+                },
+            };
+            const newStudent = yield Student_model_1.StudentProfile.create([newStudentData], {
+                session,
+            });
+            if (!newStudent.length) {
+                throw new AppError_1.default(400, "Failed to create student profile");
+            }
+        }
+        const mailBody = `<p> ${user.name} your account has been created. Login with this password ${user.password} </p>`;
+        (0, sendEmail_1.sendEmail)(user.email, mailBody);
+        yield session.commitTransaction();
+        yield session.endSession();
+        return newUser;
+    }
+    catch (err) {
+        yield session.abortTransaction();
+        yield session.endSession();
+        throw new Error(err);
+    }
 });
-const getAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield User_model_1.User.find({}).select("-password -__v");
+const getAllUsers = (rawquery) => __awaiter(void 0, void 0, void 0, function* () {
+    let query = {};
+    for (let key in rawquery) {
+        query[key] = rawquery[key];
+    }
+    console.log(query);
+    const result = yield User_model_1.User.find(query).select("-password -__v");
     return result;
 });
 const loginUser = (loginCred) => __awaiter(void 0, void 0, void 0, function* () {

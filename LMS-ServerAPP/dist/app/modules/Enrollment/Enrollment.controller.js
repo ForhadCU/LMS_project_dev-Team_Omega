@@ -17,8 +17,9 @@ const globalTryCatchFunc_1 = __importDefault(require("../../utils/globalTryCatch
 const Enrollment_services_1 = require("./Enrollment.services");
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const enrollIntoCourse = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { studentID, courseID } = req.body;
-    const result = yield Enrollment_services_1.EnrollmentServices.enrollIntoCourse(studentID, courseID);
+    const { Student_ID, Enrolled_Course, student_batch } = req.body;
+    console.log(req.body);
+    const result = yield Enrollment_services_1.EnrollmentServices.enrollIntoCourse(Student_ID, Enrolled_Course, student_batch);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: 200,

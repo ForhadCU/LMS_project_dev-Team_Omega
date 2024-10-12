@@ -32,6 +32,20 @@ const createNewEvent = (file, eventData) => __awaiter(void 0, void 0, void 0, fu
     const result = yield Events_model_1.Events.create(newEvent);
     return result;
 });
+const createNewEventAlt = (data) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Events_model_1.Events.create(data);
+    return result;
+});
+const getAllEvents = (rawQuery) => __awaiter(void 0, void 0, void 0, function* () {
+    let query = {};
+    for (let key in rawQuery) {
+        query[key] = rawQuery[key];
+    }
+    const result = yield Events_model_1.Events.find(query);
+    return result;
+});
 exports.EventServices = {
     createNewEvent,
+    getAllEvents,
+    createNewEventAlt,
 };

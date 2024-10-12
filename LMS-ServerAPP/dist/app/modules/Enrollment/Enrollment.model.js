@@ -20,5 +20,9 @@ const EnrollmentSchema = new mongoose_1.Schema({
         type: Date,
         required: [true, "Date required"],
     },
+    student_batch: {
+        type: String,
+        required: [true, "Student batch needed"],
+    },
 });
 exports.Enrollment = (0, mongoose_1.model)("Enrollment", EnrollmentSchema);

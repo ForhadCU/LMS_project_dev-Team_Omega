@@ -14,6 +14,6 @@ class LoginBinding extends Bindings {
         () => LoginRepository(apiProvider: Get.find<ApiProvider>()));
     // Lazy put LoginController with the injected LoginRepository
     Get.lazyPut<LoginController>(
-        () => LoginController(loginRepository: Get.find<LoginRepository>()));
+        () => LoginController(repo: Get.find<LoginRepository>()));
   }
 }

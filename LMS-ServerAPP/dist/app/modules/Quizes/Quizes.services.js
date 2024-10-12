@@ -24,6 +24,18 @@ const createNewQuiz = (quizData) => __awaiter(void 0, void 0, void 0, function* 
     const res = yield Quizes_model_1.Quiz.create(quizData);
     return res;
 });
+const createNewIOSQuiz = (quizData) => __awaiter(void 0, void 0, void 0, function* () {
+    const getCourse = yield Courses_model_1.Course.findById(quizData.CourseID);
+    if (!getCourse) {
+        throw new AppError_1.default(400, "Course not found");
+    }
+    const res = yield Quizes_model_1.IOSQuiz.create(quizData);
+    return res;
+});
+const createJLingoQuiz = (quizData) => __awaiter(void 0, void 0, void 0, function* () {
+    const res = yield Quizes_model_1.JLingoQuiz.create(quizData);
+    return res;
+});
 const getAllQuizes = (queryBody) => __awaiter(void 0, void 0, void 0, function* () {
     let query = {};
     for (let key in queryBody) {
@@ -34,7 +46,29 @@ const getAllQuizes = (queryBody) => __awaiter(void 0, void 0, void 0, function* 
         .sort("-createdAt");
     return allquizes;
 });
+const getIOSQuizes = (queryBody) => __awaiter(void 0, void 0, void 0, function* () {
+    let query = {};
+    for (let key in queryBody) {
+        query[key] = queryBody[key];
+    }
+    const allquizes = yield Quizes_model_1.IOSQuiz.find(query)
+        .populate("CourseID", "title code courseType")
+        .sort("createdAt");
+    return allquizes;
+});
+const getAllJLingoQuizzes = (querybody) => __awaiter(void 0, void 0, void 0, function* () {
+    let query = {};
+    for (let key in querybody) {
+        query[key] = querybody[key];
+    }
+    const allquizes = yield Quizes_model_1.JLingoQuiz.find(query).sort("-createdAt");
+    return allquizes;
+});
 exports.QuizServices = {
     createNewQuiz,
     getAllQuizes,
+    createNewIOSQuiz,
+    getIOSQuizes,
+    createJLingoQuiz,
+    getAllJLingoQuizzes,
 };
