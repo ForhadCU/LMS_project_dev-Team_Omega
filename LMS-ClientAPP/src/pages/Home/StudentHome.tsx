@@ -10,11 +10,17 @@ export const StudentHome = () => {
   const user = useAppSelector(selectCurrentUser) as TUser;
   const [checkInStudent] = useCheckInStudentMutation();
   const handleCHeckIn = async () => {
-    const res = await checkInStudent(user.userId).unwrap();
-    if (res.success) {
-      toast.success(res.message);
+    try {
+      const res = await checkInStudent(user.userId).unwrap();
+      if (res.success) {
+        toast.success(res.message);
+      }
+      if (res.status !== 200) {
+        toast.error(res.data.message);
+      }
+    } catch (error: any) {
+      toast.error(error.data.message);
     }
-    console.log(res);
   };
   return (
     <div className=" flex flex-col items-center p-2">

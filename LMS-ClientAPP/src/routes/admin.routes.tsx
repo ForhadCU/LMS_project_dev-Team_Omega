@@ -27,7 +27,7 @@ export const adminRoutes = [
     icon: <BookIcon />,
   },
   {
-    name: "manageCourses",
+    name: "Manage Courses",
     path: "/course-manage",
     icon: <ChecklistIcon />,
   },

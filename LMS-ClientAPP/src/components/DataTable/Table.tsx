@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { blue } from "@mui/material/colors";
 import { useGetAllUsersQuery } from "../../redux/feature/users/usersAPI";
 import { GeneralUser } from "../../Types/user.type";
+import { useState } from "react";
 
 export interface IRowData {
   id: string;
@@ -121,7 +122,9 @@ const columns: GridColDef[] = [
 const paginationModel = { page: 0, pageSize: 5 };
 
 export const Table = () => {
-  const { data: users, isLoading } = useGetAllUsersQuery({ role: "student" });
+  const [userType, setUserType] = useState("student");
+
+  const { data: users, isLoading } = useGetAllUsersQuery({ role: userType });
   const rows =
     users?.data.map((user: GeneralUser, index: any) => ({
       id: user._id,
@@ -131,7 +134,20 @@ export const Table = () => {
       rowID: index + 1,
     })) || [];
   return (
-    <div>
+    <div className=" flex flex-col p-2 w-full">
+      <div className=" flex justify-end w-[80%] my-2">
+        <div>
+          <label className="block text-sm font-medium">User Type</label>
+          <select
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+            onChange={(e) => setUserType(e.target.value)}
+          >
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+            <option value="instructor">Instructor</option>
+          </select>
+        </div>
+      </div>
       {isLoading ? (
         <div className=" flex w-full justify-center "></div>
       ) : (
