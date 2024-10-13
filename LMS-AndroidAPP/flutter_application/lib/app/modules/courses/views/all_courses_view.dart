@@ -33,10 +33,13 @@ class AllCoursesView extends GetView<AllCoursesController> {
                     itemCount: controller.myCourses.length,
                     itemBuilder: ((context, index) {
                       final currentData = controller.myCourses[index];
+
+                      // item view
                       return CourseCard(
                         onTapDetails: () {
                           controller.mNavigateToDtailsPage(currentData);
                         },
+                        courseActiveStatus: currentData.isActive,
                         title: currentData.title,
                         desc: currentData.description,
                         duration: currentData.duration.toString(),

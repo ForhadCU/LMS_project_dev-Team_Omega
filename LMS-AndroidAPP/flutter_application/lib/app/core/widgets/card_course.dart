@@ -66,20 +66,25 @@ class CourseCard extends StatelessWidget {
                           color: Colors.greenAccent,
                         ),
                       ),
-                /*   AppSpacing().xxl.height,
+                AppSpacing().xl.height,
                 // course active Status
                 Center(
                   child: Column(
                     children: [
-                      ActiveStatusDotView(color: AppColor.warning),
+                      ActiveStatusDotView(
+                          color: courseActiveStatus == "pending"
+                              ? AppColor.warning
+                              : courseActiveStatus == "active"
+                                  ? AppColor.primary
+                                  : AppColor.appRed),
                       AppSpacing().md.height,
                       Text(
-                        AppConstants().sUpComing,
+                        courseActiveStatus ?? "Upcoming",
                         style: AppTextStyle().secodaryText,
                       )
                     ],
                   ),
-                ) */
+                )
               ],
             ),
             AppSpacing().xl.width,
@@ -228,7 +233,9 @@ class DurationAnndInstructor extends StatelessWidget {
             ),
             AppSpacing().md.width,
             Text(
-              instructoName!.length < 20 ? instructoName ?? "Instructor Name" : "Japanese Instructor",
+              instructoName!.length < 20
+                  ? instructoName ?? "Instructor Name"
+                  : "Japanese Instructor",
               style: appTextTheme.labelMedium,
             )
           ],
