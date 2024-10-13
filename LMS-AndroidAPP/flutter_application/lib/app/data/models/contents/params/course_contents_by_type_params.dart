@@ -12,7 +12,7 @@ class CourseContentsByTypeParams {
         courseId: json["courseID"],
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, String> toJson() => {
         "contentType": contentType,
         "courseID": courseId,
     };

@@ -105,7 +105,7 @@ class CreateCourseView extends GetView<CreateCourseController> {
                         controller: durationController,
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
-                          labelText: 'Duration (Days)',
+                          labelText: 'Duration (Months)',
                           border: OutlineInputBorder(),
                         ),
                         validator: (value) {

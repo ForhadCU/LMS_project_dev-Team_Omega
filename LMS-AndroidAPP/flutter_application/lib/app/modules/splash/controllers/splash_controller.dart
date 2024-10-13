@@ -25,7 +25,7 @@ class SplashController extends GetxController {
       } else {
         // Get.offNamed(Routes.HOME);
         // Get.offNamed(Routes.ALLCOURSES);
-        Get.offNamed(Routes.COURSE_DETAILS);
+        Get.offNamed(Routes.HOME);
         return;
       }
     } catch (e) {

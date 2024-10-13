@@ -9,7 +9,7 @@ class AllCoursesOfInstructorParams {
         instructors: json["instructors"],
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, String> toJson() => {
         "instructors": instructors,
     };
 }

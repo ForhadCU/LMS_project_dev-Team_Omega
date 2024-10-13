@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/app/core/values/data.dart';
-import 'package:flutter_application/app/routes/app_pages.dart';
+import 'package:flutter_application/app/core/widgets/progress_loader.dart';
 
 import 'package:get/get.dart';
 import '../../../core/core_lib.dart';
@@ -8,7 +8,7 @@ import '../../../core/widgets/baseWidget.dart';
 import '../controllers/all_courses_controller.dart';
 
 class AllCoursesView extends GetView<AllCoursesController> {
-  AllCoursesView({Key? key}) : super(key: key);
+  const AllCoursesView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,39 +17,41 @@ class AllCoursesView extends GetView<AllCoursesController> {
         title: "All Courses",
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [QueryPart(), vOutputResultPart()],
+          children: [vQueryPart(), vOutputResultPart()],
         ));
   }
 
   vOutputResultPart() {
     return Expanded(
-        child: Container(
-            padding: EdgeInsets.all(AppSpacing().md),
-            child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: ((context, index) {
-                  return CourseCard(
-                    onTapDetails: () {
-                      controller.mNavigateTo();
-                    },
-                    imgUri: AppAssetLocations.ic_course2,
-                    menuItems:
-                        AppConstants.commonViewProperties.sCourseCardMenuItems,
-                    onSelectedmenuItem: (String selectedMenuItem) {
-                      print(selectedMenuItem);
-                    },
-                  );
-                }))));
+        child: Obx(() => controller.isInitialLoading.value
+            ? Center(
+                child: AppProgressLoader(),
+              )
+            : Container(
+                padding: EdgeInsets.all(AppSpacing().md),
+                child: ListView.builder(
+                    itemCount: controller.myCourses.length,
+                    itemBuilder: ((context, index) {
+                      final currentData = controller.myCourses[index];
+                      return CourseCard(
+                        onTapDetails: () {
+                          controller.mNavigateToDtailsPage(currentData);
+                        },
+                        title: currentData.title,
+                        desc: currentData.description,
+                        duration: currentData.duration.toString(),
+                        instructoName: currentData.instructors[0].name,
+                        imgUri: AppAssetLocations.ic_course2,
+                        menuItems: AppConstants
+                            .commonViewProperties.sCourseCardMenuItems,
+                        onSelectedmenuItem: (String selectedMenuItem) {
+                          print(selectedMenuItem);
+                        },
+                      );
+                    })))));
   }
-}
 
-class QueryPart extends StatelessWidget {
-  const QueryPart({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  vQueryPart() {
     return const Column(
       children: [SearchAndFilterPart(), CategoryPart()],
     );
@@ -68,11 +70,12 @@ class CategoryPart extends StatelessWidget {
       width: DeviceScreenWidth.hundaredPercent,
       height: DeviceScreenHeight.tenPercent / 2,
       child: ListView.builder(
-          itemCount: 8,
+          itemCount:
+              AppConstants.commonViewProperties.dummyCourseCategoryItems.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Card(
-              color: index == 4 ? AppColor.primary : AppColor.teaGreen,
+              color: index == 0 ? AppColor.primary : AppColor.teaGreen,
               elevation: 0,
               // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               child: Container(
@@ -80,10 +83,11 @@ class CategoryPart extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     vertical: AppSpacing().sm, horizontal: AppSpacing().xl),
                 child: Text(
-                  "Category $index",
+                  AppConstants
+                      .commonViewProperties.dummyCourseCategoryItems[index],
                   style: appTextTheme.bodyLarge!.copyWith(
                       color:
-                          index == 4 ? AppColor.secondaryBg : AppColor.primary,
+                          index == 0 ? AppColor.secondaryBg : AppColor.primary,
                       fontWeight: FontWeight.w500),
                 ),
               ),

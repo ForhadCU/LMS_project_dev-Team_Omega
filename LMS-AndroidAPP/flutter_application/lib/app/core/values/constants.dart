@@ -27,6 +27,11 @@ class CommonViewProperties {
   final String sEdit = "Edit";
   final String sDelete = "Delete";
   final List<String> sCourseCardMenuItems = ["Edit", "Delete"];
+  final List<String> dummyCourseCategoryItems = [
+    "All",
+    "Language",
+    "Technical"
+  ];
   final String instructors = "Instructors";
   final String students = "Students";
   final String contents = "Contents";

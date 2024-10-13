@@ -31,7 +31,7 @@ class Datum {
     String img;
     List<Instructor> instructors;
     String courseType;
-    bool isActive;
+    String isActive;
     DateTime createdAt;
     DateTime updatedAt;
     int v;

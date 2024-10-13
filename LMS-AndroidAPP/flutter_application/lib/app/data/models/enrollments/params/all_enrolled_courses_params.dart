@@ -9,7 +9,7 @@ class AllEnrolledCoursesParams {
         enrolledCourse: json["Enrolled_Course"],
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, String> toJson() => {
         "Enrolled_Course": enrolledCourse,
     };
 }

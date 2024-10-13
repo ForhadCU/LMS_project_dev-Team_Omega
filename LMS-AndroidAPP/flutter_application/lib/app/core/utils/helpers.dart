@@ -9,6 +9,7 @@ import 'package:flutter_application/app/data/providers/api_provider.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/models/login/responses/login_response_model.dart';
 import '../../routes/app_pages.dart';
@@ -21,6 +22,19 @@ class AppHelpers {
   factory AppHelpers() {
     return _singleton;
   }
+  Future<void> mLaunchURL({required String rawUrl}) async {
+    final Uri url = Uri.parse(rawUrl);
+    
+          await launchUrl(url);
+
+    /* 
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    } */
+  }
+
   //  get user data from local storage
   Future<LoginResponse> mGetCurrentUserDataFromLocal() async {
     String? response = await ApiProvider()
@@ -60,14 +74,12 @@ class AppHelpers {
     return MaterialColor(color.value, swatch);
   }
 
-  Map<String, dynamic> mHandleRemoteResponse(http.Response response)  {
-
+  Map<String, dynamic> mHandleRemoteResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       // gLoggerNoStack.i("Successfully get api response");
       gLoggerNoStack.i(jsonDecode(response.body)['message']);
       return jsonDecode(response.body);
     } else {
-     
       gLoggerNoStack.w(jsonDecode(response.body));
       var errorResponseModel =
           ErrorResponseModel.fromMap(jsonDecode(response.body));

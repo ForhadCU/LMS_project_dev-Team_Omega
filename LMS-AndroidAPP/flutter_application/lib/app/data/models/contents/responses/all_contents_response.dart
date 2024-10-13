@@ -1,7 +1,7 @@
 class AllContentsResponse {
   bool success;
   String message;
-  List<Datum> data;
+  List<ContentData> data;
 
   AllContentsResponse({
     required this.success,
@@ -13,7 +13,7 @@ class AllContentsResponse {
       AllContentsResponse(
         success: json["success"],
         message: json["message"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<ContentData>.from(json["data"].map((x) => ContentData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -23,7 +23,7 @@ class AllContentsResponse {
       };
 }
 
-class Datum {
+class ContentData {
   String id;
   String title;
   String description;
@@ -35,7 +35,7 @@ class Datum {
   DateTime updatedAt;
   int v;
 
-  Datum({
+  ContentData({
     required this.id,
     required this.title,
     required this.description,
@@ -48,7 +48,7 @@ class Datum {
     required this.v,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory ContentData.fromJson(Map<String, dynamic> json) => ContentData(
         id: json["_id"],
         title: json["title"],
         description: json["description"],

@@ -1,18 +1,18 @@
-class AllEnrolledCoursesResponse {
+class AllEnrolledStudentResponse {
     bool success;
     String message;
-    List<Datum> data;
+    List<EnrolledStudent> data;
 
-    AllEnrolledCoursesResponse({
+    AllEnrolledStudentResponse({
         required this.success,
         required this.message,
         required this.data,
     });
 
-    factory AllEnrolledCoursesResponse.fromJson(Map<String, dynamic> json) => AllEnrolledCoursesResponse(
+    factory AllEnrolledStudentResponse.fromJson(Map<String, dynamic> json) => AllEnrolledStudentResponse(
         success: json["success"],
         message: json["message"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<EnrolledStudent>.from(json["data"].map((x) => EnrolledStudent.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -22,7 +22,7 @@ class AllEnrolledCoursesResponse {
     };
 }
 
-class Datum {
+class EnrolledStudent {
     String id;
     StudentId studentId;
     EnrolledCourse enrolledCourse;
@@ -30,7 +30,7 @@ class Datum {
     String studentBatch;
     int v;
 
-    Datum({
+    EnrolledStudent({
         required this.id,
         required this.studentId,
         required this.enrolledCourse,
@@ -39,7 +39,7 @@ class Datum {
         required this.v,
     });
 
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    factory EnrolledStudent.fromJson(Map<String, dynamic> json) => EnrolledStudent(
         id: json["_id"],
         studentId: StudentId.fromJson(json["Student_ID"]),
         enrolledCourse: EnrolledCourse.fromJson(json["Enrolled_Course"]),

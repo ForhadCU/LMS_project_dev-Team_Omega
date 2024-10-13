@@ -10,7 +10,7 @@ class AppColor {
   static final Color hitnsAndBorder = const Color(0xFFBDBDBD);
   static final Color accent = const Color(0xffFF6F61);
   static final Color textFieldBorder = const Color(0xff333333);
-  static final Color divier = Color.fromARGB(255, 71, 71, 71);
+  static final Color divier = Color.fromARGB(255, 87, 87, 87);
   static final Color secondaryIcon = const Color(0xff333333);
   static final Color error = const Color(0xffD72E35);
   static final Color warning = const Color(0xffFF6F61);

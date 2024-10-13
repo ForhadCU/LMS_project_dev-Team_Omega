@@ -13,6 +13,7 @@ class CourseCard extends StatelessWidget {
   final String? startTime;
   final String? endTime;
   final String? instructoName;
+  final String? duration;
   // final Function onTapDetails;
   final String? courseActiveStatus;
   final List<String>? menuItems;
@@ -30,6 +31,7 @@ class CourseCard extends StatelessWidget {
     this.courseActiveStatus,
     this.menuItems,
     this.onSelectedmenuItem,
+    this.duration,
   });
 
   @override
@@ -92,7 +94,7 @@ class CourseCard extends StatelessWidget {
                           Expanded(
                             child: Text(
                               title ?? "Course Title",
-                              style: appTextTheme.titleLarge,
+                              style: appTextTheme.titleMedium,
                             ),
                           ),
                           AppSpacing().sm.width,
@@ -114,12 +116,14 @@ class CourseCard extends StatelessWidget {
                       )
                     : Text(
                         title ?? "Course Title",
-                        style: appTextTheme.titleLarge,
+                        style: appTextTheme.titleMedium,
                       ),
                 // AppSpacing().sm.height,
                 Text(
                   desc ?? "This will be the course description",
-                  style: appTextTheme.titleMedium,
+                  maxLines: 2,
+                  style: appTextTheme.bodyMedium!
+                      .copyWith(overflow: TextOverflow.ellipsis),
                 ),
                 // const AppDivider(),
                 AppSpacing().xl.height,
@@ -128,7 +132,10 @@ class CourseCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    DurationAnndInstructor(instructoName: instructoName),
+                    DurationAnndInstructor(
+                      instructoName: instructoName,
+                      duration: duration,
+                    ),
                     AppSpacing().sm.width,
                     DetailslButton(onTapDetails: onTapDetails)
                   ],
@@ -184,9 +191,11 @@ class DurationAnndInstructor extends StatelessWidget {
   const DurationAnndInstructor({
     super.key,
     required this.instructoName,
+    required this.duration,
   });
 
   final String? instructoName;
+  final String? duration;
 
   @override
   Widget build(BuildContext context) {
@@ -201,7 +210,7 @@ class DurationAnndInstructor extends StatelessWidget {
               size: 14,
             ),
             AppSpacing().md.width,
-            Text("65 Days", style: appTextTheme.labelMedium)
+            Text("$duration Months", style: appTextTheme.labelMedium)
           ],
         ),
         /* TimeScheduleView(
@@ -219,7 +228,7 @@ class DurationAnndInstructor extends StatelessWidget {
             ),
             AppSpacing().md.width,
             Text(
-              instructoName ?? "Instructor Name",
+              instructoName!.length < 20 ? instructoName ?? "Instructor Name" : "Japanese Instructor",
               style: appTextTheme.labelMedium,
             )
           ],

@@ -11,8 +11,7 @@ class CourseDetailsBinding extends Bindings {
     Get.lazyPut<CourseDetailsRepo>(
         () => CourseDetailsRepo(apiProvider: Get.find<ApiProvider>()));
     Get.lazyPut<CourseDetailsController>(
-      () => CourseDetailsController(
-          courseDetailsRepo: Get.find<CourseDetailsRepo>()),
+      () => CourseDetailsController(repo: Get.find<CourseDetailsRepo>()),
     );
   }
 }
