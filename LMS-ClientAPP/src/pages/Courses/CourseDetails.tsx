@@ -1,6 +1,6 @@
 // src/components/CourseDetails.tsx
 
-import { Avatar, Divider, Typography, Box, Grid } from "@mui/material";
+import { Avatar, Divider, Typography, Box, Grid, Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { InfoCards } from "../../components/ui/InfoCards";
 import { useGetSingleCourseQuery } from "../../redux/feature/course/courseAPI";
@@ -135,18 +135,29 @@ export const CourseDetails = () => {
 
           {/* Course Contents Section */}
           <Box className="w-full p-6 bg-white rounded-lg shadow-md my-6">
-            <Typography
-              variant="h4"
-              className="font-semibold mb-6 text-indigo-600"
-            >
-              Course Contents
-            </Typography>
+            <div className=" flex flex-row justify-between">
+              <Typography
+                variant="h4"
+                className="font-semibold mb-6 text-indigo-600"
+              >
+                Course Contents
+              </Typography>
+              <div>
+                {user.role === "instructor" && (
+                  <Link to={`/update-course/${courseID}`}>
+                    <Button variant="contained" color="info">
+                      UPDATE COURSE INFO
+                    </Button>
+                  </Link>
+                )}
+              </div>
+            </div>
             <Grid container spacing={4} className="justify-center">
               <Grid item xs={12} sm={6} md={4}>
                 <InfoCards
                   pics={Quiz_logo}
                   title="Quizzes"
-                  link={`/course-quizzes/${courseID}`}
+                  link={`/course-allplat-quizzes/${courseID}`}
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={4}>

@@ -13,6 +13,7 @@ export interface IRowData {
   role: string;
   details: "";
   rowID: any;
+  isActive: boolean;
 }
 
 export interface IRow {
@@ -47,6 +48,25 @@ const columns: GridColDef[] = [
         <Link to={`/student-details/${params.row.id}`}>
           <Button>Student Profile</Button>
         </Link>
+      );
+    },
+    width: 200,
+  },
+  {
+    field: "isActive",
+    headerName: "Disable/Activate",
+    renderCell: (params) => {
+      if (params.row.isActive) {
+        return (
+          <Button variant="contained" color="error">
+            Disable
+          </Button>
+        );
+      }
+      return (
+        <Button variant="contained" color="success">
+          Activate
+        </Button>
       );
     },
     width: 200,
@@ -132,7 +152,9 @@ export const Table = () => {
       email: user.email,
       role: user.role,
       rowID: index + 1,
+      isActive: user.isActive,
     })) || [];
+  console.log(users?.data);
   return (
     <div className=" flex flex-col p-2 w-full">
       <div className=" flex justify-end w-[80%] my-2">
@@ -154,7 +176,7 @@ export const Table = () => {
         <Paper
           sx={{
             height: 400,
-            width: "60%",
+            width: "80%",
             margin: "auto", // Center the table horizontally
             display: "flex", // Allow flexbox properties to take effect
             flexDirection: "column", // Stack the content vertically
