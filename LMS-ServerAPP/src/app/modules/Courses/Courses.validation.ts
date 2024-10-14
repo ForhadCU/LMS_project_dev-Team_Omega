@@ -35,7 +35,6 @@ const courseDeactivateValidationSchema = z.object({
   body: z.object({
     status: z.string(),
     code: z.string(),
-    status: z.enum(["active", "inactive"]),
   }),
 });
 
