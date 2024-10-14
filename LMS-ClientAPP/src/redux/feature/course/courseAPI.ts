@@ -10,6 +10,14 @@ const courseAPI = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["courses"],
     }),
+    courseStatusUpdate: builder.mutation({
+      query: (statusInfo) => ({
+        url: "/courses/course-status-update",
+        method: "PATCH",
+        body: statusInfo,
+      }),
+      invalidatesTags: ["courses"],
+    }),
     getAllCourses: builder.query({
       query: (query) => {
         const params = new URLSearchParams();
@@ -58,6 +66,15 @@ const courseAPI = baseAPI.injectEndpoints({
         };
       },
     }),
+    enrollIntoCourse: builder.mutation({
+      query: (enrollmentData) => {
+        return {
+          url: "/enrollment/student-enroll",
+          method: "POST",
+          body: enrollmentData,
+        };
+      },
+    }),
   }),
 });
 
@@ -67,4 +84,6 @@ export const {
   useGetSingleCourseQuery,
   useUpdateCourseDataMutation,
   useGetEnrollmentsQuery,
+  useCourseStatusUpdateMutation,
+  useEnrollIntoCourseMutation,
 } = courseAPI;

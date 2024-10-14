@@ -6,7 +6,7 @@ import config from "../../config";
 
 const createNewUser = catchAsync(async (req: Request, res: Response) => {
   let batch = req.body.batch;
-  const result = await UserServices.createNewUser(req.body, batch as string);
+  const result = await UserServices.createNewUser(req.body);
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -18,6 +18,17 @@ const createNewUser = catchAsync(async (req: Request, res: Response) => {
 const getAllUser = catchAsync(async (req, res) => {
   const rawquery = req.query;
   const result = await UserServices.getAllUsers(rawquery);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Users fetched succesfully",
+    data: result,
+  });
+});
+
+const getSingleUser = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.query;
+  const result = await UserServices.getSingleUser(id as string);
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -54,13 +65,24 @@ const userLogin = async (req: Request, res: Response) => {
   }
 };
 
-const userSoftDelete = catchAsync(async (req, res) => {
-  const userEmail = req.body.delemail;
-  const result = await UserServices.deleteUser(userEmail);
+const updateUserInfo = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserServices.userInfoUpdate(req.body);
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: "User deleted successfully",
+    message: "User updated  succesfully",
+    data: result,
+  });
+});
+
+const userSoftDelete = catchAsync(async (req, res) => {
+  const userEmail = req.body.delemail;
+  const action = req.body.action;
+  const result = await UserServices.deleteUser(userEmail, action);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "User status updated successfully",
     data: null,
   });
 });
@@ -84,7 +106,7 @@ const createUsers = catchAsync(async (req: Request, res: Response) => {
   const users = req.body.users;
   const result = await UserServices.createUsers(users);
   sendResponse(res, {
-    statusCode: 201,
+    statusCode: 200,
     success: true,
     message: "Users created successfully",
     data: result,
@@ -98,4 +120,6 @@ export const UserControllers = {
   userChangePassword,
   getAllUser,
   createUsers,
+  getSingleUser,
+  updateUserInfo,
 };

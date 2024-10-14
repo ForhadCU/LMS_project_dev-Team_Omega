@@ -18,6 +18,7 @@ import {
 import { InfoCards } from "../../components/ui/InfoCards";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
+import { Link } from "react-router-dom";
 
 interface ITeacherProps {
   _id: string;
@@ -117,9 +118,11 @@ export const CourseDetailsStudent = () => {
             </div>
             {enrollment?.data.length === 0 ? (
               <div className=" flex justify-center items-center">
-                <Button variant="contained" color="warning" size="large">
-                  Enroll
-                </Button>
+                <Link to={`/enrollment-confirmation/${courseID}`}>
+                  <Button variant="contained" color="warning" size="large">
+                    Enroll
+                  </Button>
+                </Link>
               </div>
             ) : (
               <div className=" flex flex-col md:flex-row p-2 gap-2 justify-center">

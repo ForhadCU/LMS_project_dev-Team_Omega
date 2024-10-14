@@ -4,3 +4,11 @@ export type TUser = {
   iat: number;
   exp: number;
 };
+
+export type GeneralUser = {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  isActive: boolean;
+};

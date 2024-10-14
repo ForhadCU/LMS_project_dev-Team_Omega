@@ -9,22 +9,29 @@ import { Loader } from "../../components/loader/Loader";
 import { QuizAllPlatCard } from "../../components/ui/QuizAllPlatCard";
 import { TIOSQuiz } from "../../Types/question.type";
 import { useGetSingleCourseQuery } from "../../redux/feature/course/courseAPI";
+import { useEffect, useState } from "react";
 
 export const AllPlatQuiz = () => {
   const user = useAppSelector(selectCurrentUser) as TUser;
+  const [quizType, setQuizType] = useState("");
+
   const params = useParams();
   const courseID = params.id;
+  const [query, setQuery] = useState<{}>({ CourseID: courseID });
   const {
     data: allplatQuiz,
     isLoading,
     isSuccess,
-  } = useGetAllPlatQuizzesQuery({
-    CourseID: courseID,
-  });
+  } = useGetAllPlatQuizzesQuery(query);
   const { data: course } = useGetSingleCourseQuery(courseID, {
     skip: !isSuccess,
   });
-
+  useEffect(() => {
+    if (quizType !== "") {
+      setQuery({ CourseID: courseID, quiz_type: quizType });
+    }
+    console.log(query);
+  }, [quizType]);
   return (
     <div className=" flex flex-col">
       <div className=" flex flex-row justify-between gap-2 p-2 items-start">
@@ -41,11 +48,13 @@ export const AllPlatQuiz = () => {
           )}
           {course?.data.courseType === "language" && (
             <div>
-              <Link to={`/create-jlingo-quiz`}>
-                <Button variant="contained" color="error">
-                  Create JLINGO Quiz
-                </Button>
-              </Link>
+              {user.role === "instructor" && (
+                <Link to={`/create-jlingo-quiz`}>
+                  <Button variant="contained" color="error">
+                    Create JLINGO Quiz
+                  </Button>
+                </Link>
+              )}
             </div>
           )}
           <div>
@@ -60,7 +69,17 @@ export const AllPlatQuiz = () => {
       <Divider variant="fullWidth"></Divider>
       <div className=" my-2 w-full flex flex-col gap-2">
         <div className=" w-full p-2 flex flex-row justify-end">
-          Select Quiz type
+          <div>
+            <label className="block text-sm font-medium">Quiz Type</label>
+            <select
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              onChange={(e) => setQuizType(e.target.value)}
+            >
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="practice">Practice</option>
+            </select>
+          </div>
         </div>
         <div>
           {isLoading ? (

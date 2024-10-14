@@ -7,7 +7,6 @@ const userValidationSchema = z.object({
     password: z.string().max(20),
     role: z.string(),
     isActive: z.boolean(),
-    batch: z.string().optional(),
   }),
 });
 
@@ -21,6 +20,7 @@ const loginValidationSchema = z.object({
 const softDeleteValidationSchema = z.object({
   body: z.object({
     delemail: z.string().email({ message: "Incorrect email format" }),
+    action: z.boolean({ message: "Action type reqiured" }),
   }),
 });
 

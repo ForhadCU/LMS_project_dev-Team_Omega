@@ -16,7 +16,7 @@ export const GeneralResources = () => {
     isError,
     isLoading,
   } = useGetAllGeneralResourceQuery({});
-  console.log(generalResources?.data);
+
   return (
     <div className=" flex flex-col p-2">
       <div className=" flex flex-row justify-between items-center text-xl text-center p-2">
@@ -41,7 +41,7 @@ export const GeneralResources = () => {
               <CustomAccordion
                 title={genResource.title}
                 contentDescription={genResource.description}
-                createdDate={genResource.status}
+                createdDate={genResource.createdAt}
                 link={genResource.link}
                 icon={<LibraryBooksIcon />}
               />

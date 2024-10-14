@@ -2,6 +2,7 @@ import { Forum, Home, LocalLibrary } from "@mui/icons-material";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import PersonIcon from "@mui/icons-material/Person";
+import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 
 export const studentRoutes = [
   {
@@ -33,5 +34,10 @@ export const studentRoutes = [
     name: "Forums",
     path: "/forums",
     icon: <Forum />,
+  },
+  {
+    name: "Account Settings",
+    path: "/account-settings",
+    icon: <SettingsApplicationsIcon />,
   },
 ];

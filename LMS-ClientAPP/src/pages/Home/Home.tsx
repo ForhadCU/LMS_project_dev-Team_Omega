@@ -1,6 +1,7 @@
 import { selectCurrentUser } from "../../redux/feature/auth/authSlice";
 import { useAppSelector } from "../../redux/hook";
 import { TUser } from "../../Types/user.type";
+import GetAllEvents from "../AdminPages/GetAllEvents";
 import { StudentHome } from "./StudentHome";
 import { TeacherHome } from "./TeacherHome";
 
@@ -14,10 +15,9 @@ export const Home = () => {
   }
   return (
     <div>
-      <h1>Learning Management System</h1>
-      <br />
+      {/* <h1>Learning Management System</h1> */}
       <div>
-        <h2>Events will be shown here as grid</h2>
+        <GetAllEvents></GetAllEvents>
       </div>
     </div>
   );

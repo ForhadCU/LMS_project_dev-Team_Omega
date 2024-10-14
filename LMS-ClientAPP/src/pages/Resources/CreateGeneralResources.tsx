@@ -18,15 +18,20 @@ export const CreateGeneralResources = () => {
   const onSubmit = async (data: TGeneralResources) => {
     data.status = "pending";
     console.log(data);
-    const res = await addNewGeneralResource(data).unwrap();
-    if (res.success) {
-      toast.success(res.message);
-      navigate(-1);
+    try {
+      const res = await addNewGeneralResource(data).unwrap();
+      if (res.success) {
+        toast.success(res.message);
+        navigate(-1);
+      }
+
+      if (isError) {
+        toast.error("Error occured while adding");
+      }
+    } catch (error: any) {
+      toast.error(error.data.message);
     }
 
-    if (isError) {
-      toast.error("Error occured while adding");
-    }
     // Handle form submission, like sending the data to an API
   };
 

@@ -26,5 +26,8 @@ export const baseAPI = createApi({
     "lecture",
     "contents",
     "allplatquiz",
+    "forums",
+    "forumComments",
+    "singleUser",
   ],
 });
