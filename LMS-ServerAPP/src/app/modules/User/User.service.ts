@@ -133,14 +133,14 @@ const userInfoUpdate = async (updatedData: any) => {
   return res;
 };
 
-const deleteUser = async (email: string) => {
+const deleteUser = async (email: string, action: boolean) => {
   const getUser = await User.findOne({ email: email });
   if (!getUser) {
     throw new Error("User with that email does not exist.");
   }
   const data = await User.findOneAndUpdate(
     { email: email },
-    { isActive: false },
+    { isActive: action },
     { new: true }
   );
 

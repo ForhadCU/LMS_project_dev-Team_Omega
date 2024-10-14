@@ -74,7 +74,7 @@ export const StudentProfile = () => {
         toast.error(res.message);
       }
     } catch (err: any) {
-      toast.error("Error occured while updating check log");
+      toast.error(err.data.message);
       console.log(error + " " + err);
     }
   };

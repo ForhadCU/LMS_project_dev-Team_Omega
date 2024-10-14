@@ -18,6 +18,7 @@ export type TGeneralResources = {
   img: string;
   link: string;
   status: "pending" | "active" | "inactive";
+  createdAt: string;
 };
 
 export type TClassRecordings = {

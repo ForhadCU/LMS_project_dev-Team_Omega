@@ -31,6 +31,9 @@ export const CreateAllPlatQuiz = () => {
     if (data.quiz_type === "weekly") {
       data.img = WQ_IMG;
     }
+    if (data.quiz_type === "practice") {
+      data.img = DQ_IMG;
+    }
 
     // Handle form submission (e.g., post data to your backend)
     try {
@@ -47,7 +50,7 @@ export const CreateAllPlatQuiz = () => {
       }
       console.log(res);
     } catch (error: any) {
-      console.log(error);
+      toast.error(error.data.message);
     }
   };
 

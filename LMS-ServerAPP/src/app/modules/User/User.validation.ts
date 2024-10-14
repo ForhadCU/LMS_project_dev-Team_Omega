@@ -20,6 +20,7 @@ const loginValidationSchema = z.object({
 const softDeleteValidationSchema = z.object({
   body: z.object({
     delemail: z.string().email({ message: "Incorrect email format" }),
+    action: z.boolean({ message: "Action type reqiured" }),
   }),
 });
 

@@ -41,7 +41,7 @@ export const GeneralResources = () => {
               <CustomAccordion
                 title={genResource.title}
                 contentDescription={genResource.description}
-                createdDate={genResource.status}
+                createdDate={genResource.createdAt}
                 link={genResource.link}
                 icon={<LibraryBooksIcon />}
               />

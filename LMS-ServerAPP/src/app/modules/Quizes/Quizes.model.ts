@@ -57,7 +57,7 @@ const IOSQuizModelSchema = new Schema<TIOSQuiz>({
   },
   quiz_type: {
     type: String,
-    enum: ["daily", "weekly"],
+    enum: ["daily", "weekly", "practice"],
     required: [true, "Quiz type required.Must be either daily or weekly type."],
   },
   quiz_date: {

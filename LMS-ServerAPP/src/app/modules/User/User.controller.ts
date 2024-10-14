@@ -77,11 +77,12 @@ const updateUserInfo = catchAsync(async (req: Request, res: Response) => {
 
 const userSoftDelete = catchAsync(async (req, res) => {
   const userEmail = req.body.delemail;
-  const result = await UserServices.deleteUser(userEmail);
+  const action = req.body.action;
+  const result = await UserServices.deleteUser(userEmail, action);
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: "User deleted successfully",
+    message: "User status updated successfully",
     data: null,
   });
 });

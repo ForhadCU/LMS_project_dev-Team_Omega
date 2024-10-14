@@ -23,7 +23,7 @@ import { useNavigate } from "react-router-dom";
 const defaultTheme = createTheme();
 
 export const Login = () => {
-  const [login, { error }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const dispatcher = useAppDispatch();
   const navigate = useNavigate();
 
@@ -51,8 +51,8 @@ export const Login = () => {
         dispatcher(setUser({ user: user, token: res.accesToken }));
         toast.success("Logged in seccessfully", { id: toastId });
         navigate("/");
-      } catch (erro) {
-        console.log(error);
+      } catch (erro: any) {
+        toast.error(erro.data.message, { id: toastId });
       }
     }
   };

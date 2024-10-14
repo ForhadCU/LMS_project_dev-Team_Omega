@@ -41,6 +41,7 @@ import { StudentReportFake } from "../components/PDF/StudentReportFake";
 import { Account } from "../pages/Account/Account";
 import { EnrollmentConfirm } from "../pages/StudentPages/EnrollmentConfirm";
 import ManageCourses from "../pages/Courses/ManageCourses";
+import { PageNotFound } from "../pages/Error/PageNotFound";
 
 const routes = createBrowserRouter([
   {
@@ -209,6 +210,10 @@ const routes = createBrowserRouter([
   {
     path: "login",
     element: <Login></Login>,
+  },
+  {
+    path: "*",
+    element: <PageNotFound></PageNotFound>,
   },
 ]);
 

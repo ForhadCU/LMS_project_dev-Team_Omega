@@ -57,6 +57,15 @@ const usersAPI = baseAPI.injectEndpoints({
         };
       },
     }),
+    updateUserStatus: builder.mutation({
+      query: (queryBody) => {
+        return {
+          url: "/user/delete-user",
+          method: "DELETE",
+          body: queryBody,
+        };
+      },
+    }),
   }),
 });
 
@@ -66,4 +75,5 @@ export const {
   useGetSingleUserQuery,
   useUpdateUserInfoMutation,
   useUpdatePasswordMutation,
+  useUpdateUserStatusMutation,
 } = usersAPI;

@@ -2,9 +2,13 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Paper, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { blue } from "@mui/material/colors";
-import { useGetAllUsersQuery } from "../../redux/feature/users/usersAPI";
+import {
+  useGetAllUsersQuery,
+  useUpdateUserStatusMutation,
+} from "../../redux/feature/users/usersAPI";
 import { GeneralUser } from "../../Types/user.type";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export interface IRowData {
   id: string;
@@ -14,6 +18,7 @@ export interface IRowData {
   details: "";
   rowID: any;
   isActive: boolean;
+  func: () => void;
 }
 
 export interface IRow {
@@ -58,13 +63,21 @@ const columns: GridColDef[] = [
     renderCell: (params) => {
       if (params.row.isActive) {
         return (
-          <Button variant="contained" color="error">
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => params.row.func(params.row.email, false)}
+          >
             Disable
           </Button>
         );
       }
       return (
-        <Button variant="contained" color="success">
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => params.row.func(params.row.email, true)}
+        >
           Activate
         </Button>
       );
@@ -143,6 +156,24 @@ const paginationModel = { page: 0, pageSize: 5 };
 
 export const Table = () => {
   const [userType, setUserType] = useState("student");
+  const [updateUserStatus] = useUpdateUserStatusMutation();
+
+  const handleUserStatusUpdate = async (email: string, status: boolean) => {
+    const newStats = {
+      delemail: email,
+      action: status,
+    };
+    console.log(newStats);
+    try {
+      const res = await updateUserStatus(newStats).unwrap();
+      if (res.success) {
+        toast.success(res.message);
+      }
+    } catch (error: any) {
+      toast.error(error.data.message);
+      console.log(error);
+    }
+  };
 
   const { data: users, isLoading } = useGetAllUsersQuery({ role: userType });
   const rows =
@@ -153,8 +184,9 @@ export const Table = () => {
       role: user.role,
       rowID: index + 1,
       isActive: user.isActive,
+      func: handleUserStatusUpdate,
     })) || [];
-  console.log(users?.data);
+  //console.log(users?.data);
   return (
     <div className=" flex flex-col p-2 w-full">
       <div className=" flex justify-end w-[80%] my-2">
