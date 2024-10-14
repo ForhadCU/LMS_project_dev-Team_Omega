@@ -64,6 +64,7 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildSectionTitle(String title) {
+    // test
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(
