@@ -9,7 +9,6 @@ const userValidationSchema = zod_1.z.object({
         password: zod_1.z.string().max(20),
         role: zod_1.z.string(),
         isActive: zod_1.z.boolean(),
-        batch: zod_1.z.string().optional(),
     }),
 });
 const loginValidationSchema = zod_1.z.object({
@@ -21,6 +20,7 @@ const loginValidationSchema = zod_1.z.object({
 const softDeleteValidationSchema = zod_1.z.object({
     body: zod_1.z.object({
         delemail: zod_1.z.string().email({ message: "Incorrect email format" }),
+        action: zod_1.z.boolean({ message: "Action type reqiured" }),
     }),
 });
 const changePasswordValidationSchema = zod_1.z.object({

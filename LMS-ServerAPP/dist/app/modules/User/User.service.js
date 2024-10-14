@@ -22,7 +22,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const sendEmail_1 = require("../../utils/sendEmail");
 const mongoose_1 = __importDefault(require("mongoose"));
 const Student_model_1 = require("../Student/Student.model");
-const createNewUser = (user, batch) => __awaiter(void 0, void 0, void 0, function* () {
+const createNewUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     const session = yield mongoose_1.default.startSession();
     try {
         session.startTransaction();
@@ -36,7 +36,7 @@ const createNewUser = (user, batch) => __awaiter(void 0, void 0, void 0, functio
                 userID: newUser[0]._id,
                 age: 20,
                 subjectMajor: "N/A",
-                batch: batch,
+                batch: 0,
                 address: "N/A",
                 img: "https://cdn-icons-png.flaticon.com/512/67/67902.png",
                 performance: {
@@ -110,12 +110,30 @@ const userChangePassword = (newPass, token) => __awaiter(void 0, void 0, void 0,
     const encryptedPass = yield bcrypt_1.default.hash(newPass, 12);
     yield User_model_1.User.findByIdAndUpdate({ _id: decode.userId }, { password: encryptedPass }, { new: true });
 });
-const deleteUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
+const getSingleUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const res = yield User_model_1.User.findById(id).select("-password");
+    if (!res) {
+        throw new AppError_1.default(404, "User not found.");
+    }
+    return res;
+});
+const userInfoUpdate = (updatedData) => __awaiter(void 0, void 0, void 0, function* () {
+    let id;
+    for (let key in updatedData) {
+        if (key === "_id") {
+            id = updatedData[key];
+        }
+    }
+    console.log(updatedData);
+    const res = yield User_model_1.User.findByIdAndUpdate(id, updatedData, { new: true });
+    return res;
+});
+const deleteUser = (email, action) => __awaiter(void 0, void 0, void 0, function* () {
     const getUser = yield User_model_1.User.findOne({ email: email });
     if (!getUser) {
         throw new Error("User with that email does not exist.");
     }
-    const data = yield User_model_1.User.findOneAndUpdate({ email: email }, { isActive: false }, { new: true });
+    const data = yield User_model_1.User.findOneAndUpdate({ email: email }, { isActive: action }, { new: true });
     return data;
 });
 const createUsers = (users) => __awaiter(void 0, void 0, void 0, function* () {
@@ -129,4 +147,6 @@ exports.UserServices = {
     deleteUser,
     userChangePassword,
     createUsers,
+    getSingleUser,
+    userInfoUpdate,
 };

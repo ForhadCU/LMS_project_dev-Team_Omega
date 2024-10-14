@@ -11,9 +11,14 @@ const uploadImage_1 = require("../../utils/uploadImage");
 const Events_controller_1 = require("./Events.controller");
 const router = (0, express_1.Router)();
 router.post("/create-event", (0, auth_1.default)(User_interface_1.USER_ROLE.super_admin, User_interface_1.USER_ROLE.admin), uploadImage_1.upload.single("img"), (req, res, next) => {
+    // console.log(req.body);
     req.body = JSON.parse(req.body.data);
+    // console.log(req.file);
     next();
 }, Events_controller_1.EventsController.createNewEvent);
+router.post("/create-event-alt", (0, auth_1.default)("admin", "super admin"), Events_controller_1.EventsController.createNewEventAlt);
+router.get("/get-all-events", (0, auth_1.default)("admin", "super admin", "student", "instructor"), Events_controller_1.EventsController.getAllEvents);
+router.get("/:id", (0, auth_1.default)("admin", "super admin", "student", "instructor"), Events_controller_1.EventsController.getEventById);
 router.post("/create-event-alt", (0, auth_1.default)("admin", "super admin"), Events_controller_1.EventsController.createNewEventAlt);
 router.get("/get-all-events", (0, auth_1.default)("admin", "super admin", "student", "instructor"), Events_controller_1.EventsController.getAllEvents);
 exports.EventsRoutes = router;

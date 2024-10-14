@@ -51,8 +51,17 @@ const deactivateCourse = (courseCode, status) => __awaiter(void 0, void 0, void 
     if (!getExistingCourse) {
         throw new AppError_1.default(404, "Course not found!");
     }
-    if (getExistingCourse.isActive === "inactive") {
-        throw new AppError_1.default(409, "Course already deactivated!");
+    // Handle course activation
+    if (status === "active") {
+        if (getExistingCourse.isActive === "active") {
+            throw new AppError_1.default(409, "Course is already active!");
+        }
+    }
+    // Handle course deactivation
+    if (status === "inactive") {
+        if (getExistingCourse.isActive === "inactive") {
+            throw new AppError_1.default(409, "Course is already inactive!");
+        }
     }
     const result = yield Courses_model_1.Course.findOneAndUpdate({ code: courseCode }, { isActive: status }, { new: true });
     return result;

@@ -9,9 +9,9 @@ const courseValidationSchema = zod_1.z.object({
         description: zod_1.z.string(),
         duration: zod_1.z.number(),
         img: zod_1.z.string().optional(),
-        instructors: zod_1.z.array(zod_1.z.string()).min(1, "At least one intructor needed"),
+        instructors: zod_1.z.array(zod_1.z.string()).min(1, "At least one instructor needed"),
         courseType: zod_1.z.enum(["language", "technical", "personalDevelopment"]),
-        isActive: zod_1.z.boolean().optional(),
+        isActive: zod_1.z.enum(["pending", "active", "inactive"]).optional(),
     }),
 });
 const courseUpdateValidationSchema = zod_1.z.object({
@@ -23,18 +23,19 @@ const courseUpdateValidationSchema = zod_1.z.object({
         img: zod_1.z.string().optional(),
         instructors: zod_1.z
             .array(zod_1.z.string())
-            .min(1, "At least one intructor needed")
+            .min(1, "At least one instructor needed")
             .optional(),
         courseType: zod_1.z
             .enum(["language", "technical", "personalDevelopment"])
             .optional(),
-        isActive: zod_1.z.boolean().optional(),
+        isActive: zod_1.z.enum(["pending", "active", "inactive"]).optional(),
     }),
 });
 const courseDeactivateValidationSchema = zod_1.z.object({
     body: zod_1.z.object({
         status: zod_1.z.string(),
         code: zod_1.z.string(),
+        status: zod_1.z.enum(["active", "inactive"]),
     }),
 });
 exports.courseValidationSchemas = {

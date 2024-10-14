@@ -9,6 +9,7 @@ const Attendance_routes_1 = require("../modules/Attendance/Attendance.routes");
 const Enrollment_routes_1 = require("../modules/Enrollment/Enrollment.routes");
 const Events_routes_1 = require("../modules/Events/Events.routes");
 const Forum_routes_1 = require("../modules/Forums/Forum.routes");
+const Student_routes_1 = require("../modules/Student/Student.routes");
 const router = (0, express_1.Router)();
 const moduleRoutes = [
     { path: "/user", route: User_routes_1.UserRoutes },
@@ -19,6 +20,7 @@ const moduleRoutes = [
     { path: "/enrollment", route: Enrollment_routes_1.EnrollmentRoutes },
     { path: "/events", route: Events_routes_1.EventsRoutes },
     { path: "/forums", route: Forum_routes_1.ForumROutes },
+    { path: "/student", route: Student_routes_1.studentRoutes },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
 exports.default = router;

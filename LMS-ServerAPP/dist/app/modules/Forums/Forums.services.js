@@ -33,7 +33,8 @@ const getAllForums = (rawQuery) => __awaiter(void 0, void 0, void 0, function* (
     const res = yield Forums_model_1.Forums.find(query)
         .skip((page - 1) * limit)
         .limit(limit)
-        .sort();
+        .sort("-createdAt")
+        .populate("UserID", "name email role");
     return res;
 });
 const createNewComment = (commentData) => __awaiter(void 0, void 0, void 0, function* () {

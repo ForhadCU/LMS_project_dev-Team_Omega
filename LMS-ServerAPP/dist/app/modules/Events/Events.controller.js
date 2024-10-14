@@ -18,6 +18,7 @@ const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const Events_services_1 = require("./Events.services");
 const createNewEvent = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const eventdata = req.body;
+    console.log(eventdata);
     const result = yield Events_services_1.EventServices.createNewEvent(req.file, eventdata);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
@@ -45,8 +46,27 @@ const getAllEvents = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(v
         data: result,
     });
 }));
+const getEventById = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield Events_services_1.EventServices.getEventById(id);
+    if (!result) {
+        return (0, sendResponse_1.default)(res, {
+            statusCode: 404,
+            success: false,
+            message: "Event not found",
+            data: null,
+        });
+    }
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Event fetched successfully",
+        data: result,
+    });
+}));
 exports.EventsController = {
     createNewEvent,
-    getAllEvents,
     createNewEventAlt,
+    getAllEvents,
+    getEventById,
 };

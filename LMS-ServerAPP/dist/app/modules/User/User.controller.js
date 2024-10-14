@@ -19,7 +19,7 @@ const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const config_1 = __importDefault(require("../../config"));
 const createNewUser = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let batch = req.body.batch;
-    const result = yield User_service_1.UserServices.createNewUser(req.body, batch);
+    const result = yield User_service_1.UserServices.createNewUser(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
@@ -30,6 +30,16 @@ const createNewUser = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(
 const getAllUser = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const rawquery = req.query;
     const result = yield User_service_1.UserServices.getAllUsers(rawquery);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Users fetched succesfully",
+        data: result,
+    });
+}));
+const getSingleUser = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.query;
+    const result = yield User_service_1.UserServices.getSingleUser(id);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
@@ -64,13 +74,23 @@ const userLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
     }
 });
-const userSoftDelete = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userEmail = req.body.delemail;
-    const result = yield User_service_1.UserServices.deleteUser(userEmail);
+const updateUserInfo = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield User_service_1.UserServices.userInfoUpdate(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
-        message: "User deleted successfully",
+        message: "User updated  succesfully",
+        data: result,
+    });
+}));
+const userSoftDelete = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userEmail = req.body.delemail;
+    const action = req.body.action;
+    const result = yield User_service_1.UserServices.deleteUser(userEmail, action);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "User status updated successfully",
         data: null,
     });
 }));
@@ -90,7 +110,7 @@ const createUsers = (0, globalTryCatchFunc_1.default)((req, res) => __awaiter(vo
     const users = req.body.users;
     const result = yield User_service_1.UserServices.createUsers(users);
     (0, sendResponse_1.default)(res, {
-        statusCode: 201,
+        statusCode: 200,
         success: true,
         message: "Users created successfully",
         data: result,
@@ -103,4 +123,6 @@ exports.UserControllers = {
     userChangePassword,
     getAllUser,
     createUsers,
+    getSingleUser,
+    updateUserInfo,
 };

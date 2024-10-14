@@ -22,6 +22,7 @@ const createNewEvent = (file, eventData) => __awaiter(void 0, void 0, void 0, fu
     }
     const imageName = `${eventData === null || eventData === void 0 ? void 0 : eventData.title}-${new Date().toString()}`;
     const path = file === null || file === void 0 ? void 0 : file.path;
+    console.log(imageName, path);
     const { secure_url } = yield (0, uploadImage_1.sendImageToCloudinary)(imageName, path);
     const newEvent = {
         title: eventData.title,
@@ -44,8 +45,16 @@ const getAllEvents = (rawQuery) => __awaiter(void 0, void 0, void 0, function* (
     const result = yield Events_model_1.Events.find(query);
     return result;
 });
+const getEventById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Events_model_1.Events.findById(id);
+    if (!result) {
+        throw new AppError_1.default(404, "Event not found");
+    }
+    return result;
+});
 exports.EventServices = {
     createNewEvent,
-    getAllEvents,
     createNewEventAlt,
+    getAllEvents,
+    getEventById,
 };
