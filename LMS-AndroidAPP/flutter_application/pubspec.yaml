@@ -18,6 +18,7 @@ dependencies:
   shared_preferences: ^2.2.3
   getwidget: ^4.0.0
   url_launcher: ^6.2.4
+  # syncfusion_flutter_charts: ^27.1.52
 
 dev_dependencies:
   flutter_lints: ^2.0.0
